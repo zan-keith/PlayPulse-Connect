@@ -1,0 +1,421 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/test.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Sprites/white circle.png" type="Texture" id=5]
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0.0896861, 0.479821, 0.995516 )
+colors = PoolColorArray( 0.145098, 0.929412, 1, 0.290196, 0.372549, 0.627451, 0.823529, 0.14902, 0.180392, 0.180392, 0.180392, 0 )
+
+[sub_resource type="GradientTexture2D" id=15]
+gradient = SubResource( 14 )
+fill = 1
+fill_from = Vector2( 1, 0.501667 )
+fill_to = Vector2( 0.371667, 0.498333 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.1164, 0.1164, 0.12, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 27
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=5]
+RichTextLabel/fonts/normal_font = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=7]
+RichTextLabel/fonts/normal_font = SubResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color( 0.431373, 0.619608, 0.792157, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id=3]
+PanelContainer/styles/panel = SubResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 31
+extra_spacing_top = 5
+extra_spacing_bottom = 5
+extra_spacing_char = 9
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+content_margin_right = 15.0
+bg_color = Color( 0.105882, 0.133333, 0.172549, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=13]
+size = 19
+use_filter = true
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.180392, 0.380392, 0.160784, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.266667 )
+shadow_size = 7
+
+[sub_resource type="Animation" id=16]
+resource_name = "gradientflow"
+length = 40.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/TextureRect/gradient:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 20.1, 39.8 ),
+"transitions": PoolRealArray( 1, 0.812252, 0.574349 ),
+"update": 0,
+"values": [ Vector2( 481, -100 ), Vector2( 481, 550 ), Vector2( 481, -50 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/TextureRect/gradient:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( -0.2, 2.2, 4.81843, 8.31843, 11.4184, 14.7, 19.7, 24.9, 28.5, 32, 35, 37.3, 39.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.121569 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 0.541176 ), Color( 1, 1, 1, 0.247861 ), Color( 1, 1, 1, 0.823529 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.623529 ), Color( 1, 1, 1, 0.337255 ), Color( 1, 1, 1, 0.768627 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "startup"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/Panel/VBoxContainer/Welcome:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/Panel/VBoxContainer/Welcome:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.31864, 0.31864 ),
+"update": 0,
+"values": [ Vector2( -50, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/Panel/VBoxContainer/Welcome:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("VBoxContainer/Panel/VBoxContainer/UserName:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1.93187, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("VBoxContainer/Panel/VBoxContainer/UserName:percent_visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/Panel/VBoxContainer/UserName:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.574349, 0.277392 ),
+"update": 0,
+"values": [ Vector2( -50, 38 ), Vector2( 0, 38 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:text")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.6, 1.7, 1.8, 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "1", "12", "123", "1234", "12345", "1234", "123", "12", "1", "" ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.7, 1.1, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.219608, 0.709804, 0.27451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("VBoxContainer/Panel/Avatar:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 2.82843, 3.4822 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("VBoxContainer/TextureRect/gradient:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="WelcomeScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+margin_right = 512.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
+
+[node name="gradient" type="TextureRect" parent="VBoxContainer/TextureRect"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -43.0
+margin_top = -285.0
+margin_right = 5.0
+margin_bottom = 170.0
+texture = SubResource( 15 )
+expand = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+margin_left = 512.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Welcome" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_right = 496.0
+margin_bottom = 34.0
+theme = SubResource( 5 )
+text = "Welcome "
+fit_content_height = true
+scroll_active = false
+
+[node name="UserName" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 496.0
+margin_bottom = 61.0
+theme = SubResource( 7 )
+custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
+text = "Seth Rayner"
+fit_content_height = true
+scroll_active = false
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 65.0
+margin_right = 496.0
+margin_bottom = 81.0
+custom_constants/separation = 16
+
+[node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+margin_top = 85.0
+margin_right = 496.0
+margin_bottom = 307.0
+theme = SubResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 481.0
+margin_bottom = 207.0
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_right = 466.0
+margin_bottom = 34.0
+theme = SubResource( 5 )
+text = "Enter the Pairing PIN"
+fit_content_height = true
+scroll_active = false
+
+[node name="SubTitle" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 38.0
+margin_right = 466.0
+margin_bottom = 61.0
+theme = SubResource( 7 )
+custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
+text = "Type the pin you see in your primary device"
+fit_content_height = true
+scroll_active = false
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 65.0
+margin_right = 466.0
+margin_bottom = 81.0
+custom_constants/separation = 16
+custom_styles/separator = SubResource( 8 )
+
+[node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 85.0
+margin_right = 466.0
+margin_bottom = 132.0
+custom_fonts/font = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+align = 1
+max_length = 7
+clear_button_enabled = true
+placeholder_text = "_ _ _ _ _"
+caret_blink = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 136.0
+margin_right = 466.0
+margin_bottom = 145.0
+custom_constants/separation = 9
+custom_styles/separator = SubResource( 8 )
+
+[node name="Proceed" type="Button" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 149.0
+margin_right = 466.0
+margin_bottom = 192.0
+custom_fonts/font = SubResource( 13 )
+custom_styles/normal = SubResource( 11 )
+text = "Proceed"
+
+[node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_bottom = 71.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="RLabel5" type="RichTextLabel" parent="VBoxContainer/Panel/Avatar"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -11.5
+margin_bottom = 11.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 7 )
+custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]SR"
+text = "SR"
+fit_content_height = true
+scroll_active = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/gradientflow = SubResource( 16 )
+anims/startup = SubResource( 12 )
+
+[connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
