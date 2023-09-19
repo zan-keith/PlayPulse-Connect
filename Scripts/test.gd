@@ -12,7 +12,7 @@ func _ready():
 	
 
 func _on_Proceed_pressed():
-	var pin=$VBoxContainer/Panel/VBoxContainer/PanelContainer/VBoxContainer/PinBox.get_text()
+	var pin=$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.get_text()
 	var pwd=pin.left(4)
 	var octet=pin.trim_prefix(pwd)
 	IP_ADDRESS="192.168.1."+octet
@@ -38,10 +38,6 @@ func _process(delta):
 
 
 
-func _on_Button_pressed():
-	print("pressed")
-	var msgbox=$VBoxContainer/Panel/VBoxContainer/PanelContainer/VBoxContainer/msg.get_text()
-	udp.put_packet(msgbox.to_utf8())
 
 
 

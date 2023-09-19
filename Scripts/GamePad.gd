@@ -23,6 +23,11 @@ func _ready():
 
 
 
-func _on_Virtual_joystick_joystick_input_update(pos):
+func _on_Left_Stick_joystick_input_update(pos):
 	udp.put_packet(str(pos).to_utf8())
 	
+
+
+
+func _on_Right_Stick_joystick_input_update(pos):
+	udp.put_packet(str(pos).to_utf8())
