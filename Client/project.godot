@@ -21,7 +21,10 @@ _global_script_class_icons={
 [application]
 
 config/name="GamePadPortal"
-run/main_scene="res://Scenes/Pages/GamePad.tscn"
+run/main_scene="res://Scenes/Pages/SplashScreen.tscn"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]

@@ -38,7 +38,7 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=20]
 offsets = PoolRealArray( 0, 0.587444, 1 )
-colors = PoolColorArray( 0.0118276, 0.156348, 0.177734, 1, 0.0100712, 0.107637, 0.119141, 1, 0, 0.0996094, 0.0914383, 1 )
+colors = PoolColorArray( 0.0118276, 0.164124, 0.177734, 1, 0.0100712, 0.115307, 0.119141, 1, 0, 0.0891037, 0.0996094, 1 )
 
 [sub_resource type="GradientTexture2D" id=21]
 gradient = SubResource( 20 )
@@ -350,13 +350,13 @@ custom_styles/panel = SubResource( 22 )
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
 
 [node name="Welcome" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
-margin_right = 496.0
+margin_right = 480.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
 text = "Welcome "
@@ -365,7 +365,7 @@ scroll_active = false
 
 [node name="UserName" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 38.0
-margin_right = 496.0
+margin_right = 480.0
 margin_bottom = 61.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
@@ -375,24 +375,24 @@ scroll_active = false
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 65.0
-margin_right = 496.0
+margin_right = 480.0
 margin_bottom = 81.0
 custom_constants/separation = 16
 
 [node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 85.0
-margin_right = 496.0
+margin_right = 480.0
 margin_bottom = 307.0
 theme = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 481.0
+margin_right = 465.0
 margin_bottom = 207.0
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
 text = "Enter the Pairing PIN"
@@ -401,7 +401,7 @@ scroll_active = false
 
 [node name="SubTitle" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_top = 38.0
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 61.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
@@ -411,14 +411,14 @@ scroll_active = false
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_top = 65.0
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 81.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 8 )
 
 [node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_top = 85.0
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 132.0
 custom_fonts/font = SubResource( 9 )
 custom_styles/read_only = SubResource( 10 )
@@ -431,14 +431,14 @@ caret_blink = true
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_top = 136.0
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 145.0
 custom_constants/separation = 9
 custom_styles/separator = SubResource( 8 )
 
 [node name="Proceed" type="Button" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_top = 149.0
-margin_right = 466.0
+margin_right = 450.0
 margin_bottom = 192.0
 custom_fonts/font = SubResource( 13 )
 custom_styles/normal = SubResource( 11 )
@@ -447,8 +447,10 @@ text = "Proceed"
 [node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -72.0
-margin_bottom = 71.0
+margin_left = -96.0
+margin_top = 14.0
+margin_right = -24.0
+margin_bottom = 85.0
 texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
@@ -473,5 +475,6 @@ scroll_active = false
 anims/gradientflow = SubResource( 16 )
 anims/startup = SubResource( 12 )
 
+[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_entered"]
 [connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

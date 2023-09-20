@@ -52,3 +52,7 @@ func _process(delta):
 
 
 		
+
+
+func _on_PinBox_text_entered(new_text):
+	_on_Proceed_pressed()

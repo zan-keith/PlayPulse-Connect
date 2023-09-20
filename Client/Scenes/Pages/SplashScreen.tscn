@@ -1,0 +1,334 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Sprites/logo_small_monochrome_dark.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Fonts/Inconsolata-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Sprites/game-controller-fill-svgrepo-com.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/SplashScreen.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.027451, 0.054902, 1 )
+
+[sub_resource type="Gradient" id=21]
+colors = PoolColorArray( 0.0139634, 0.12319, 0.146484, 1, 0.0343026, 0.499502, 0.615234, 1 )
+
+[sub_resource type="GradientTexture2D" id=22]
+gradient = SubResource( 21 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.471667 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+use_mipmaps = true
+use_filter = true
+extra_spacing_space = 7
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 17
+use_mipmaps = true
+use_filter = true
+extra_spacing_space = 7
+font_data = ExtResource( 3 )
+
+[sub_resource type="Gradient" id=23]
+offsets = PoolRealArray( 0.130045, 0.345291, 0.627803, 0.959641 )
+colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.506722, 1, 1, 1, 0, 0.980392, 0.996078, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=24]
+gradient = SubResource( 23 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "startup"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Controller:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.5, 1.2 ),
+"transitions": PoolRealArray( 0.225313, 0.57435, 0.31864 ),
+"update": 0,
+"values": [ Vector2( 416, 344 ), Vector2( 416, 110 ), Vector2( 416, 190 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Controller:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5, 1.2 ),
+"transitions": PoolRealArray( 1.46409, 1, 1 ),
+"update": 0,
+"values": [ 24.4, 0.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Cover:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Controller:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 0.482968, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Controller/Glow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2, 0.8, 1.8, 2.4, 3 ),
+"transitions": PoolRealArray( 1, 1.56917, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.941176, 1, 0 ), Color( 0, 0.941176, 1, 0 ), Color( 0, 0.941176, 1, 0.160784 ), Color( 0, 0.941176, 1, 0.160784 ), Color( 0, 0.941176, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Grad:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 0.6, 1.6, 2.7, 3 ),
+"transitions": PoolRealArray( 1, 0.435275, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.321569, 0.321569, 0.321569, 0 ), Color( 0.321569, 0.321569, 0.321569, 0 ), Color( 0.321569, 0.321569, 0.321569, 1 ), Color( 0.321569, 0.321569, 0.321569, 1 ), Color( 0.321569, 0.321569, 0.321569, 0 ) ]
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Controller:rect_position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = false
+tracks/6/keys = {
+"points": PoolRealArray( 416, 0, 300, 0.25, 0, 416, 0, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.2, 0.5 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Controller:rect_position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 272.001, -0.25, 0, 0.4, -16.6667, 131.936, -0.25, 0, 0.25, 0, 179.357, -0.2, -27.1358, 0.4, 6.62192 ),
+"times": PoolRealArray( 0.2, 0.6, 1 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Label:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.2, 2.3, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Label2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.2, 2.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("TextureRect:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.2, 2.3, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Controller:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Splash" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Grad" type="TextureRect" parent="."]
+modulate = Color( 0.321569, 0.321569, 0.321569, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = SubResource( 22 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -192.0
+margin_top = -63.0
+margin_right = -1.0
+margin_bottom = -36.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 1, 1, 0.67451 )
+custom_fonts/font = SubResource( 2 )
+text = "POWERED BY"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -24.0
+margin_right = 80.0
+margin_bottom = -5.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 3 )
+text = "5_keith"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -80.0
+margin_right = 328.0
+margin_bottom = -24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="Controller" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -27.9986
+margin_right = 96.0
+margin_bottom = 164.003
+rect_rotation = 24.4
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Glow" type="TextureRect" parent="Controller"]
+modulate = Color( 0, 0.941176, 1, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -169.5
+margin_top = -177.0
+margin_right = 169.5
+margin_bottom = 177.0
+texture = SubResource( 24 )
+expand = true
+stretch_mode = 7
+
+[node name="Cover" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 312.0
+margin_right = 2.0
+margin_bottom = -82.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/startup = SubResource( 4 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

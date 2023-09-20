@@ -36,11 +36,11 @@
 [ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=35]
 
-[sub_resource type="Gradient" id=21]
+[sub_resource type="Gradient" id=25]
 colors = PoolColorArray( 0.0273894, 0.186722, 0.220703, 1, 0.0343026, 0.499502, 0.615234, 1 )
 
 [sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 21 )
+gradient = SubResource( 25 )
 fill = 1
 fill_from = Vector2( 0.508333, 0.471667 )
 
@@ -53,12 +53,12 @@ gradient = SubResource( 24 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
-[sub_resource type="Gradient" id=25]
+[sub_resource type="Gradient" id=26]
 offsets = PoolRealArray( 0, 0.179372, 0.506726, 1 )
 colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.788235, 1, 1, 1, 0, 0.980392, 0.996078, 1, 0 )
 
 [sub_resource type="GradientTexture2D" id=4]
-gradient = SubResource( 25 )
+gradient = SubResource( 26 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
 
