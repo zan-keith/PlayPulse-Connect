@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/test.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/white circle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0896861, 0.479821, 0.995516 )
@@ -19,23 +20,23 @@ fill_to = Vector2( 0.371667, 0.498333 )
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.1164, 0.1164, 0.12, 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=17]
 size = 27
 use_filter = true
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=5]
-RichTextLabel/fonts/normal_font = SubResource( 4 )
+RichTextLabel/fonts/normal_font = SubResource( 17 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=18]
 size = 18
 use_filter = true
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=7]
-RichTextLabel/fonts/normal_font = SubResource( 6 )
+RichTextLabel/fonts/normal_font = SubResource( 18 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 15.0
@@ -111,10 +112,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -0.2, 2.2, 4.81843, 8.31843, 11.4184, 14.7, 19.7, 24.9, 28.5, 32, 35, 37.3, 39.8 ),
+"times": PoolRealArray( 0, 2.2, 4.81843, 8.31843, 11.4184, 14.7, 19.7, 24.9, 28.5, 32, 35, 37.3, 39.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.121569 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 0.541176 ), Color( 1, 1, 1, 0.247861 ), Color( 1, 1, 1, 0.823529 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.623529 ), Color( 1, 1, 1, 0.337255 ), Color( 1, 1, 1, 0.768627 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0.498039 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.121569 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0666667 ), Color( 1, 1, 1, 0.541176 ), Color( 1, 1, 1, 0.247861 ), Color( 1, 1, 1, 0.823529 ), Color( 1, 1, 1, 0.0980392 ), Color( 1, 1, 1, 0.623529 ), Color( 1, 1, 1, 0.337255 ), Color( 1, 1, 1, 0.768627 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -247,10 +248,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.498039 ) ]
 }
 
 [node name="WelcomeScreen" type="Control"]
@@ -273,7 +274,7 @@ expand = true
 stretch_mode = 7
 
 [node name="gradient" type="TextureRect" parent="VBoxContainer/TextureRect"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.498039 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -412,6 +413,17 @@ bbcode_text = "[center]SR"
 text = "SR"
 fit_content_height = true
 scroll_active = false
+
+[node name="Settings" type="TextureButton" parent="."]
+modulate = Color( 0.839216, 0.945098, 0.94902, 1 )
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 56.0
+margin_bottom = 56.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/gradientflow = SubResource( 16 )

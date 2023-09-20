@@ -1,0 +1,876 @@
+[gd_scene load_steps=61 format=2]
+
+[ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/trash-bin-trash-svgrepo-com.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pictures/Cropped_bg2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight36.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight37.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight38.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight39.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight10.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight03.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight05.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight06.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight42.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight40.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight43.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight41.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight44.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight40.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight41.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight37.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight36.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight38.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight39.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight44.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight42.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight43.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight06.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight05.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight03.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight10.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/trash-bin-press-trash-svgrepo-com.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=32]
+[ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=33]
+[ext_resource path="res://Assets/Sprites/chevron-down-dot-svgrepo-com.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Sprites/add-square-svgrepo-com.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Sprites/add-square-pressed-svgrepo-com.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Sprites/close-circle-svgrepo-com.png" type="Texture" id=37]
+[ext_resource path="res://Scripts/LayoutSettings.gd" type="Script" id=38]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.192825, 0.524664 )
+colors = PoolColorArray( 1, 1, 1, 0.619608, 1, 1, 1, 0.490196, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=2]
+gradient = SubResource( 3 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.192825, 0.524664 )
+colors = PoolColorArray( 1, 1, 1, 0.619608, 1, 1, 1, 0.490196, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 1 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.431373, 0.619608, 0.792157, 0.603922 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 33 )
+
+[sub_resource type="Theme" id=7]
+RichTextLabel/fonts/normal_font = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 19
+use_filter = true
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 32 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 1, 1, 1, 0.235294 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.00784314 )
+shadow_size = 6
+
+[sub_resource type="DynamicFont" id=10]
+size = 14
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 32 )
+
+[sub_resource type="Theme" id=11]
+RichTextLabel/fonts/normal_font = SubResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.223529, 0.580392, 0.54902, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.00784314 )
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id=13]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.36, 0.1008, 0.1008, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.00784314 )
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id=18]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+bg_color = Color( 0.38805, 0.561075, 0.716797, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="DynamicFont" id=17]
+size = 27
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 32 )
+
+[sub_resource type="Theme" id=19]
+RichTextLabel/fonts/normal_font = SubResource( 17 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 18
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 32 )
+
+[sub_resource type="Theme" id=21]
+RichTextLabel/fonts/normal_font = SubResource( 20 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 15
+font_data = ExtResource( 33 )
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="DynamicFont" id=24]
+size = 25
+extra_spacing_top = 5
+extra_spacing_bottom = 5
+extra_spacing_char = 2
+font_data = ExtResource( 33 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_right = 15.0
+bg_color = Color( 0.105882, 0.133333, 0.172549, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Layout" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 38 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.321569, 0.321569, 0.321569, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 7
+
+[node name="LeftStick" parent="." groups=["btn"] instance=ExtResource( 1 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 264.0
+margin_bottom = 288.0
+disabled = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="LeftStick"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="LeftStick"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="RightStick" parent="." groups=["btn"] instance=ExtResource( 1 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -304.0
+margin_top = -248.0
+margin_right = -87.0
+margin_bottom = -45.0
+disabled = true
+
+[node name="ReferenceRect" type="ReferenceRect" parent="RightStick"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="RightStick"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="Btn_L" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 360.0
+margin_top = 72.0
+margin_right = 424.0
+margin_bottom = 136.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 14 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Btn_L"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="Btn_L"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="Btn_R" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 536.0
+margin_top = 80.0
+margin_right = 600.0
+margin_bottom = 144.0
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Btn_R"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="Btn_R"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="Btn_Select" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 608.0
+margin_top = 216.0
+margin_right = 672.0
+margin_bottom = 280.0
+action_mode = 0
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 26 )
+texture_hover = ExtResource( 15 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Btn_Select"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="Btn_Select"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="Btn_Start" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 496.0
+margin_top = 216.0
+margin_right = 560.0
+margin_bottom = 280.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 25 )
+texture_hover = ExtResource( 13 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Btn_Start"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="Btn_Start"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="Btn_Pause" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 328.0
+margin_top = 208.0
+margin_right = 392.0
+margin_bottom = 272.0
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 24 )
+texture_hover = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Btn_Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="Btn_Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="DigitalButtons" type="TextureRect" parent="." groups=["btn"]]
+margin_left = 704.0
+margin_top = 64.0
+margin_right = 960.0
+margin_bottom = 320.0
+texture = SubResource( 2 )
+stretch_mode = 6
+
+[node name="Btn_A" type="TextureButton" parent="DigitalButtons"]
+margin_left = 96.0
+margin_top = 152.0
+margin_right = 163.0
+margin_bottom = 216.0
+action_mode = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_B" type="TextureButton" parent="DigitalButtons"]
+margin_left = 152.0
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_X" type="TextureButton" parent="DigitalButtons"]
+margin_left = 40.0
+margin_top = 96.0
+margin_right = 104.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_Y" type="TextureButton" parent="DigitalButtons"]
+margin_left = 96.0
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 104.0
+action_mode = 0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DigitalButtons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="DigitalButtons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="DigitalButtons2" type="TextureRect" parent="." groups=["btn"]]
+margin_left = 291.0
+margin_top = 334.0
+margin_right = 547.0
+margin_bottom = 590.0
+texture = SubResource( 2 )
+stretch_mode = 6
+
+[node name="Btn_A" type="TextureButton" parent="DigitalButtons2"]
+margin_left = 96.0
+margin_top = 152.0
+margin_right = 163.0
+margin_bottom = 216.0
+action_mode = 0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_B" type="TextureButton" parent="DigitalButtons2"]
+margin_left = 152.0
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_X" type="TextureButton" parent="DigitalButtons2"]
+margin_left = 40.0
+margin_top = 96.0
+margin_right = 104.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_Y" type="TextureButton" parent="DigitalButtons2"]
+margin_left = 96.0
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 104.0
+action_mode = 0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 23 )
+texture_hover = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DigitalButtons2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="DigitalButtons2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="DPad" type="TextureRect" parent="." groups=["btn"]]
+self_modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 61.0
+margin_top = -229.0
+margin_right = 216.0
+margin_bottom = -74.0
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="DPad"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -140.0
+margin_right = 140.0
+margin_bottom = 140.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Dpad_UP" type="TextureButton" parent="DPad"]
+margin_left = 48.0
+margin_right = 109.0
+margin_bottom = 76.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 29 )
+
+[node name="Dpad_LEFT" type="TextureButton" parent="DPad"]
+margin_top = 48.0
+margin_right = 76.0
+margin_bottom = 109.0
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 28 )
+
+[node name="Dpad_RIGHT" type="TextureButton" parent="DPad"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 155.0
+margin_bottom = 109.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 27 )
+
+[node name="Dpad_DOWN" type="TextureButton" parent="DPad"]
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 109.0
+margin_bottom = 155.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 30 )
+
+[node name="ReferenceRect" type="ReferenceRect" parent="DPad"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+border_width = 1.3
+editor_only = false
+
+[node name="Selection" type="Button" parent="DPad" groups=["btn"]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+toggle_mode = true
+flat = true
+
+[node name="ControlPanel" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -244.0
+margin_top = 12.0
+margin_right = 244.0
+margin_bottom = 88.0
+rect_pivot_offset = Vector2( -392, 136 )
+custom_styles/panel = SubResource( 5 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ControlPanel"]
+margin_left = 15.0
+margin_top = 8.0
+margin_right = 473.0
+margin_bottom = 113.0
+rect_pivot_offset = Vector2( -327, 97 )
+custom_constants/separation = 8
+
+[node name="Title" type="RichTextLabel" parent="ControlPanel/VBoxContainer"]
+margin_right = 458.0
+margin_bottom = 23.0
+theme = SubResource( 7 )
+bbcode_enabled = true
+bbcode_text = "[center]Select Or Create A New Layout"
+text = "Select Or Create A New Layout"
+fit_content_height = true
+scroll_active = false
+
+[node name="BtnGroup1" type="HBoxContainer" parent="ControlPanel/VBoxContainer"]
+margin_top = 31.0
+margin_right = 458.0
+margin_bottom = 64.0
+custom_constants/separation = 14
+
+[node name="Add" type="TextureButton" parent="ControlPanel/VBoxContainer/BtnGroup1"]
+modulate = Color( 0.215686, 0.713726, 0.682353, 1 )
+margin_right = 32.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 32, 0 )
+texture_normal = ExtResource( 35 )
+texture_pressed = ExtResource( 36 )
+expand = true
+stretch_mode = 4
+
+[node name="LayoutSelect" type="Button" parent="ControlPanel/VBoxContainer/BtnGroup1"]
+margin_left = 46.0
+margin_right = 412.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "Default"
+icon = ExtResource( 34 )
+icon_align = 2
+expand_icon = true
+
+[node name="Delete" type="TextureButton" parent="ControlPanel/VBoxContainer/BtnGroup1"]
+modulate = Color( 1, 0.431373, 0.431373, 1 )
+margin_left = 426.0
+margin_right = 458.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 32, 0 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 31 )
+expand = true
+stretch_mode = 4
+
+[node name="Options" type="VBoxContainer" parent="ControlPanel/VBoxContainer"]
+visible = false
+margin_top = 72.0
+margin_right = 458.0
+margin_bottom = 197.0
+
+[node name="Title2" type="RichTextLabel" parent="ControlPanel/VBoxContainer/Options"]
+margin_right = 458.0
+margin_bottom = 19.0
+theme = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "[center]Scale"
+text = "Scale"
+fit_content_height = true
+scroll_active = false
+
+[node name="Scale" type="HSlider" parent="ControlPanel/VBoxContainer/Options"]
+margin_top = 23.0
+margin_right = 458.0
+margin_bottom = 39.0
+min_value = 1.0
+value = 1.0
+
+[node name="Title3" type="RichTextLabel" parent="ControlPanel/VBoxContainer/Options"]
+margin_top = 43.0
+margin_right = 458.0
+margin_bottom = 62.0
+theme = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "[center]X Axis"
+text = "X Axis"
+fit_content_height = true
+scroll_active = false
+
+[node name="XPos" type="HSlider" parent="ControlPanel/VBoxContainer/Options"]
+margin_top = 66.0
+margin_right = 458.0
+margin_bottom = 82.0
+min_value = 1.0
+value = 1.0
+
+[node name="Title4" type="RichTextLabel" parent="ControlPanel/VBoxContainer/Options"]
+margin_top = 86.0
+margin_right = 458.0
+margin_bottom = 105.0
+theme = SubResource( 11 )
+bbcode_enabled = true
+bbcode_text = "[center]Y Axis"
+text = "Y Axis"
+fit_content_height = true
+scroll_active = false
+
+[node name="YPos" type="HSlider" parent="ControlPanel/VBoxContainer/Options"]
+margin_top = 109.0
+margin_right = 458.0
+margin_bottom = 125.0
+min_value = 1.0
+value = 1.0
+
+[node name="BtnGroup" type="HBoxContainer" parent="ControlPanel/VBoxContainer"]
+margin_top = 72.0
+margin_right = 458.0
+margin_bottom = 105.0
+custom_constants/separation = 11
+
+[node name="Save" type="Button" parent="ControlPanel/VBoxContainer/BtnGroup"]
+margin_right = 223.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 12 )
+text = "Save"
+icon_align = 2
+expand_icon = true
+
+[node name="Cancel" type="Button" parent="ControlPanel/VBoxContainer/BtnGroup"]
+margin_left = 234.0
+margin_right = 458.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 8 )
+custom_styles/normal = SubResource( 13 )
+text = "Cancel"
+icon_align = 2
+expand_icon = true
+
+[node name="CreateLayoutPopup" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="CreateLayoutPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.662745 )
+
+[node name="Panel" type="PanelContainer" parent="CreateLayoutPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.5
+margin_top = -74.5
+margin_right = 202.5
+margin_bottom = 74.5
+custom_styles/panel = SubResource( 18 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreateLayoutPopup/Panel"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 390.0
+margin_bottom = 134.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreateLayoutPopup/Panel/VBoxContainer"]
+margin_right = 375.0
+margin_bottom = 34.0
+
+[node name="Title" type="RichTextLabel" parent="CreateLayoutPopup/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 339.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+theme = SubResource( 19 )
+text = "Set Layout Name"
+fit_content_height = true
+scroll_active = false
+
+[node name="Close" type="TextureButton" parent="CreateLayoutPopup/Panel/VBoxContainer/HBoxContainer"]
+modulate = Color( 0.458824, 0.211765, 0.211765, 1 )
+margin_left = 343.0
+margin_right = 375.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 0 )
+texture_normal = ExtResource( 37 )
+expand = true
+stretch_mode = 4
+
+[node name="SubTitle" type="RichTextLabel" parent="CreateLayoutPopup/Panel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 375.0
+margin_bottom = 61.0
+theme = SubResource( 21 )
+custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
+text = "Create a new name for your layout"
+fit_content_height = true
+scroll_active = false
+
+[node name="Error" type="RichTextLabel" parent="CreateLayoutPopup/Panel/VBoxContainer"]
+visible = false
+margin_top = 65.0
+margin_right = 375.0
+margin_bottom = 85.0
+theme = SubResource( 21 )
+custom_colors/default_color = Color( 0.560784, 0.164706, 0.164706, 1 )
+custom_fonts/normal_font = SubResource( 22 )
+text = "Create a new name for your layout"
+fit_content_height = true
+scroll_active = false
+
+[node name="HSeparator" type="HSeparator" parent="CreateLayoutPopup/Panel/VBoxContainer"]
+margin_top = 65.0
+margin_right = 375.0
+margin_bottom = 74.0
+custom_constants/separation = 9
+custom_styles/separator = SubResource( 23 )
+
+[node name="LayoutName" type="LineEdit" parent="CreateLayoutPopup/Panel/VBoxContainer"]
+margin_top = 78.0
+margin_right = 375.0
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 24 )
+custom_styles/normal = SubResource( 25 )
+align = 1
+clear_button_enabled = true
+placeholder_text = "Layout1"
+caret_blink = true
+
+[node name="SelectLayout" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="SelectLayout"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.662745 )
+
+[node name="Panel" type="PanelContainer" parent="SelectLayout"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.0
+margin_top = -74.0
+margin_right = 203.0
+margin_bottom = 7.0
+custom_styles/panel = SubResource( 18 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectLayout/Panel"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 390.0
+margin_bottom = 66.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SelectLayout/Panel/VBoxContainer"]
+margin_right = 375.0
+margin_bottom = 34.0
+
+[node name="Title" type="RichTextLabel" parent="SelectLayout/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 339.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+theme = SubResource( 19 )
+bbcode_enabled = true
+bbcode_text = "[center]Select"
+text = "Select"
+fit_content_height = true
+scroll_active = false
+
+[node name="Close" type="TextureButton" parent="SelectLayout/Panel/VBoxContainer/HBoxContainer"]
+modulate = Color( 0.458824, 0.211765, 0.211765, 1 )
+margin_left = 343.0
+margin_right = 375.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 32, 0 )
+texture_normal = ExtResource( 37 )
+expand = true
+stretch_mode = 4
+
+[node name="HSeparator" type="HSeparator" parent="SelectLayout/Panel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 375.0
+margin_bottom = 47.0
+custom_constants/separation = 9
+custom_styles/separator = SubResource( 23 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectLayout/Panel/VBoxContainer"]
+margin_top = 51.0
+margin_right = 375.0
+margin_bottom = 51.0
+
+[connection signal="pressed" from="ControlPanel/VBoxContainer/BtnGroup1/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="ControlPanel/VBoxContainer/BtnGroup1/LayoutSelect" to="." method="_on_LayoutSelect_pressed"]
+[connection signal="value_changed" from="ControlPanel/VBoxContainer/Options/Scale" to="." method="_on_Scale_value_changed"]
+[connection signal="value_changed" from="ControlPanel/VBoxContainer/Options/XPos" to="." method="_on_XPos_value_changed"]
+[connection signal="value_changed" from="ControlPanel/VBoxContainer/Options/YPos" to="." method="_on_YPos_value_changed"]
+[connection signal="pressed" from="ControlPanel/VBoxContainer/BtnGroup/Save" to="." method="_on_Save_pressed"]
+[connection signal="gui_input" from="CreateLayoutPopup/ColorRect" to="." method="_on_ColorRect_gui_input"]
+[connection signal="pressed" from="CreateLayoutPopup/Panel/VBoxContainer/HBoxContainer/Close" to="." method="_on_Close_pressed"]
+[connection signal="gui_input" from="SelectLayout/ColorRect" to="." method="_on_SelectLayout_ColorRect_gui_input"]
+[connection signal="pressed" from="SelectLayout/Panel/VBoxContainer/HBoxContainer/Close" to="." method="_on_SelectLayout_Close_pressed"]

@@ -3,6 +3,8 @@ class_name VirtualJoystick
 extends Control
 
 signal joystick_input_update
+export(bool) var disabled : bool = false
+
 # https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot
 
 #### EXPORTED VARIABLE ####
@@ -72,7 +74,7 @@ func _ready() -> void:
 		hide()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
+	if event is InputEventScreenTouch and !disabled:
 		if event.pressed:
 			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
 				if joystick_mode == JoystickMode.DYNAMIC or (joystick_mode == JoystickMode.FIXED and _is_point_inside_base(event.position)):

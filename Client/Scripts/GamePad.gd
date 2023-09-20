@@ -9,9 +9,7 @@ func _ready():
 	var IP_ADDRESS=Global.IP_ADDRESS
 	print(IP_ADDRESS)
 	udp.connect_to_host(IP_ADDRESS, 5000)
-
-
-	udp.put_packet("left".to_utf8())
+	udp.put_packet("test".to_utf8())
 
 
 
