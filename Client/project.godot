@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GamePadPortal"
-run/main_scene="res://Scenes/GamePad.tscn"
+run/main_scene="res://Scenes/Pages/GamePad.tscn"
 config/icon="res://icon.png"
 
 [autoload]

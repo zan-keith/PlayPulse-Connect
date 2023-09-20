@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/WelcomeScreen.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/white circle.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0896861, 0.479821, 0.995516 )
@@ -17,17 +16,38 @@ fill = 1
 fill_from = Vector2( 1, 0.501667 )
 fill_to = Vector2( 0.371667, 0.498333 )
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.1164, 0.1164, 0.12, 1 )
+[sub_resource type="StyleBoxEmpty" id=23]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=19]
 size = 27
 use_filter = true
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=5]
-RichTextLabel/fonts/normal_font = SubResource( 17 )
+RichTextLabel/fonts/normal_font = SubResource( 19 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 25
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.587444, 1 )
+colors = PoolColorArray( 0.0118276, 0.156348, 0.177734, 1, 0.0100712, 0.107637, 0.119141, 1, 0, 0.0996094, 0.0914383, 1 )
+
+[sub_resource type="GradientTexture2D" id=21]
+gradient = SubResource( 20 )
+fill = 1
+fill_from = Vector2( 0.871667, 0.671667 )
+
+[sub_resource type="StyleBoxTexture" id=22]
+texture = SubResource( 21 )
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="DynamicFont" id=18]
 size = 18
@@ -253,6 +273,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.498039 ) ]
 }
+tracks/11/type = "value"
+tracks/11/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:editable")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="WelcomeScreen" type="Control"]
 anchor_right = 1.0
@@ -285,13 +317,35 @@ margin_bottom = 170.0
 texture = SubResource( 15 )
 expand = true
 
+[node name="PanelContainer" type="ScrollContainer" parent="VBoxContainer/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/bg = SubResource( 23 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 497.0
+margin_bottom = 585.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/TextureRect/PanelContainer/VBoxContainer"]
+margin_right = 482.0
+margin_bottom = 32.0
+theme = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 24 )
+text = "Getting Started:"
+fit_content_height = true
+scroll_active = false
+
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 margin_left = 512.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 22 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
 anchor_right = 1.0
@@ -315,7 +369,7 @@ margin_right = 496.0
 margin_bottom = 61.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
-text = "Seth Rayner"
+text = "Name"
 fit_content_height = true
 scroll_active = false
 
@@ -367,6 +421,7 @@ margin_top = 85.0
 margin_right = 466.0
 margin_bottom = 132.0
 custom_fonts/font = SubResource( 9 )
+custom_styles/read_only = SubResource( 10 )
 custom_styles/normal = SubResource( 10 )
 align = 1
 max_length = 7
@@ -413,17 +468,6 @@ bbcode_text = "[center]SR"
 text = "SR"
 fit_content_height = true
 scroll_active = false
-
-[node name="Settings" type="TextureButton" parent="."]
-modulate = Color( 0.839216, 0.945098, 0.94902, 1 )
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 56.0
-margin_bottom = 56.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource( 6 )
-expand = true
-stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/gradientflow = SubResource( 16 )

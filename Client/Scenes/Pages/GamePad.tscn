@@ -1,0 +1,912 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight44.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight40.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight03.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight06.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight10.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight36.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight43.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight41.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight38.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight42.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight39.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight05.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/gamepad-svgrepo-com.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight38.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight42.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight37.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight40.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight37.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight03.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight44.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight06.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight36.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight39.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight05.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight10.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Sprites/gamepad-pressed-svgrepo-com.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight41.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight43.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/gamepad-no-charge-svgrepo-com.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Sounds/click_short.wav" type="AudioStream" id=32]
+[ext_resource path="res://Scripts/GamePad.gd" type="Script" id=33]
+[ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=35]
+
+[sub_resource type="Gradient" id=21]
+colors = PoolColorArray( 0.0273894, 0.186722, 0.220703, 1, 0.0343026, 0.499502, 0.615234, 1 )
+
+[sub_resource type="GradientTexture2D" id=6]
+gradient = SubResource( 21 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.471667 )
+
+[sub_resource type="Gradient" id=24]
+offsets = PoolRealArray( 0, 0.26009, 0.426009, 0.591928 )
+colors = PoolColorArray( 0, 0.0705882, 0.0705882, 0.529412, 0, 0, 0, 0.380392, 0, 0.882353, 1, 0.168627, 0, 0.876543, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=22]
+gradient = SubResource( 24 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=25]
+offsets = PoolRealArray( 0, 0.179372, 0.506726, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.788235, 1, 1, 1, 0, 0.980392, 0.996078, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 25 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.0509804, 0.0901961, 0.129412, 1 )
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 20
+shadow_color = Color( 0.0588235, 0.435294, 0.529412, 0.360784 )
+shadow_size = 19
+shadow_offset = Vector2( 0, -1 )
+anti_aliasing_size = 0.01
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.0509804, 0.0901961, 0.129412, 1 )
+border_color = Color( 0, 0, 0, 0.639216 )
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 20
+
+[sub_resource type="DynamicFont" id=10]
+size = 14
+use_filter = true
+extra_spacing_char = 1
+extra_spacing_space = 1
+font_data = ExtResource( 35 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 15.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.180392, 0.380392, 0.160784, 1 )
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.294118, 0.866667, 0.509804, 0.415686 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 28
+shadow_color = Color( 0, 0, 0, 0.266667 )
+shadow_size = 7
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 5.0
+content_margin_right = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.180392, 0.380392, 0.160784, 1 )
+draw_center = false
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.294118, 0.866667, 0.509804, 0.415686 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.266667 )
+shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id=13]
+content_margin_left = 5.0
+content_margin_right = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.180392, 0.380392, 0.160784, 1 )
+draw_center = false
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.294118, 0.866667, 0.509804, 0.415686 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 5
+shadow_color = Color( 0, 0, 0, 0.266667 )
+shadow_size = 7
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="Gradient" id=23]
+offsets = PoolRealArray( 0.295964, 0.627803, 1 )
+colors = PoolColorArray( 0.00784314, 0.219608, 0.258824, 1, 0.0117647, 0.129412, 0.14902, 1, 0.0264339, 0.0659028, 0.0683594, 1 )
+
+[sub_resource type="GradientTexture2D" id=20]
+gradient = SubResource( 23 )
+fill = 1
+fill_from = Vector2( 0.728333, 0.888333 )
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("DPad/Glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.121569, 0.67451, 0.737255, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DigitalButtons/Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Btn_R/Glow:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Btn_L/Glow:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("LeftStick/Glow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("RightStick/Glow:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "glowup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Btn_L/Glow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ), Color( 0.113725, 0.839216, 0.678431, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Btn_R/Glow:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ), Color( 0.113725, 0.839216, 0.678431, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DPad/Glow:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.121569, 0.67451, 0.737255, 0 ), Color( 0.121569, 0.67451, 0.737255, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DigitalButtons/Glow:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ), Color( 0.0705882, 0.505882, 0.615686, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ControlPanel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 7.21, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ControlPanel:rect_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeftStick/Glow:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("RightStick/Glow:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "startup"
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftStick:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1e-05, 1.10957, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RightStick:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1e-05, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DPad:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("DigitalButtons:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Overlay:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1.86607, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Overlay:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ControlPanel:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DPad/Glow:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.121569, 0.67451, 0.737255, 0 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("DigitalButtons/Glow:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Btn_R/Glow:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Btn_L/Glow:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ControlPanel:rect_position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[node name="GamePad" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 33 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0.321569, 0.321569, 0.321569, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 6 )
+expand = true
+stretch_mode = 7
+
+[node name="LeftStick" parent="." instance=ExtResource( 34 )]
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 264.0
+margin_bottom = 288.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="LeftStick"]
+modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.5
+margin_top = -165.0
+margin_right = 168.5
+margin_bottom = 165.0
+texture = SubResource( 22 )
+expand = true
+stretch_mode = 6
+
+[node name="RightStick" parent="." instance=ExtResource( 34 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -361.0
+margin_top = -269.0
+margin_right = -144.0
+margin_bottom = -66.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="RightStick"]
+modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -168.5
+margin_top = -165.0
+margin_right = 168.5
+margin_bottom = 165.0
+texture = SubResource( 22 )
+expand = true
+stretch_mode = 6
+
+[node name="Btn_L" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 411.0
+margin_top = 154.0
+margin_right = 475.0
+margin_bottom = 218.0
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 19 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="Btn_L"]
+modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -60.5
+margin_right = 58.0
+margin_bottom = 60.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Btn_R" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 562.0
+margin_top = 160.0
+margin_right = 626.0
+margin_bottom = 224.0
+texture_normal = ExtResource( 29 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 29 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="Btn_R"]
+modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -60.5
+margin_right = 58.0
+margin_bottom = 60.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Btn_Select" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 604.0
+margin_top = 532.0
+margin_right = 668.0
+margin_bottom = 596.0
+action_mode = 0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 30 )
+texture_hover = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_Start" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 492.0
+margin_top = 532.0
+margin_right = 556.0
+margin_bottom = 596.0
+texture_normal = ExtResource( 17 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_Pause" type="TextureButton" parent="." groups=["btn"]]
+margin_left = 360.0
+margin_top = 530.0
+margin_right = 424.0
+margin_bottom = 594.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 22 )
+texture_hover = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="DigitalButtons" type="TextureRect" parent="." groups=["btn_group"]]
+margin_left = 715.0
+margin_top = 34.0
+margin_right = 971.0
+margin_bottom = 290.0
+stretch_mode = 6
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="DigitalButtons"]
+modulate = Color( 0.0705882, 0.505882, 0.615686, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -140.0
+margin_right = 140.0
+margin_bottom = 140.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Btn_A" type="TextureButton" parent="DigitalButtons" groups=["btn"]]
+margin_left = 96.0
+margin_top = 152.0
+margin_right = 163.0
+margin_bottom = 216.0
+action_mode = 0
+texture_normal = ExtResource( 24 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 24 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_B" type="TextureButton" parent="DigitalButtons" groups=["btn"]]
+margin_left = 152.0
+margin_top = 96.0
+margin_right = 216.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 20 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_X" type="TextureButton" parent="DigitalButtons" groups=["btn"]]
+margin_left = 40.0
+margin_top = 96.0
+margin_right = 104.0
+margin_bottom = 160.0
+action_mode = 0
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 11 )
+texture_hover = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+
+[node name="Btn_Y" type="TextureButton" parent="DigitalButtons" groups=["btn"]]
+margin_left = 96.0
+margin_top = 40.0
+margin_right = 160.0
+margin_bottom = 104.0
+action_mode = 0
+texture_normal = ExtResource( 25 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 25 )
+expand = true
+stretch_mode = 5
+
+[node name="DPad" type="TextureRect" parent="." groups=["btn_group"]]
+self_modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 203.0
+margin_top = -226.0
+margin_right = 358.0
+margin_bottom = -71.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="DPad"]
+modulate = Color( 0.121569, 0.67451, 0.737255, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.0
+margin_top = -140.0
+margin_right = 140.0
+margin_bottom = 140.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Dpad_UP" type="TextureButton" parent="DPad" groups=["btn"]]
+margin_left = 48.0
+margin_right = 109.0
+margin_bottom = 76.0
+texture_normal = ExtResource( 21 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Dpad_LEFT" type="TextureButton" parent="DPad" groups=["btn"]]
+margin_top = 48.0
+margin_right = 76.0
+margin_bottom = 109.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 26 )
+
+[node name="Dpad_RIGHT" type="TextureButton" parent="DPad" groups=["btn"]]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 155.0
+margin_bottom = 109.0
+texture_normal = ExtResource( 23 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Dpad_DOWN" type="TextureButton" parent="DPad" groups=["btn"]]
+margin_left = 48.0
+margin_top = 80.0
+margin_right = 109.0
+margin_bottom = 155.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 27 )
+
+[node name="PressSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 32 )
+pitch_scale = 0.33
+
+[node name="ReleaseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 32 )
+pitch_scale = 0.38
+
+[node name="ControlPanel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -195.0
+margin_right = 196.0
+margin_bottom = 49.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="CircleBg" type="Panel" parent="ControlPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -39.5
+margin_right = 45.0
+margin_bottom = 50.5
+custom_styles/panel = SubResource( 8 )
+
+[node name="Glow2" type="TextureRect" parent="ControlPanel"]
+modulate = Color( 0, 0.964706, 1, 0.298039 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -85.5
+margin_top = -80.5
+margin_right = 85.5
+margin_bottom = 90.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HomeBtn" type="TextureButton" parent="ControlPanel" groups=["btn"]]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -27.5
+margin_top = 6.0
+margin_right = 27.5
+margin_bottom = 58.0
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 28 )
+texture_hover = ExtResource( 15 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow" type="TextureRect" parent="ControlPanel/HomeBtn"]
+modulate = Color( 0, 0.843137, 0.180392, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.5
+margin_top = -49.0
+margin_right = 59.5
+margin_bottom = 48.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="Settings" type="Button" parent="ControlPanel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 5.0
+margin_top = -20.5
+margin_right = 150.0
+margin_bottom = 19.5
+mouse_default_cursor_shape = 2
+custom_colors/font_color_focus = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color_pressed = Color( 0.984314, 0.984314, 0.984314, 1 )
+custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 11 )
+text = "SETTINGS"
+icon = ExtResource( 1 )
+icon_align = 2
+expand_icon = true
+
+[node name="Disconnect" type="Button" parent="ControlPanel"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -19.5
+margin_right = -4.0
+margin_bottom = 19.5
+focus_mode = 1
+mouse_default_cursor_shape = 2
+custom_colors/font_color_focus = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 0.301961 )
+custom_colors/font_color_pressed = Color( 0.921569, 0.921569, 0.921569, 1 )
+custom_fonts/font = SubResource( 10 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+text = "DISCONNECT"
+icon = ExtResource( 31 )
+expand_icon = true
+
+[node name="Overlay" type="TextureRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 20 )
+expand = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 18 )
+anims/glowup = SubResource( 16 )
+anims/startup = SubResource( 17 )
+
+[connection signal="joystick_input_update" from="LeftStick" to="." method="_on_Left_Stick_joystick_input_update"]
+[connection signal="joystick_input_update" from="RightStick" to="." method="_on_Right_Stick_joystick_input_update"]
+[connection signal="pressed" from="DPad/Dpad_UP" to="." method="_on_Dpad_UP_pressed"]
+[connection signal="pressed" from="DPad/Dpad_LEFT" to="." method="_on_Dpad_LEFT_pressed"]
+[connection signal="pressed" from="DPad/Dpad_RIGHT" to="." method="_on_Dpad_RIGHT_pressed"]
+[connection signal="pressed" from="DPad/Dpad_DOWN" to="." method="_on_Dpad_DOWN_pressed"]
+[connection signal="pressed" from="ControlPanel/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="ControlPanel/Disconnect" to="." method="_on_Disconnect_pressed"]

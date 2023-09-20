@@ -7,7 +7,14 @@ var IP_ADDRESS=""
 
 func _ready():
 	$AnimationPlayer.play("startup")
-	
+	$AnimationPlayer.queue("gradientflow")
+	var username
+	if OS.has_environment("USERNAME"):
+		username = OS.get_environment("USERNAME")
+	else:
+		username = "Player"
+	$VBoxContainer/Panel/VBoxContainer/UserName.set_text(username)
+	$VBoxContainer/Panel/Avatar/RLabel5.set_bbcode("[center]"+username.left(2).to_upper())
 	
 	
 
@@ -28,10 +35,10 @@ func _process(delta):
 	if udp.get_available_packet_count()>0:
 		var response=udp.get_packet().get_string_from_utf8()
 		print(response)
-		if (response=="authenticated"):
+		if (response=="authenticated" or response=="received"):
 			Global.IP_ADDRESS=IP_ADDRESS
 			print("CHANGING SCENES")
-			get_tree().change_scene("res://Scenes/GamePad.tscn")
+			get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
 
 
 
@@ -43,7 +50,5 @@ func _process(delta):
 
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name=="startup":
-		$AnimationPlayer.play("gradientflow")
+
 		

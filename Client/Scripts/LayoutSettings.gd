@@ -3,7 +3,8 @@ extends Control
 var Curr_Layout="Default"
 var Existing_Layouts:Array=[]
 var Curr_Selected_Btn=null
-const FILE_NAME = "user://LayoutsData.json"
+
+
 
 var DefaultBtnValues = {
   "LeftStick": { "scale": 1, "pos": [0, 0] },
@@ -55,7 +56,7 @@ func save_curr_layout():
 			
 	Data[LayoutName]=ValuesDictionary
 	var file = File.new()
-	file.open(FILE_NAME, File.WRITE)
+	file.open(Global.LAYOUT_FILE_PATH, File.WRITE)
 	file.store_string(to_json(Data))
 	file.close()
 	print("-- Saved --")
@@ -66,14 +67,14 @@ func delete_curr_layout():
 	Data.erase(layout)
 	print(Data)
 	var file = File.new()
-	file.open(FILE_NAME, File.WRITE)
+	file.open(Global.LAYOUT_FILE_PATH, File.WRITE)
 	file.store_string(to_json(Data))
 	file.close()
 	
-func load_file():
+func load_file(file_name=Global.LAYOUT_FILE_PATH):
 	var file = File.new()
-	if file.file_exists(FILE_NAME):
-		file.open(FILE_NAME, File.READ)
+	if file.file_exists(file_name):
+		file.open(file_name, File.READ)
 		var data = parse_json(file.get_as_text())
 		file.close()
 		if typeof(data) == TYPE_DICTIONARY:
@@ -97,7 +98,8 @@ func load_and_set_layout(layout):
 	else:
 		for btn in Data[layout]:
 			for field in Data[layout][btn]:
-				$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
+				if $".".get_node(btn)[str(field)]!=null:# Just a Failsafe
+					$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
 
 func _close_popups():
 	$SelectLayout.hide()
@@ -135,6 +137,7 @@ func _on_layout_selected(name):
 
 
 func _ready():
+	$AnimationPlayer.play("startup")
 	# Get all button's child 'Selection' and bind the toggle signal to _handle_toggle()
 	for child in $".".get_children():
 		if child.is_in_group('btn'):
@@ -155,6 +158,7 @@ func _btn_selection_onchange():
 		$ControlPanel/VBoxContainer/Options.hide()
 	else:
 		$ControlPanel/VBoxContainer/Options.visible=true
+		print((Curr_Selected_Btn.rect_position.x*100)/(OS.get_window_safe_area().size.x-Curr_Selected_Btn.rect_size.x))
 		$ControlPanel/VBoxContainer/Options/Scale.value=(Curr_Selected_Btn.rect_scale.x*100)/2
 		$ControlPanel/VBoxContainer/Options/XPos.value=(Curr_Selected_Btn.rect_position.x*100)/(OS.get_window_safe_area().size.x-Curr_Selected_Btn.rect_size.x)
 		$ControlPanel/VBoxContainer/Options/YPos.value=(Curr_Selected_Btn.rect_position.y*100)/(OS.get_window_safe_area().size.y-Curr_Selected_Btn.rect_size.y)
@@ -239,4 +243,19 @@ func _on_Cancel_pressed():
 
 
 func _on_GoBack_pressed():
-	get_tree().change_scene("res://Scenes/GamePad.tscn")
+	var Prefs=load_file()
+	
+	# Error Handling : if settings file corruption or smthin
+	if typeof(Prefs)==TYPE_DICTIONARY:
+		var layout_name=$ControlPanel/VBoxContainer/BtnGroup1/LayoutSelect.get_text()
+		Prefs["Layout"]=layout_name
+	else:
+		Prefs=Global.DefaultSettings
+
+	var file = File.new()
+	file.open(Global.USER_PREFS_FILE_PATH, File.WRITE)
+	file.store_string(to_json(Prefs))
+	file.close()
+	Global.UserSettings=Prefs
+	get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+
