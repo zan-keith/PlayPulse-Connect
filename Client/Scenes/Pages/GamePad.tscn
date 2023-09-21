@@ -1,26 +1,27 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight44.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/back.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight40.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight03.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight06.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight10.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight36.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight43.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/start_pressed.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight41.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight38.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight42.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/guide.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight39.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight05.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/gamepad-svgrepo-com.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight38.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight42.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/start.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight37.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight40.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight37.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight03.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight44.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Sprites/back_pressed.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight06.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight36.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight39.png" type="Texture" id=25]
@@ -28,7 +29,7 @@
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight10.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Sprites/gamepad-pressed-svgrepo-com.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight41.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight43.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/guide_pressed.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Sprites/gamepad-no-charge-svgrepo-com.png" type="Texture" id=31]
 [ext_resource path="res://Assets/Sounds/click_short.wav" type="AudioStream" id=32]
 [ext_resource path="res://Scripts/GamePad.gd" type="Script" id=33]
@@ -60,6 +61,9 @@ colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.788235, 1, 1, 1, 0, 0.9803
 gradient = SubResource( 26 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="CircleShape2D" id=27]
+radius = 153.22
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.0509804, 0.0901961, 0.129412, 1 )
@@ -473,16 +477,17 @@ texture = SubResource( 22 )
 expand = true
 stretch_mode = 6
 
-[node name="Btn_L" type="Control" parent="." groups=["btn_group"]]
-margin_left = 352.0
-margin_top = 160.0
-margin_right = 416.0
-margin_bottom = 224.0
+[node name="LEFT_SHOULDER" type="Control" parent="." groups=["btn_group"]]
+modulate = Color( 0.0980392, 0.556863, 0.247059, 1 )
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 96.0
+margin_bottom = 96.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Glow2" type="TextureRect" parent="Btn_L"]
+[node name="Glow2" type="TextureRect" parent="LEFT_SHOULDER"]
 modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
 show_behind_parent = true
 anchor_left = 0.5
@@ -497,23 +502,21 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="Btn_L" type="TouchScreenButton" parent="Btn_L" groups=["btn"]]
+[node name="LEFT_SHOULDER" type="TouchScreenButton" parent="LEFT_SHOULDER" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 19 )
 pressed = ExtResource( 4 )
 
-[node name="Btn_R" type="Control" parent="." groups=["btn_group"]]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -416.0
-margin_top = 160.0
-margin_right = -352.0
-margin_bottom = 224.0
+[node name="LEFT_TRIGGER" type="Control" parent="." groups=["btn_group"]]
+modulate = Color( 0.0980392, 0.556863, 0.247059, 1 )
+margin_top = 304.0
+margin_right = 64.0
+margin_bottom = 368.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Glow2" type="TextureRect" parent="Btn_R"]
+[node name="Glow2" type="TextureRect" parent="LEFT_TRIGGER"]
 modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
 show_behind_parent = true
 anchor_left = 0.5
@@ -528,30 +531,107 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="Btn_L" type="TouchScreenButton" parent="Btn_R" groups=["btn"]]
+[node name="LEFT_SHOULDER" type="TouchScreenButton" parent="LEFT_TRIGGER" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 29 )
-pressed = ExtResource( 10 )
+normal = ExtResource( 19 )
+pressed = ExtResource( 4 )
+shape = SubResource( 27 )
 
-[node name="Btn_Select" type="Control" parent="." groups=["btn_group"]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 48.0
-margin_top = 228.0
-margin_right = 120.0
-margin_bottom = 260.0
+[node name="LEFT_THUMB" type="Control" parent="." groups=["btn_group"]]
+modulate = Color( 0.129412, 0.72549, 0.815686, 1 )
+margin_left = 224.0
+margin_top = 32.0
+margin_right = 288.0
+margin_bottom = 96.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Btn" type="TouchScreenButton" parent="Btn_Select" groups=["btn"]]
-scale = Vector2( 0.666667, 0.666667 )
-normal = ExtResource( 9 )
-pressed = ExtResource( 30 )
+[node name="Glow2" type="TextureRect" parent="LEFT_THUMB"]
+modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -60.5
+margin_right = 58.0
+margin_bottom = 60.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
 
-[node name="Btn_Start" type="Control" parent="." groups=["btn_group"]]
+[node name="LEFT_THUMB" type="TouchScreenButton" parent="LEFT_THUMB" groups=["btn"]]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 19 )
+pressed = ExtResource( 4 )
+
+[node name="RIGHT_THUMB" type="Control" parent="." groups=["btn_group"]]
+modulate = Color( 0.129412, 0.72549, 0.815686, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -288.0
+margin_top = 32.0
+margin_right = -224.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow2" type="TextureRect" parent="RIGHT_THUMB"]
+modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -60.5
+margin_right = 58.0
+margin_bottom = 60.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="RIGHT_THUMB" type="TouchScreenButton" parent="RIGHT_THUMB" groups=["btn"]]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 29 )
+pressed = ExtResource( 10 )
+
+[node name="RIGHT_SHOULDER" type="Control" parent="." groups=["btn_group"]]
+modulate = Color( 0.0980392, 0.556863, 0.247059, 1 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -96.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = 96.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Glow2" type="TextureRect" parent="RIGHT_SHOULDER"]
+modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -60.5
+margin_right = 58.0
+margin_bottom = 60.5
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 7
+
+[node name="RIGHT_SHOULDER" type="TouchScreenButton" parent="RIGHT_SHOULDER" groups=["btn"]]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 29 )
+pressed = ExtResource( 10 )
+
+[node name="BACK" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -564,12 +644,30 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Btn" type="TouchScreenButton" parent="Btn_Start" groups=["btn"]]
+[node name="BACK" type="TouchScreenButton" parent="BACK" groups=["btn"]]
+scale = Vector2( 0.666667, 0.666667 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 22 )
+
+[node name="START" type="Control" parent="." groups=["btn_group"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 48.0
+margin_top = 228.0
+margin_right = 120.0
+margin_bottom = 260.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="START" type="TouchScreenButton" parent="START" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
 normal = ExtResource( 17 )
-pressed = ExtResource( 12 )
+pressed = ExtResource( 9 )
 
-[node name="Btn_Pause" type="Control" parent="." groups=["btn_group"]]
+[node name="GUIDE" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -582,10 +680,10 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Btn" type="TouchScreenButton" parent="Btn_Pause" groups=["btn"]]
+[node name="GUIDE" type="TouchScreenButton" parent="GUIDE" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
-normal = ExtResource( 3 )
-pressed = ExtResource( 22 )
+normal = ExtResource( 12 )
+pressed = ExtResource( 30 )
 
 [node name="DigitalButtons" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 1.0
@@ -674,21 +772,22 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="Dpad_UP" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_UP" type="TouchScreenButton" parent="DPad" groups=["btn"]]
 position = Vector2( 48, 1 )
 normal = ExtResource( 21 )
+pressed = ExtResource( 5 )
 
-[node name="Dpad_LEFT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_LEFT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
 position = Vector2( 1, 49 )
 normal = ExtResource( 14 )
 pressed = ExtResource( 26 )
 
-[node name="Dpad_RIGHT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_RIGHT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
 position = Vector2( 80, 49 )
 normal = ExtResource( 23 )
 pressed = ExtResource( 6 )
 
-[node name="Dpad_DOWN" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_DOWN" type="TouchScreenButton" parent="DPad" groups=["btn"]]
 position = Vector2( 48, 82 )
 normal = ExtResource( 7 )
 pressed = ExtResource( 27 )
@@ -830,9 +929,9 @@ anims/startup = SubResource( 17 )
 
 [connection signal="joystick_input_update" from="LeftStick" to="." method="_on_Left_Stick_joystick_input_update"]
 [connection signal="joystick_input_update" from="RightStick" to="." method="_on_Right_Stick_joystick_input_update"]
-[connection signal="pressed" from="DPad/Dpad_UP" to="." method="_on_Dpad_UP_pressed"]
-[connection signal="pressed" from="DPad/Dpad_LEFT" to="." method="_on_Dpad_LEFT_pressed"]
-[connection signal="pressed" from="DPad/Dpad_RIGHT" to="." method="_on_Dpad_RIGHT_pressed"]
-[connection signal="pressed" from="DPad/Dpad_DOWN" to="." method="_on_Dpad_DOWN_pressed"]
+[connection signal="pressed" from="DPad/DPAD_UP" to="." method="_on_Dpad_UP_pressed"]
+[connection signal="pressed" from="DPad/DPAD_LEFT" to="." method="_on_Dpad_LEFT_pressed"]
+[connection signal="pressed" from="DPad/DPAD_RIGHT" to="." method="_on_Dpad_RIGHT_pressed"]
+[connection signal="pressed" from="DPad/DPAD_DOWN" to="." method="_on_Dpad_DOWN_pressed"]
 [connection signal="pressed" from="ControlPanel/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="ControlPanel/Disconnect" to="." method="_on_Disconnect_pressed"]

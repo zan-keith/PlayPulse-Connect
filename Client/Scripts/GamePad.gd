@@ -93,8 +93,16 @@ func save_session_file(Data):
 	print("-- Saved --")
 
 func _on_Left_Stick_joystick_input_update(pos):
-	udp.put_packet(str(pos).to_utf8())
-	
+	pos=pos[0]
+	print(("LJ%6.3f,%6.3f"%[pos.x,pos.y]).to_utf8().get_string_from_utf8())
+	udp.put_packet(("LJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
+
+
+func _on_Right_Stick_joystick_input_update(pos):
+	pos=pos[0]
+	udp.put_packet(("RJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
+
+
 
 func _on_btn_press(c):
 	if Global.UserSettings["Vibration"]:
@@ -102,12 +110,19 @@ func _on_btn_press(c):
 	if Global.UserSettings["Sound"]:
 		$PressSound.play()
 	
+#	udp.put_packet(str("press:"+c.name).to_utf8())
+	udp.put_packet(str("P"+c.name).to_utf8()) #p for press
+	
+
+
 func _on_btn_release(c):
 	if Global.UserSettings["Sound"]:
 		$ReleaseSound.play()
+	udp.put_packet(str("R"+c.name).to_utf8())#r for release
 
-func _on_Right_Stick_joystick_input_update(pos):
-	udp.put_packet(str(pos).to_utf8())
+
+
+
 
 
 func _on_Dpad_UP_pressed():

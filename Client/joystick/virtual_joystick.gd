@@ -157,8 +157,10 @@ func _reset():
 	if use_input_actions:
 		if Input.is_action_pressed(action_left) or Input.is_action_just_pressed(action_left):
 			Input.action_release(action_left)
+			emit_signal("joystick_input_update",[Vector2(0,0)])
 		if Input.is_action_pressed(action_right) or Input.is_action_just_pressed(action_right):
 			Input.action_release(action_right)
+			emit_signal("joystick_input_update",[Vector2(0,0)])
 		if Input.is_action_pressed(action_down) or Input.is_action_just_pressed(action_down):
 			Input.action_release(action_down)
 		if Input.is_action_pressed(action_up) or Input.is_action_just_pressed(action_up):

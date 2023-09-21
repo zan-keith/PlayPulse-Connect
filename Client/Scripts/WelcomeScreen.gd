@@ -19,7 +19,7 @@ func _ready():
 	var LastSession=load_file()
 	if typeof(LastSession) == TYPE_DICTIONARY:
 		if LastSession.has("IP") and LastSession["IP"]!="":
-			var pin="PING"
+			var pin="ping"
 			var pwd=pin.left(4)
 			IP_ADDRESS=LastSession["IP"]
 			udp.connect_to_host(IP_ADDRESS, 5000)
@@ -44,11 +44,30 @@ func _on_Proceed_pressed():
 	var pin=$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.get_text()
 	var pwd=pin.left(4)
 	var octet=pin.trim_prefix(pwd)
-	IP_ADDRESS="192.168.1."+octet
-	udp.connect_to_host(IP_ADDRESS, 5000)
+	
+	if $VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed:#if manually typed the IP
+		if len($VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text) > 7:
+			IP_ADDRESS=$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text
+		else:
+			show_error("IP is Invalid","Verify the IP from your PC or try disabling Advanced Settings.")
+	else:
+		IP_ADDRESS='192.168.1.'+octet
+
+	if len($VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.text)<5:
+		show_error("Enter a valid PIN","Verify the pin number from your PC.")
+		return null
+	print(IP_ADDRESS)
+	
+	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	if err!=OK:
+		show_error("Couldn't establish a connection with the IP %s" % IP_ADDRESS,"Check the ip address from your PC and try connecting with Advanced Settings.")
 	udp.put_packet(pwd.to_utf8())
 
-
+func show_error(title,sub):
+	$ErrorPopup/PinCard/VBoxContainer/Title.text=title
+	$ErrorPopup/PinCard/VBoxContainer/SubTitle.text=sub
+	$ErrorPopup.popup()
+	
 func _process(delta):
 	if udp.get_available_packet_count()>0:
 		var response=udp.get_packet().get_string_from_utf8()
@@ -58,6 +77,9 @@ func _process(delta):
 			save_file({"IP":IP_ADDRESS})
 			print("CHANGING SCENES")
 			get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+		elif (response=="wrong password"):
+			show_error("Wrong PIN for %s" % IP_ADDRESS,"Verify the pin number and ip address from your PC or try manual Advanced Settings.")
+			
 
 func load_file(file_name=Global.SESSION_FILE_PATH):
 	var file = File.new()
@@ -97,3 +119,20 @@ func _on_PinBox_text_entered(new_text):
 
 func _link_pressed(btn):
 	OS.shell_open(btn.text)
+
+
+func _on_Ok_Close_Error_pressed():
+	$ErrorPopup.hide()
+
+
+func _on_SubTitle_gui_input(event):
+	if event.is_pressed():
+		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed=not $VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed
+
+
+func _on_Advanced_Settings_CheckBox_toggled(button_pressed):
+	if button_pressed:
+		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings.visible=true
+	else:
+		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings.visible=false
+		
