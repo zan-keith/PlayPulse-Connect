@@ -332,7 +332,6 @@ anchor_bottom = 1.0
 custom_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-modulate = Color( 0.00392157, 0.0862745, 0.0941176, 1 )
 margin_right = 512.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -342,7 +341,7 @@ expand = true
 stretch_mode = 7
 
 [node name="gradient" type="TextureRect" parent="VBoxContainer/TextureRect"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.498039 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -424,7 +423,6 @@ margin_right = -16.0
 margin_bottom = -16.0
 
 [node name="Welcome" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 480.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
@@ -433,7 +431,6 @@ fit_content_height = true
 scroll_active = false
 
 [node name="UserName" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 38.0
 margin_right = 480.0
 margin_bottom = 61.0
@@ -450,7 +447,6 @@ margin_bottom = 81.0
 custom_constants/separation = 16
 
 [node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
 margin_top = 85.0
 margin_right = 480.0
 margin_bottom = 307.0
@@ -496,7 +492,6 @@ custom_styles/read_only = SubResource( 10 )
 custom_styles/normal = SubResource( 10 )
 align = 1
 max_length = 7
-editable = false
 clear_button_enabled = true
 placeholder_text = "_ _ _ _ _"
 caret_blink = true
@@ -522,7 +517,6 @@ custom_styles/normal = SubResource( 11 )
 text = "Proceed"
 
 [node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -96.0

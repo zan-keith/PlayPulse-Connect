@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=2]
@@ -42,6 +42,13 @@ size = 31
 use_filter = true
 extra_spacing_char = 1
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0.337255, 0.337255, 0.337255, 1 )
+draw_center = false
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0.521569 )
 
 [sub_resource type="StyleBoxFlat" id=39]
 content_margin_left = 15.0
@@ -222,6 +229,7 @@ margin_top = 42.0
 margin_right = 984.0
 margin_bottom = 58.0
 custom_constants/separation = 16
+custom_styles/separator = SubResource( 44 )
 
 [node name="LayoutSettingsButton" type="PanelContainer" parent="PanelContainer/ScrollContainer/VBoxContainer"]
 margin_top = 62.0

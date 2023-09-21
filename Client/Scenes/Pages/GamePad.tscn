@@ -182,7 +182,7 @@ tracks/1/keys = {
 "values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Btn_R_ex/Glow:modulate")
+tracks/2/path = NodePath("LeftStick/Glow:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -191,39 +191,15 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Btn_L_ex/Glow:modulate")
+tracks/3/path = NodePath("RightStick/Glow:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("LeftStick/Glow:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("RightStick/Glow:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -233,7 +209,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id=16]
 resource_name = "glowup"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Btn_L_ex/Glow:modulate")
+tracks/0/path = NodePath("DPad/Glow:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -242,10 +218,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ), Color( 0.113725, 0.839216, 0.678431, 1 ) ]
+"values": [ Color( 0.121569, 0.67451, 0.737255, 0 ), Color( 0.121569, 0.67451, 0.737255, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Btn_R_ex/Glow:modulate")
+tracks/1/path = NodePath("DigitalButtons/Glow:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -254,75 +230,51 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ), Color( 0.113725, 0.839216, 0.678431, 1 ) ]
+"values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ), Color( 0.0705882, 0.505882, 0.615686, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DPad/Glow:modulate")
+tracks/2/path = NodePath("ControlPanel:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.121569, 0.67451, 0.737255, 0 ), Color( 0.121569, 0.67451, 0.737255, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("DigitalButtons/Glow:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ), Color( 0.0705882, 0.505882, 0.615686, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("ControlPanel:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 7.21, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("ControlPanel:rect_scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("ControlPanel:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("LeftStick/Glow:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("LeftStick/Glow:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("RightStick/Glow:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("RightStick/Glow:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -356,7 +308,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DPad:modulate")
+tracks/2/path = NodePath("DPad/Bg:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -440,36 +392,12 @@ tracks/8/keys = {
 "values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("Btn_R_ex/Glow:modulate")
+tracks/9/path = NodePath("ControlPanel:rect_position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
 tracks/9/enabled = true
 tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Btn_L_ex/Glow:modulate")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.113725, 0.839216, 0.678431, 0 ) ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("ControlPanel:rect_position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
 "times": PoolRealArray(  ),
 "transitions": PoolRealArray(  ),
 "update": 0,
@@ -522,10 +450,10 @@ stretch_mode = 6
 [node name="RightStick" parent="." instance=ExtResource( 34 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -361.0
-margin_top = -269.0
-margin_right = -144.0
-margin_bottom = -66.0
+margin_left = -384.0
+margin_top = -264.0
+margin_right = -167.0
+margin_bottom = -61.0
 __meta__ = {
 "_edit_group_": true
 }
@@ -545,11 +473,14 @@ texture = SubResource( 22 )
 expand = true
 stretch_mode = 6
 
-[node name="Btn_L" type="TouchScreenButton" parent="." groups=["btn"]]
-position = Vector2( 352, 160 )
-scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 19 )
-pressed = ExtResource( 4 )
+[node name="Btn_L" type="Control" parent="." groups=["btn_group"]]
+margin_left = 352.0
+margin_top = 160.0
+margin_right = 416.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Glow2" type="TextureRect" parent="Btn_L"]
 modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
@@ -566,11 +497,21 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="Btn_R" type="TouchScreenButton" parent="." groups=["btn"]]
-position = Vector2( 608, 160 )
+[node name="Btn_L" type="TouchScreenButton" parent="Btn_L" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 29 )
-pressed = ExtResource( 10 )
+normal = ExtResource( 19 )
+pressed = ExtResource( 4 )
+
+[node name="Btn_R" type="Control" parent="." groups=["btn_group"]]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -416.0
+margin_top = 160.0
+margin_right = -352.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Glow2" type="TextureRect" parent="Btn_R"]
 modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
@@ -587,94 +528,72 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="Btn_L_ex" type="TextureButton" parent="."]
-visible = false
-margin_left = 352.0
-margin_top = 160.0
-margin_right = 416.0
-margin_bottom = 224.0
-texture_normal = ExtResource( 19 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 19 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Btn_L" type="TouchScreenButton" parent="Btn_R" groups=["btn"]]
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 29 )
+pressed = ExtResource( 10 )
 
-[node name="Glow" type="TextureRect" parent="Btn_L_ex"]
-modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
-show_behind_parent = true
+[node name="Btn_Select" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -58.0
-margin_top = -60.5
-margin_right = 58.0
-margin_bottom = 60.5
-texture = SubResource( 4 )
-expand = true
-stretch_mode = 7
-
-[node name="Btn_R_ex" type="TextureButton" parent="."]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -416.0
-margin_top = 160.0
-margin_right = -352.0
-margin_bottom = 224.0
-texture_normal = ExtResource( 29 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 29 )
-expand = true
-stretch_mode = 5
+margin_left = 48.0
+margin_top = 228.0
+margin_right = 120.0
+margin_bottom = 260.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Glow" type="TextureRect" parent="Btn_R_ex"]
-modulate = Color( 0.113725, 0.839216, 0.678431, 0 )
-show_behind_parent = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -58.0
-margin_top = -60.5
-margin_right = 58.0
-margin_bottom = 60.5
-texture = SubResource( 4 )
-expand = true
-stretch_mode = 7
-
-[node name="Btn_Select" type="TouchScreenButton" parent="." groups=["btn"]]
-position = Vector2( 384, 480 )
+[node name="Btn" type="TouchScreenButton" parent="Btn_Select" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
 normal = ExtResource( 9 )
 pressed = ExtResource( 30 )
 
-[node name="Btn_Start" type="TouchScreenButton" parent="." groups=["btn"]]
-position = Vector2( 592, 480 )
+[node name="Btn_Start" type="Control" parent="." groups=["btn_group"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = 228.0
+margin_right = -56.0
+margin_bottom = 260.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Btn" type="TouchScreenButton" parent="Btn_Start" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
 normal = ExtResource( 17 )
 pressed = ExtResource( 12 )
 
-[node name="Btn_Pause" type="TouchScreenButton" parent="." groups=["btn"]]
-position = Vector2( 488, 480 )
+[node name="Btn_Pause" type="Control" parent="." groups=["btn_group"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = 228.0
+margin_right = 32.0
+margin_bottom = 260.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Btn" type="TouchScreenButton" parent="Btn_Pause" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 22 )
 
-[node name="DigitalButtons" type="TextureRect" parent="." groups=["btn_group"]]
+[node name="DigitalButtons" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -288.0
 margin_top = 48.0
 margin_right = -32.0
 margin_bottom = 304.0
-stretch_mode = 6
 __meta__ = {
 "_edit_group_": true
 }
@@ -693,58 +612,6 @@ margin_bottom = 140.0
 texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
-
-[node name="Btn_A" type="TextureButton" parent="DigitalButtons"]
-visible = false
-margin_left = 96.0
-margin_top = 152.0
-margin_right = 163.0
-margin_bottom = 216.0
-action_mode = 0
-texture_normal = ExtResource( 24 )
-texture_pressed = ExtResource( 8 )
-texture_hover = ExtResource( 24 )
-expand = true
-stretch_mode = 5
-
-[node name="Btn_B" type="TextureButton" parent="DigitalButtons"]
-visible = false
-margin_left = 152.0
-margin_top = 96.0
-margin_right = 216.0
-margin_bottom = 160.0
-action_mode = 0
-texture_normal = ExtResource( 20 )
-texture_pressed = ExtResource( 18 )
-texture_hover = ExtResource( 20 )
-expand = true
-stretch_mode = 5
-
-[node name="Btn_X" type="TextureButton" parent="DigitalButtons"]
-visible = false
-margin_left = 40.0
-margin_top = 96.0
-margin_right = 104.0
-margin_bottom = 160.0
-action_mode = 0
-texture_normal = ExtResource( 16 )
-texture_pressed = ExtResource( 11 )
-texture_hover = ExtResource( 16 )
-expand = true
-stretch_mode = 5
-
-[node name="Btn_Y" type="TextureButton" parent="DigitalButtons"]
-visible = false
-margin_left = 96.0
-margin_top = 40.0
-margin_right = 160.0
-margin_bottom = 104.0
-action_mode = 0
-texture_normal = ExtResource( 25 )
-texture_pressed = ExtResource( 13 )
-texture_hover = ExtResource( 25 )
-expand = true
-stretch_mode = 5
 
 [node name="A" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
 position = Vector2( 96, 152 )
@@ -770,20 +637,26 @@ scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 25 )
 pressed = ExtResource( 13 )
 
-[node name="DPad" type="TextureRect" parent="." groups=["btn_group"]]
-self_modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 203.0
-margin_top = -226.0
-margin_right = 359.0
-margin_bottom = -67.0
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
+[node name="DPad" type="Control" parent="." groups=["btn_group"]]
+margin_left = 200.0
+margin_top = 368.0
+margin_right = 352.0
+margin_bottom = 522.0
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Bg" type="TextureRect" parent="DPad"]
+self_modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -2.0
+margin_right = 4.0
+margin_bottom = 7.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
 
 [node name="Glow" type="TextureRect" parent="DPad"]
 modulate = Color( 0.121569, 0.67451, 0.737255, 0 )
