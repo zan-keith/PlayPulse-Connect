@@ -1,5 +1,6 @@
 extends Control
 
+export var Redirect=true
 var connected = false
 var udp := PacketPeerUDP.new()
 
@@ -18,7 +19,7 @@ func _ready():
 	var IP_ADDRESS=Global.IP_ADDRESS
 	print(IP_ADDRESS)
 	var err=udp.connect_to_host(IP_ADDRESS, 5000)
-	if err!=OK:
+	if err!=OK and Redirect:
 		_on_Disconnect_pressed()
 	udp.put_packet("test".to_utf8())
 	
@@ -76,12 +77,19 @@ func load_and_set_layout(layout):
 	else:
 		pass #If Layout is not found then just use the layout from godot scene by default
 
+func save_session_file(Data):
+	var file = File.new()
+	file.open(Global.SESSION_FILE_PATH, File.WRITE)
+	file.store_string(to_json(Data))
+	file.close()
+	print("-- Saved --")
 
 func _on_Left_Stick_joystick_input_update(pos):
 	udp.put_packet(str(pos).to_utf8())
 	
 
 func _on_btn_press(c):
+	Input.vibrate_handheld(50)
 	$PressSound.play()
 	
 func _on_btn_release(c):
@@ -116,5 +124,6 @@ func _on_Settings_pressed():
 
 
 func _on_Disconnect_pressed():
+	save_session_file({"IP":""})
 	udp.put_packet("ENDCONN".to_utf8())
 	get_tree().change_scene("res://Scenes/Pages/WelcomeScreen.tscn")

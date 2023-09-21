@@ -4,7 +4,7 @@ var Curr_Layout="Default"
 var Existing_Layouts:Array=[]
 var Curr_Selected_Btn=null
 
-
+var Dragging=false
 
 var DefaultBtnValues = {
   "LeftStick": { "scale": 1, "pos": [0, 0] },
@@ -142,6 +142,10 @@ func _ready():
 	for child in $".".get_children():
 		if child.is_in_group('btn'):
 			child.get_node("Selection").connect("toggled",self,"_handle_toggle",[child])
+			child.get_node("Selection").connect("button_down",self,"_button_on_press",[child])
+			child.get_node("Selection").connect("button_up",self,"_button_on_release",[child])
+			
+			
 	var Data=load_file()
 	Data= Data if typeof(Data)==TYPE_DICTIONARY else {} 
 	for layouts in Data:
@@ -185,7 +189,7 @@ func _handle_toggle(btn_pressed,btn,reset=false):
 			Curr_Selected_Btn=btn
 			btn.get_node("ReferenceRect").border_color=Color.aqua
 			_btn_selection_onchange()
-		elif btn_pressed==false and Curr_Selected_Btn==btn:
+		elif btn_pressed==false and Curr_Selected_Btn==btn and not Dragging:
 			Curr_Selected_Btn=null
 			btn.get_node("ReferenceRect").border_color=Color.red
 			_btn_selection_onchange()
@@ -258,4 +262,20 @@ func _on_GoBack_pressed():
 	file.close()
 	Global.UserSettings=Prefs
 	get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+
+func _process(delta):
+	if Dragging:
+		var Rect_size:Vector2 =Curr_Selected_Btn.rect_size*Curr_Selected_Btn.rect_scale.x
+		Curr_Selected_Btn.rect_position=get_global_mouse_position()-Rect_size/2
+
+func _button_on_press(btn):
+	btn.modulate=Color.from_hsv(0, 0, 0.5, 0.5)
+	Dragging=true
+	set_process(true)
+	
+func _button_on_release(btn):
+	btn.modulate=Color.from_hsv(0, 0, 1, 1)
+	Dragging=false
+	set_process(false)
+
 

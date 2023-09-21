@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/WelcomeScreen.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/white circle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/git-svgrepo-com.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0896861, 0.479821, 0.995516 )
@@ -34,6 +35,13 @@ RichTextLabel/fonts/normal_font = SubResource( 19 )
 [sub_resource type="DynamicFont" id=24]
 size = 25
 extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="DynamicFont" id=28]
+size = 12
+use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=20]
@@ -108,6 +116,21 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_color = Color( 0, 0, 0, 0.266667 )
 shadow_size = 7
+
+[sub_resource type="StyleBoxFlat" id=25]
+content_margin_left = 15.0
+content_margin_right = 15.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.0980392, 0.2, 0.0901961, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.266667 )
+shadow_size = 7
+
+[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="Animation" id=16]
 resource_name = "gradientflow"
@@ -323,6 +346,7 @@ anchor_bottom = 1.0
 custom_styles/bg = SubResource( 23 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer"]
+modulate = Color( 1, 1, 1, 0.54902 )
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 497.0
@@ -338,6 +362,36 @@ custom_fonts/normal_font = SubResource( 24 )
 text = "Getting Started:"
 fit_content_height = true
 scroll_active = false
+
+[node name="Links" type="Panel" parent="VBoxContainer/TextureRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -147.0
+margin_top = -31.0
+margin_right = 164.0
+margin_bottom = -7.0
+custom_styles/panel = SubResource( 27 )
+
+[node name="LinkButton" type="LinkButton" parent="VBoxContainer/TextureRect/Links"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -277.0
+margin_top = -6.5
+margin_bottom = 8.5
+custom_fonts/font = SubResource( 28 )
+text = "https://github.com/Alpha-Hunt/GamePadPortal"
+underline = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/Links"]
+anchor_bottom = 1.0
+margin_right = 32.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="VBoxContainer"]
 margin_left = 512.0
@@ -440,7 +494,12 @@ custom_styles/separator = SubResource( 8 )
 margin_top = 149.0
 margin_right = 450.0
 margin_bottom = 192.0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_pressed = Color( 1, 1, 1, 0.431373 )
 custom_fonts/font = SubResource( 13 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 26 )
 custom_styles/normal = SubResource( 11 )
 text = "Proceed"
 
