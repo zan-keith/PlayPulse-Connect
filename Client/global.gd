@@ -7,7 +7,9 @@ var SESSION_FILE_PATH="user://Session.json"
 var IP_ADDRESS=""
 var DefaultSettings={
 	"Layout":"Default",
-	"Sound":true
+	"Sound":true,
+	"Vibration":true,
+	"PassbyPress":false
 }
 var UserSettings: Dictionary={
 	

@@ -247,8 +247,8 @@ func _on_Cancel_pressed():
 
 
 func _on_GoBack_pressed():
-	var Prefs=load_file()
-	
+	var Prefs=load_file(Global.USER_PREFS_FILE_PATH)
+	print("-- ",Prefs)
 	# Error Handling : if settings file corruption or smthin
 	if typeof(Prefs)==TYPE_DICTIONARY:
 		var layout_name=$ControlPanel/VBoxContainer/BtnGroup1/LayoutSelect.get_text()
@@ -261,7 +261,7 @@ func _on_GoBack_pressed():
 	file.store_string(to_json(Prefs))
 	file.close()
 	Global.UserSettings=Prefs
-	get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+	get_tree().change_scene("res://Scenes/Pages/SettingsPage.tscn")
 
 func _process(delta):
 	if Dragging:

@@ -11,6 +11,7 @@ func _ready():
 	load_user_prefs()
 	load_and_set_layout(Global.UserSettings["Layout"])
 	
+	print(":::: ",Global.UserSettings["Layout"])
 	$AnimationPlayer.play("startup")
 	$AnimationPlayer.queue("glowup")
 	
@@ -25,15 +26,22 @@ func _ready():
 	
 	for child in $".".get_children():
 		if child.is_in_group("btn"):
-			child.connect("button_down",self,"_on_btn_press",[child])
-			child.connect("button_up",self,"_on_btn_release",[child])
+			
+			apply_btn_settings(child)
+
+			child.connect("pressed",self,"_on_btn_press",[child])
+			child.connect("released",self,"_on_btn_release",[child])
 		elif child.is_in_group("btn_group"):
 			for btn in child.get_children():
 				if btn.is_in_group("btn"):
-					btn.connect("button_down",self,"_on_btn_press",[child])
-					btn.connect("button_up",self,"_on_btn_release",[child])
+					apply_btn_settings(btn)
 					
-
+					btn.connect("pressed",self,"_on_btn_press",[btn])
+					btn.connect("released",self,"_on_btn_release",[btn])
+					
+func apply_btn_settings(btn):
+	var passbyPress = Global.UserSettings["PassbyPress"] if Global.UserSettings.has("PassbyPress") else Global.DefaultSettings["PassbyPress"]
+	btn.set_passby_press(passbyPress)
 
 
 func load_file(file_name):
@@ -64,15 +72,15 @@ func load_user_prefs():
 		file.store_string(to_json(Prefs))
 		file.close()
 	Global.UserSettings=Prefs
-	return Prefs
 
 func load_and_set_layout(layout):
 	var Data=load_file(Global.LAYOUT_FILE_PATH)
 	Data= Data if typeof(Data)==TYPE_DICTIONARY else {} 
+	
 	if Data.has(layout):
-
 		for btn in Data[layout]:
 			for field in Data[layout][btn]:
+				pass
 				$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
 	else:
 		pass #If Layout is not found then just use the layout from godot scene by default
@@ -89,11 +97,14 @@ func _on_Left_Stick_joystick_input_update(pos):
 	
 
 func _on_btn_press(c):
-	Input.vibrate_handheld(50)
-	$PressSound.play()
+	if Global.UserSettings["Vibration"]:
+		Input.vibrate_handheld(1)
+	if Global.UserSettings["Sound"]:
+		$PressSound.play()
 	
 func _on_btn_release(c):
-	$ReleaseSound.play()
+	if Global.UserSettings["Sound"]:
+		$ReleaseSound.play()
 
 func _on_Right_Stick_joystick_input_update(pos):
 	udp.put_packet(str(pos).to_utf8())
@@ -119,7 +130,7 @@ func _on_Dpad_DOWN_pressed():
 
 
 func _on_Settings_pressed():
-	get_tree().change_scene("res://Scenes/Pages/LayoutSettings.tscn")
+	get_tree().change_scene("res://Scenes/Pages/SettingsPage.tscn")
 
 
 

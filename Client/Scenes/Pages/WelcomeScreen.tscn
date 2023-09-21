@@ -33,7 +33,7 @@ font_data = ExtResource( 3 )
 RichTextLabel/fonts/normal_font = SubResource( 19 )
 
 [sub_resource type="DynamicFont" id=24]
-size = 25
+size = 23
 extra_spacing_char = 1
 font_data = ExtResource( 2 )
 
@@ -308,6 +308,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("VBoxContainer/TextureRect:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 0.535887, 1 ),
+"update": 0,
+"values": [ Color( 0.00392157, 0.0862745, 0.0941176, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="WelcomeScreen" type="Control"]
 anchor_right = 1.0
@@ -320,6 +332,7 @@ anchor_bottom = 1.0
 custom_constants/separation = 0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+modulate = Color( 0.00392157, 0.0862745, 0.0941176, 1 )
 margin_right = 512.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -329,7 +342,7 @@ expand = true
 stretch_mode = 7
 
 [node name="gradient" type="TextureRect" parent="VBoxContainer/TextureRect"]
-modulate = Color( 1, 1, 1, 0.498039 )
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -346,6 +359,7 @@ anchor_bottom = 1.0
 custom_styles/bg = SubResource( 23 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer"]
+visible = false
 modulate = Color( 1, 1, 1, 0.54902 )
 margin_left = 15.0
 margin_top = 15.0
@@ -356,7 +370,7 @@ size_flags_vertical = 3
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/TextureRect/PanelContainer/VBoxContainer"]
 margin_right = 482.0
-margin_bottom = 32.0
+margin_bottom = 29.0
 theme = SubResource( 5 )
 custom_fonts/normal_font = SubResource( 24 )
 text = "Getting Started:"
@@ -410,6 +424,7 @@ margin_right = -16.0
 margin_bottom = -16.0
 
 [node name="Welcome" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_right = 480.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
@@ -418,6 +433,7 @@ fit_content_height = true
 scroll_active = false
 
 [node name="UserName" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 38.0
 margin_right = 480.0
 margin_bottom = 61.0
@@ -434,6 +450,7 @@ margin_bottom = 81.0
 custom_constants/separation = 16
 
 [node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 85.0
 margin_right = 480.0
 margin_bottom = 307.0
@@ -479,6 +496,7 @@ custom_styles/read_only = SubResource( 10 )
 custom_styles/normal = SubResource( 10 )
 align = 1
 max_length = 7
+editable = false
 clear_button_enabled = true
 placeholder_text = "_ _ _ _ _"
 caret_blink = true
@@ -504,6 +522,7 @@ custom_styles/normal = SubResource( 11 )
 text = "Proceed"
 
 [node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -96.0
