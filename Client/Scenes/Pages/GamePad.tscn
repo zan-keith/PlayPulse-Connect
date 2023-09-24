@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=2]
@@ -39,7 +39,6 @@
 [ext_resource path="res://Assets/Sprites/R_trigger_btn_press.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Sprites/R_trigger_btn.png" type="Texture" id=38]
 [ext_resource path="res://Assets/Sprites/L_trigger_btn_press.png" type="Texture" id=39]
-[ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=40]
 
 [sub_resource type="Gradient" id=25]
 colors = PoolColorArray( 0.0273894, 0.186722, 0.220703, 1, 0.0343026, 0.499502, 0.615234, 1 )
@@ -557,15 +556,6 @@ tracks/13/keys = {
 "values": [ Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ), Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ), Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=36]
-size = 18
-use_filter = true
-extra_spacing_space = 1
-font_data = ExtResource( 40 )
-
-[sub_resource type="Theme" id=37]
-RichTextLabel/fonts/normal_font = SubResource( 36 )
-
 [node name="GamePad" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -599,10 +589,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -920.0
-margin_top = -520.0
-margin_right = -720.0
-margin_bottom = -320.0
+margin_left = -944.0
+margin_top = -496.0
+margin_right = -744.0
+margin_bottom = -296.0
 
 [node name="LEFT_SHOULDER" type="Control" parent="." groups=["btn_group"]]
 modulate = Color( 0.0980392, 0.556863, 0.247059, 1 )
@@ -1105,51 +1095,12 @@ anims/show_control_panel = SubResource( 30 )
 anims/startup = SubResource( 27 )
 anims/startup2 = SubResource( 17 )
 
-[node name="SubTitle" type="RichTextLabel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -225.0
-margin_top = -11.5
-margin_right = 225.0
-margin_bottom = 11.5
-theme = SubResource( 37 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-text = "Type the pin you see in your primary device"
-fit_content_height = true
-scroll_active = false
-
-[node name="SubTitle2" type="RichTextLabel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -224.0
-margin_top = -52.0
-margin_right = 226.0
-margin_bottom = -29.0
-theme = SubResource( 37 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-text = "Type the pin you see in your primary device"
-fit_content_height = true
-scroll_active = false
-
-[node name="SubTitle3" type="RichTextLabel" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -224.0
-margin_top = 36.0
-margin_right = 226.0
-margin_bottom = 59.0
-theme = SubResource( 37 )
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-text = "Type the pin you see in your primary device"
-fit_content_height = true
-scroll_active = false
-
+[connection signal="force_rect_change_for_sticks" from="." to="RightStick" method="_on_GamePad_force_rect_change_for_sticks"]
+[connection signal="force_rect_change_for_sticks" from="." to="LeftStick" method="_on_GamePad_force_rect_change_for_sticks"]
+[connection signal="joystick_input_update" from="RightStick" to="." method="_on_Right_Stick_joystick_input_update"]
+[connection signal="joystick_press" from="RightStick" to="." method="_on_RightStick_joystick_press"]
+[connection signal="joystick_release" from="RightStick" to="." method="_on_RightStick_joystick_release"]
+[connection signal="joystick_input_update" from="LeftStick" to="." method="_on_Left_Stick_joystick_input_update"]
 [connection signal="pressed" from="LEFT_TRIGGER/LEFT_TRIGGER" to="." method="_on_LEFT_TRIGGER_pressed"]
 [connection signal="released" from="LEFT_TRIGGER/LEFT_TRIGGER" to="." method="_on_LEFT_TRIGGER_released"]
 [connection signal="pressed" from="RIGHT_TRIGGER/RIGHT_TRIGGER" to="." method="_on_RIGHT_TRIGGER_pressed"]

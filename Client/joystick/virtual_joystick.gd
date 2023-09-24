@@ -64,7 +64,7 @@ var _touch_index : int = -1
 onready var _base := $Base
 onready var _tip := $Base/Tip
 
-onready var _base_radius = _base.rect_size * _base.get_global_transform_with_canvas().get_scale() / 2
+onready var _base_radius = _base.rect_size * _base.get_global_transform().get_scale() / 2
 
 onready var _base_default_position : Vector2 = _base.rect_position
 onready var _tip_default_position : Vector2 = _tip.rect_position
@@ -76,6 +76,12 @@ onready var _default_color : Color = _tip.modulate
 func _ready() -> void:
 	if not OS.has_touchscreen_ui_hint() and visibility_mode == VisibilityMode.TOUCHSCREEN_ONLY:
 		hide()
+	_base_radius = _base.rect_size * _base.get_global_transform().get_scale() / 2
+	_base_default_position = _base.rect_position
+	_tip_default_position = _tip.rect_position
+	_default_color = _tip.modulate
+	
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and !disabled:
@@ -97,14 +103,14 @@ func _input(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
-	_base.rect_global_position = new_position - _base.rect_pivot_offset * get_global_transform_with_canvas().get_scale()
+	_base.rect_global_position = new_position - _base.rect_pivot_offset * get_global_transform().get_scale()
 
 func _move_tip(new_position: Vector2) -> void:
-	_tip.rect_global_position = new_position - _tip.rect_pivot_offset * _base.get_global_transform_with_canvas().get_scale()
+	_tip.rect_global_position = new_position - _tip.rect_pivot_offset * _base.get_global_transform().get_scale()
 
 func _is_point_inside_joystick_area(point: Vector2) -> bool:
-	var x: bool = point.x >= rect_global_position.x and point.x <= rect_global_position.x + (rect_size.x * get_global_transform_with_canvas().get_scale().x)
-	var y: bool = point.y >= rect_global_position.y and point.y <= rect_global_position.y + (rect_size.y * get_global_transform_with_canvas().get_scale().y)
+	var x: bool = point.x >= rect_global_position.x and point.x <= rect_global_position.x + (rect_size.x * get_global_transform().get_scale().x)
+	var y: bool = point.y >= rect_global_position.y and point.y <= rect_global_position.y + (rect_size.y * get_global_transform().get_scale().y)
 	return x and y
 
 func _is_point_inside_base(point: Vector2) -> bool:
@@ -175,3 +181,12 @@ func _reset():
 			Input.action_release(action_down)
 		if Input.is_action_pressed(action_up) or Input.is_action_just_pressed(action_up):
 			Input.action_release(action_up)
+
+func _on_GamePad_force_rect_change_for_sticks():
+	_on_Virtual_joystick_item_rect_changed()
+
+func _on_Virtual_joystick_item_rect_changed():
+	
+	_ready()
+
+

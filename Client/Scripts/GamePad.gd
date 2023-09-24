@@ -8,13 +8,13 @@ var UserSettings: Dictionary={}
 var prev_val=Vector3.ZERO
 export var step=0.05
 
+signal force_rect_change_for_sticks
 export var sensitivity = 1.8 # increases sentivity
 
 var u = Vector3.ZERO
 
 func set_save_data():
-	#$RightStick.joystick_mode=$RightStick.JoystickMode.DYNAMIC if Global.UserSettings["DynamicJoystickR"] else $RightStick.JoystickMode.FIXED
-	#$LeftStick.joystick_mode=$LeftStick.JoystickMode.DYNAMIC if Global.UserSettings["DynamicJoystickR"] else $LeftStick.JoystickMode.FIXED
+	$RightStick.joystick_mode=$RightStick.JoystickMode.DYNAMIC if Global.UserSettings["DynamicJoystickR"] else $RightStick.JoystickMode.FIXED
 	
 	
 	if Global.UserSettings["Gyro"]:
@@ -23,15 +23,14 @@ func set_save_data():
 		set_process(false)
 	
 	sensitivity=Global.UserSettings["GyroSensitivity"] if Global.UserSettings.has("GyroSensitivity") else 1
-	print('== ',sensitivity)
+
 
 func _ready():
-	print(Input.get_gyroscope())#(0.138, -7.443, -7.26105)
 
 	load_user_prefs()
 	set_save_data()
 	load_and_set_layout(Global.UserSettings["Layout"])
-	
+	emit_signal("force_rect_change_for_sticks")
 	$AnimationPlayer.play("startup2")
 	print(":::: ",Global.UserSettings["Layout"])
 	
@@ -103,14 +102,11 @@ func load_and_set_layout(layout):
 
 					
 				elif typeof($".".get_node(btn)[str(field)])==14:
-					print(Data[layout][btn][field].split(",")[3])
 					$".".get_node(btn)[str(field)].a=float(Data[layout][btn][field].split(",")[3])
 				elif typeof($".".get_node(btn)[str(field)])==1:
 					
 					$".".get_node(btn)[str(field)]=Data[layout][btn][field]
-		$LeftStick.get_node("Base").rect_pivot_offset=($LeftStick.get_node("Base").rect_size*str2var("Vector2" +Data[layout]['LeftStick']['rect_scale']))/2
-		$LeftStick.get_node("Base/Tip").rect_pivot_offset=($LeftStick.get_node("Base/Tip").rect_size*str2var("Vector2" +Data[layout]['LeftStick']['rect_scale']))/2
-		
+
 	else:
 		pass # If Layout is not found then just use the layout from godot scene by default
 
@@ -123,15 +119,11 @@ func save_session_file(Data):
 
 func _on_Left_Stick_joystick_input_update(pos):
 	pos=pos[0]
-	print(("LJ%6.3f,%6.3f"%[pos.x,pos.y]).to_utf8().get_string_from_utf8())
 	udp.put_packet(("LJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
 
 func _on_Right_Stick_joystick_input_update(pos):
-	
 	pos=pos[0]
-
-	
 	udp.put_packet(("RJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
 func _on_LEFT_TRIGGER_pressed():
@@ -251,8 +243,6 @@ func _process(delta):
 
 
 func _on_RightStick_joystick_release(pos):
-
-	
 	if Global.UserSettings["Gyro"]:
 		set_process(true)
 

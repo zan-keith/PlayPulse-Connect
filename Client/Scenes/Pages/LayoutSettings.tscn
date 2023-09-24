@@ -786,10 +786,10 @@ action_mode = 0
 flat = true
 
 [node name="LeftStick" parent="." groups=["btn"] instance=ExtResource( 1 )]
-margin_left = 102.0
-margin_top = 104.0
-margin_right = 302.0
-margin_bottom = 304.0
+margin_left = -9.35202
+margin_top = 7.8
+margin_right = 190.648
+margin_bottom = 207.8
 __meta__ = {
 "_edit_group_": true
 }

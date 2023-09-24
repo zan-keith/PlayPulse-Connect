@@ -46,3 +46,5 @@ rect_pivot_offset = Vector2( 55, 55 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
+
+[connection signal="item_rect_changed" from="." to="." method="_on_Virtual_joystick_item_rect_changed"]
