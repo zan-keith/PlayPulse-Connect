@@ -1,7 +1,36 @@
+"""
+GamePadPortal CLI
+
+The program contains:
+- Code that connects a virtual game controller using the functionality from the vgamepad Python module.
+- Code that initializes a socket server on your PC at the preferred port.
+
+"""
+
+import argparse
 import random
 import socket
 import vgamepad as vg
 import logging
+
+parser = argparse.ArgumentParser(description="GamePadPortal")
+
+parser.add_argument("--ip", metavar="ip", type=str, required=False,
+                    help="Specify the IP address for the socket server.")
+parser.add_argument("--port", metavar="port", type=int,required=False,
+                    help="Specify the port for the socket server to run on.")
+parser.add_argument("--pin", metavar="pin", type=int,required=False,
+                    help="Specify the PIN authentication code. ( The code must be 4 digits ).")
+parser.add_argument("--autokill", metavar="autokill", type=bool,required=False,
+                    help="Automatically closes the server once the client presses disconnect.")
+
+args = parser.parse_args()
+
+arg_ip_address = args.ip
+arg_port = args.port
+arg_autokill = args.autokill if args.autokill else True
+arg_pin = args.pin
+
 
 
 def get_host_ip():
@@ -16,7 +45,14 @@ def get_host_ip():
         exit()
 
 
-ADDRESS, PORT = get_host_ip(), 5000
+
+HOST_ADDRESS= arg_ip_address if arg_ip_address else get_host_ip()
+PORT=arg_port if arg_port else 5000
+
+if PORT<5000:
+    logging.warning("Warning:\n If you are not using the default port numbers, use the higher port numbers to avoid unexpected behavior")
+    if input(f"Do you want to continue with the port number {PORT} ? [y/N]").upper()!="Y":
+        exit()
 
 gamepad = vg.VX360Gamepad()
 
@@ -25,15 +61,18 @@ hostname = socket.gethostname()
 socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 authenticated = [False, None]
 address = None
-socket.bind((ADDRESS, PORT))
+try:
+    socket.bind((HOST_ADDRESS, PORT))
+except Exception as e:
+    logging.error(e)
+    exit()
 
-print(f"IP ADDRESS OF : {hostname} IS {ADDRESS} RUNNING SOCKET IN PORT {PORT}")
-octets = ADDRESS.split(".")
+print(f"SERVER IS RUNNING IN DEVICE {hostname} WITH IP {HOST_ADDRESS} SOCKET IN PORT {PORT}")
+octets = HOST_ADDRESS.split(".")
 fourth_octet = octets[3]
 
-pin = random.randint(1000, 9999)
+pin = arg_pin if (arg_pin and len(str(arg_pin))==4) else random.randint(1000, 9999)
 print(f"PIN: {pin}{fourth_octet}")
-
 while True:
     msg, address = socket.recvfrom(1024)
     if msg.decode("utf-8") == "supersecretpingmsg":
@@ -41,7 +80,7 @@ while True:
     elif authenticated[0] and authenticated[1] == address[0]:
 
         msg = msg.decode("utf-8")
-        if msg == "ENDCONN":
+        if msg == "ENDCONN" and arg_autokill:
             logging.warning("Connection Ended By The Client")
             authenticated = [False, None]
             socket.close()
@@ -61,10 +100,9 @@ while True:
         else:
             socket.sendto("received".encode('utf-8'), address)
         gamepad.update()
-        print(msg)
     elif not authenticated[0]:
         # Check for password
-        logging.debug(f"- - - - unauthenticated connection {address[0]}")
+        logging.debug(f"Unauthenticated connection tried to connect from {address[0]}")
 
         if msg.decode('utf-8') == str(pin):
             print(f"{address[0]} Authenticated")
@@ -74,3 +112,5 @@ while True:
             socket.sendto("wrong password".encode('utf-8'), address)
     elif authenticated[1] != address:
         socket.sendto("another device".encode('utf-8'), address)
+
+
