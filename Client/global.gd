@@ -9,7 +9,32 @@ var DefaultSettings={
 	"Layout":"Default",
 	"Sound":true,
 	"Vibration":true,
-	"PassbyPress":false
+	"PassbyPress":false,
+	"DynamicJoystickR":false,
+	"Gyro":false,
+	"GyroSensitivity":1
+}
+
+var DefaultLayoutSettings={
+  "Default": {
+	"BACK": {  "rect_scale": "(1, 1)" },
+	"DPad": { "rect_scale": "(1, 1)" },
+	"GUIDE": { "rect_scale": "(1, 1)" },
+	"LEFT_SHOULDER": { "rect_scale": "(1, 1)" },
+	"LEFT_THUMB": { "rect_scale": "(1, 1)" },
+	"LeftStick": { "rect_scale": "(1, 1)" },
+	"RIGHT_SHOULDER": {  "rect_scale": "(1, 1)" },
+	"RIGHT_THUMB": { "rect_scale": "(1, 1)" },
+	"RightStick": { "rect_scale": "(1, 1)" },
+	"START": { "rect_scale": "(1, 1)" },
+  }
+}
+
+var BtnsLayoutPropertyDataTypes={
+	
+	"Vector2":["rect_scale","rect_position"],
+	"bool":["visible"]
+	
 }
 var UserSettings: Dictionary={
 	

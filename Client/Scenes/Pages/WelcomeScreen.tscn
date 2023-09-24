@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
@@ -57,14 +57,14 @@ fill_from = Vector2( 0.871667, 0.671667 )
 texture = SubResource( 21 )
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=39]
 size = 18
 use_filter = true
 extra_spacing_space = 1
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=7]
-RichTextLabel/fonts/normal_font = SubResource( 18 )
+RichTextLabel/fonts/normal_font = SubResource( 39 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 15.0
@@ -82,6 +82,11 @@ PanelContainer/styles/panel = SubResource( 2 )
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
+[sub_resource type="DynamicFont" id=37]
+size = 15
+use_filter = true
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=9]
 size = 31
 extra_spacing_top = 5
@@ -92,6 +97,18 @@ font_data = ExtResource( 2 )
 [sub_resource type="StyleBoxFlat" id=10]
 content_margin_right = 15.0
 bg_color = Color( 0.105882, 0.133333, 0.172549, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=38]
+content_margin_right = 15.0
+bg_color = Color( 0.105882, 0.133333, 0.172549, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -457,6 +474,32 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 22 )
 
+[node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -102.0
+margin_top = 4.0
+margin_bottom = 84.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="RLabel5" type="RichTextLabel" parent="VBoxContainer/Panel/Avatar"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -11.5
+margin_bottom = 11.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 7 )
+custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
+bbcode_enabled = true
+bbcode_text = "[center]SR"
+text = "SR"
+fit_content_height = true
+scroll_active = false
+
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -492,14 +535,14 @@ custom_constants/separation = 16
 [node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 85.0
 margin_right = 480.0
-margin_bottom = 355.0
+margin_bottom = 387.0
 theme = SubResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard"]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 465.0
-margin_bottom = 255.0
+margin_bottom = 287.0
 
 [node name="Title" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
 margin_right = 450.0
@@ -526,12 +569,31 @@ margin_bottom = 81.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 8 )
 
-[node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="ServerStatus" type="Label" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+modulate = Color( 1, 0, 0, 1 )
 margin_top = 85.0
 margin_right = 450.0
-margin_bottom = 132.0
+margin_bottom = 104.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 37 )
+text = "Server Inactive"
+align = 1
+valign = 1
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 108.0
+margin_right = 450.0
+margin_bottom = 113.0
+custom_constants/separation = 5
+custom_styles/separator = SubResource( 8 )
+
+[node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+margin_top = 117.0
+margin_right = 450.0
+margin_bottom = 164.0
 custom_fonts/font = SubResource( 9 )
 custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
 custom_styles/normal = SubResource( 10 )
 align = 1
 max_length = 7
@@ -540,9 +602,9 @@ placeholder_text = "_ _ _ _ _"
 caret_blink = true
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 136.0
+margin_top = 168.0
 margin_right = 450.0
-margin_bottom = 152.0
+margin_bottom = 184.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 8 )
 
@@ -576,6 +638,7 @@ margin_right = 430.0
 margin_bottom = 69.0
 custom_fonts/font = SubResource( 34 )
 custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
 custom_styles/normal = SubResource( 10 )
 align = 1
 max_length = 20
@@ -585,9 +648,9 @@ placeholder_alpha = 0.203
 caret_blink = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 156.0
+margin_top = 188.0
 margin_right = 450.0
-margin_bottom = 180.0
+margin_bottom = 212.0
 
 [node name="SubTitle" type="Label" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
@@ -609,16 +672,16 @@ align = 1
 icon_align = 2
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 184.0
+margin_top = 216.0
 margin_right = 450.0
-margin_bottom = 193.0
+margin_bottom = 225.0
 custom_constants/separation = 9
 custom_styles/separator = SubResource( 8 )
 
 [node name="Proceed" type="Button" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 197.0
+margin_top = 229.0
 margin_right = 450.0
-margin_bottom = 240.0
+margin_bottom = 272.0
 mouse_default_cursor_shape = 2
 custom_colors/font_color_pressed = Color( 1, 1, 1, 0.431373 )
 custom_fonts/font = SubResource( 13 )
@@ -627,33 +690,6 @@ custom_styles/pressed = SubResource( 25 )
 custom_styles/focus = SubResource( 26 )
 custom_styles/normal = SubResource( 11 )
 text = "Proceed"
-
-[node name="Avatar" type="TextureRect" parent="VBoxContainer/Panel"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -96.0
-margin_top = 14.0
-margin_right = -24.0
-margin_bottom = 85.0
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 6
-
-[node name="RLabel5" type="RichTextLabel" parent="VBoxContainer/Panel/Avatar"]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -11.5
-margin_bottom = 11.5
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = SubResource( 7 )
-custom_colors/default_color = Color( 0.278431, 0.690196, 0.67451, 1 )
-bbcode_enabled = true
-bbcode_text = "[center]SR"
-text = "SR"
-fit_content_height = true
-scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/gradientflow = SubResource( 16 )
@@ -674,9 +710,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -222.5
-margin_top = -69.0
+margin_top = -87.0
 margin_right = 222.5
-margin_bottom = 69.0
+margin_bottom = 87.0
 theme = SubResource( 30 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ErrorPopup/PinCard"]
@@ -727,10 +763,75 @@ custom_styles/focus = SubResource( 26 )
 custom_styles/normal = SubResource( 11 )
 text = "OK"
 
+[node name="Overlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.65098 )
+
+[node name="PinBox" type="LineEdit" parent="Overlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -225.0
+margin_top = 16.0
+margin_right = 225.0
+margin_bottom = 63.0001
+custom_fonts/font = SubResource( 9 )
+custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
+custom_styles/normal = SubResource( 10 )
+align = 1
+max_length = 7
+clear_button_enabled = true
+placeholder_text = "_ _ _ _ _"
+caret_blink = true
+
+[node name="ServerStatus" type="Label" parent="Overlay"]
+modulate = Color( 1, 0, 0, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -224.0
+margin_top = 64.0
+margin_right = 226.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 37 )
+text = "Server Inactive"
+align = 1
+valign = 1
+
+[node name="IPBox" type="LineEdit" parent="Overlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -352.0
+margin_top = 16.0
+margin_right = 352.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 34 )
+custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
+custom_styles/normal = SubResource( 10 )
+align = 1
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Ip address"
+placeholder_alpha = 0.203
+caret_blink = true
+
+[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_changed"]
 [connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_entered"]
+[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_text_changed"]
 [connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_PinBox_text_entered"]
 [connection signal="gui_input" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/SubTitle" to="." method="_on_SubTitle_gui_input"]
 [connection signal="toggled" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_Advanced_Settings_CheckBox_toggled"]
 [connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="ErrorPopup/PinCard/VBoxContainer/Ok" to="." method="_on_Ok_Close_Error_pressed"]
+[connection signal="text_changed" from="Overlay/PinBox" to="." method="_on_Mobile_PinBox_text_changed"]
+[connection signal="text_entered" from="Overlay/PinBox" to="." method="_on_PinBox_text_entered"]
+[connection signal="text_changed" from="Overlay/IPBox" to="." method="_on_Mobile_IPBox_text_changed"]
+[connection signal="text_entered" from="Overlay/IPBox" to="." method="_on_Mobile_IPBox_text_entered"]

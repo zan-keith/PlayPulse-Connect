@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Gyro.gd" type="Script" id=1]
+
+[node name="GyroScope" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="X" type="Label" parent="."]
+margin_left = 288.0
+margin_top = 232.0
+margin_right = 328.0
+margin_bottom = 246.0
+align = 2
+
+[node name="Y" type="Label" parent="."]
+margin_left = 352.0
+margin_top = 232.0
+margin_right = 392.0
+margin_bottom = 246.0
+align = 2
+
+[node name="Z" type="Label" parent="."]
+margin_left = 432.0
+margin_top = 232.0
+margin_right = 472.0
+margin_bottom = 246.0
+align = 2

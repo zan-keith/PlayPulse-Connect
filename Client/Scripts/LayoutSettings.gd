@@ -5,7 +5,8 @@ var Existing_Layouts:Array=[]
 var Curr_Selected_Btn=null
 
 var Dragging=false
-
+var Pressed=false
+var DynamicJoystickR=false
 var DefaultBtnValues = {
   "LeftStick": { "scale": 1, "pos": [0, 0] },
   "RightStick": { "scale": 1, "pos": [0, 0] },
@@ -18,6 +19,8 @@ var DefaultBtnValues = {
   "Dpad": { "scale": 1, "pos": [0, 0] }
 };
 
+
+var disabled_btns=[]
 
 # When Add Layout is Pressed
 func _on_Add_pressed():
@@ -52,13 +55,22 @@ func save_curr_layout():
 	var ValuesDictionary:Dictionary ={}
 	for child in $".".get_children():
 		if child.is_in_group('btn'):
-			ValuesDictionary[child.name]={"rect_scale":child.rect_scale,"rect_position":child.rect_position}
+			ValuesDictionary[child.name]={
+				"rect_scale":child.rect_scale,
+				"rect_position":child.rect_position,
+				"visible":false if disabled_btns.has(child) else true,
+				"modulate":child.modulate
+				}
 			
+
+	
 	Data[LayoutName]=ValuesDictionary
 	var file = File.new()
 	file.open(Global.LAYOUT_FILE_PATH, File.WRITE)
 	file.store_string(to_json(Data))
 	file.close()
+	
+	print(to_json(Data))
 	print("-- Saved --")
 
 func delete_curr_layout():
@@ -98,8 +110,18 @@ func load_and_set_layout(layout):
 	else:
 		for btn in Data[layout]:
 			for field in Data[layout][btn]:
-				if $".".get_node(btn)[str(field)]!=null:# Just a Failsafe
+				if typeof($".".get_node(btn)[str(field)])==5:
 					$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
+
+					
+				elif typeof($".".get_node(btn)[str(field)])==14:
+					print($".".get_node(btn)[str(field)].a)
+					$".".get_node(btn)[str(field)].a=float(Data[layout][btn][field].split(",")[3])
+				elif typeof($".".get_node(btn)[str(field)])==1:
+					if not Data[layout][btn][field]:#if btn is disabled
+						disabled_btns.append($".".get_node(btn))
+						$".".get_node(btn)["modulate"].a= 0.1
+
 
 func _close_popups():
 	$SelectLayout.hide()
@@ -166,6 +188,9 @@ func _btn_selection_onchange():
 		$ControlPanel/VBoxContainer/Options/Scale.value=(Curr_Selected_Btn.rect_scale.x*100)/2
 		$ControlPanel/VBoxContainer/Options/XPos.value=(Curr_Selected_Btn.rect_position.x*100)/(OS.get_window_safe_area().size.x-Curr_Selected_Btn.rect_size.x)
 		$ControlPanel/VBoxContainer/Options/YPos.value=(Curr_Selected_Btn.rect_position.y*100)/(OS.get_window_safe_area().size.y-Curr_Selected_Btn.rect_size.y)
+		$ControlPanel/VBoxContainer/Options/Opacity.value=Curr_Selected_Btn.modulate.a*100
+		$ControlPanel/VBoxContainer/Options/HBoxContainer/CheckBox.pressed=disabled_btns.has(Curr_Selected_Btn)
+		
 		
 		
 
@@ -215,7 +240,24 @@ func _on_YPos_value_changed(value):
 	Curr_Selected_Btn.rect_position=Vector2(Curr_Selected_Btn.rect_position.x,(value/100)*(OS.get_window_safe_area().size.y-Rect_size.y))
 	$ControlPanel/VBoxContainer/Options/Title4.set_text("Y Pos %d" % [(value/100)*(OS.get_window_safe_area().size.y-Rect_size.y)])
 	$ControlPanel/VBoxContainer/BtnGroup.visible=true
-	
+
+func _on_Opacity_value_changed(value):
+	Curr_Selected_Btn.modulate.a=value/100
+	$ControlPanel/VBoxContainer/Options/Title5.set_text("Opacity %.2f" % [(value/100)])
+	$ControlPanel/VBoxContainer/BtnGroup.visible=true
+
+
+func _on_Disable_Btn_CheckBox_toggled(button_pressed,donotset=false):
+	if not button_pressed:
+		Curr_Selected_Btn.modulate.a=1
+		if disabled_btns.has(Curr_Selected_Btn):
+			disabled_btns.erase(Curr_Selected_Btn)
+
+	elif button_pressed:
+		if not disabled_btns.has(Curr_Selected_Btn):
+			Curr_Selected_Btn.modulate.a=0.1
+			disabled_btns.append(Curr_Selected_Btn)
+
 
 func _on_Save_pressed():
 	save_curr_layout()
@@ -269,13 +311,16 @@ func _process(delta):
 		Curr_Selected_Btn.rect_position=get_global_mouse_position()-Rect_size/2
 
 func _button_on_press(btn):
-	btn.modulate=Color.from_hsv(0, 0, 0.5, 0.5)
 	Dragging=true
 	set_process(true)
+
 	
 func _button_on_release(btn):
-	btn.modulate=Color.from_hsv(0, 0, 1, 1)
 	Dragging=false
 	set_process(false)
+
+
+
+
 
 

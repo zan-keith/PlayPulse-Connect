@@ -5,12 +5,14 @@
 [ext_resource path="res://joystick/virtual_joystick.gd" type="Script" id=3]
 
 [node name="Virtual joystick" type="Control"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = -250.0
-margin_right = 250.0
-margin_bottom = -50.0
+anchor_left = 0.098
+anchor_top = 0.167
+anchor_right = 0.098
+anchor_bottom = 0.167
+margin_left = -100.352
+margin_top = -100.2
+margin_right = 99.648
+margin_bottom = 99.8
 script = ExtResource( 3 )
 
 [node name="Base" type="TextureRect" parent="."]
@@ -26,8 +28,6 @@ margin_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 100, 100 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
 texture = ExtResource( 1 )
 stretch_mode = 6
 
@@ -36,15 +36,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -54.5
-margin_top = -56.5
-margin_right = 54.5
-margin_bottom = 56.5
+margin_left = -55.0
+margin_top = -55.0
+margin_right = 55.0
+margin_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
-rect_pivot_offset = Vector2( 50, 50 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
+rect_pivot_offset = Vector2( 55, 55 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6

@@ -3,20 +3,26 @@ extends Control
 var Settings={}
 
 var CheckBoxes: Array
+var Sliders: Array
+
 
 
 func _ready():
 	$AnimationPlayer.play("startup")
 	Settings=load_file()
 	Settings=Settings if typeof(Settings)==TYPE_DICTIONARY else Global.DefaultSettings
-	CheckBoxes=[$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer/Vibration,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Sound,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer4/PassbyPress]
-	
+	CheckBoxes=[$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer/Vibration,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Sound,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer4/PassbyPress,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer5/DynamicJoystickR,$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer6/Gyro]
+	Sliders=[$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer7/VBoxContainer/HBoxContainer/GyroSensitivity]
 	for sets in CheckBoxes:
 		if Settings.has(sets.name):
 			sets.pressed=Settings[sets.name]
 		else:
 			Settings[sets.name]=Global.DefaultSettings[sets.name]
-	
+	for sets in Sliders:
+		if Settings.has(sets.name):
+			sets.value=Settings[sets.name]
+		else:
+			Settings[sets.name]=Global.DefaultSettings[sets.name]
 
 
 func load_file(file_name=Global.USER_PREFS_FILE_PATH):
@@ -58,6 +64,9 @@ func save_file(Data):
 func _on_BackBtn_pressed():
 	for sets in CheckBoxes:
 		Settings[sets.name]=sets.pressed
+	for sets in Sliders:
+		Settings[sets.name]=sets.value
+		
 	save_file(Settings)
 	Global.UserSettings=Settings
 	get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
@@ -77,3 +86,7 @@ func _on_LayoutSettingsButton_gui_input(event):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name=="leftswipe":
 		get_tree().change_scene("res://Scenes/Pages/LayoutSettings.tscn")
+
+
+func _on_Sensitivity_value_changed(value):
+	$PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer7/VBoxContainer/HBoxContainer/Value.text=str(value)

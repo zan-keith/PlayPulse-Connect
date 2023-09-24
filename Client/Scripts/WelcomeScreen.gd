@@ -59,6 +59,7 @@ func _on_Proceed_pressed():
 	print(IP_ADDRESS)
 	
 	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	udp.put_packet("ping".to_utf8())
 	if err!=OK:
 		show_error("Couldn't establish a connection with the IP %s" % IP_ADDRESS,"Check the ip address from your PC and try connecting with Advanced Settings.")
 	udp.put_packet(pwd.to_utf8())
@@ -72,13 +73,17 @@ func _process(delta):
 	if udp.get_available_packet_count()>0:
 		var response=udp.get_packet().get_string_from_utf8()
 		print('= ',response)
-		if (response=="authenticated" or response=="received"):
+		if response=="pong":
+			change_server_status_label("Server Active")
+		elif (response=="authenticated" or response=="received"):
 			Global.IP_ADDRESS=IP_ADDRESS
 			save_file({"IP":IP_ADDRESS})
 			print("CHANGING SCENES")
 			get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
 		elif (response=="wrong password"):
 			show_error("Wrong PIN for %s" % IP_ADDRESS,"Verify the pin number and ip address from your PC or try manual Advanced Settings.")
+		elif (response=="another device"):
+			show_error("Couldn't establish a connection with the IP %s because another device is already connected" % IP_ADDRESS,"Disconnect the connected device.\n Check the ip address from your PC .\n If the issue still persists restart the server.")
 			
 
 func load_file(file_name=Global.SESSION_FILE_PATH):
@@ -114,6 +119,7 @@ func save_file(Data):
 
 
 func _on_PinBox_text_entered(new_text):
+	$Overlay.hide()
 	_on_Proceed_pressed()
 
 
@@ -136,3 +142,76 @@ func _on_Advanced_Settings_CheckBox_toggled(button_pressed):
 	else:
 		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings.visible=false
 		
+
+
+func _on_PinBox_text_changed(new_text):
+	var pin=new_text
+	var pwd=pin.left(4)
+	var octet=pin.trim_prefix(pwd)
+	
+	IP_ADDRESS='192.168.1.'+octet
+	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	if err==OK:
+		udp.put_packet("supersecretpingmsg".to_utf8())
+	
+	change_server_status_label("Server Inactive")
+
+#Escape KeyPress
+func _input(event):
+	if Input.is_action_pressed("ui_cancel"):
+		$Overlay.hide()
+		$ErrorPopup.hide()
+
+func change_server_status_label(msg):
+	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/ServerStatus.text=msg
+	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/ServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
+	$Overlay/ServerStatus.text=msg
+	$Overlay/ServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
+
+func _on_IPBox_text_changed(new_text):
+	IP_ADDRESS=new_text
+	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	if err==OK:
+		udp.put_packet("supersecretpingmsg".to_utf8())
+	
+	change_server_status_label("Server Inactive")
+
+
+# To fix the android keyboard covering issue
+
+#From HERE ----------------------------------------------------->
+func _on_PinBox_focus_entered():
+	$Overlay.visible=true
+	$Overlay/PinBox.visible=true
+	$Overlay/IPBox.visible=false
+	$Overlay/PinBox.grab_focus()
+
+
+func _on_IPBox_focus_entered():
+	$Overlay.visible=true
+	$Overlay/PinBox.visible=false
+	$Overlay/IPBox.visible=true
+	$Overlay/IPBox.grab_focus()
+	
+
+#  <--------------------------------------------------------------
+
+
+
+
+
+func _on_Mobile_PinBox_text_changed(new_text):
+	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.set_text(new_text)
+	_on_PinBox_text_changed(new_text)
+
+
+
+func _on_Mobile_IPBox_text_changed(new_text):
+	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.set_text(new_text)
+	_on_IPBox_text_changed(new_text)
+
+
+func _on_Mobile_IPBox_text_entered(new_text):
+	$Overlay.visible=false
+	$Overlay/PinBox.visible=false
+	$Overlay/IPBox.visible=false

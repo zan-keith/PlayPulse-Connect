@@ -3,6 +3,10 @@ class_name VirtualJoystick
 extends Control
 
 signal joystick_input_update
+signal joystick_release
+signal joystick_press
+
+
 export(bool) var disabled : bool = false
 
 # https://github.com/MarcoFazioRandom/Virtual-Joystick-Godot
@@ -129,6 +133,7 @@ func _update_joystick(touch_position: Vector2) -> void:
 		_update_input_actions()
 
 func _update_input_actions():
+	emit_signal("joystick_press")
 	emit_signal("joystick_input_update",[_output])
 	if _output.x < 0:
 		Input.action_press(action_left, -_output.x)
@@ -148,6 +153,8 @@ func _update_input_actions():
 		Input.action_release(action_down)
 
 func _reset():
+	emit_signal("joystick_release",_output)
+	emit_signal("joystick_input_update",[Vector2(0,0)])
 	_pressed = false
 	_output = Vector2.ZERO
 	_touch_index = -1
@@ -157,10 +164,13 @@ func _reset():
 	if use_input_actions:
 		if Input.is_action_pressed(action_left) or Input.is_action_just_pressed(action_left):
 			Input.action_release(action_left)
-			emit_signal("joystick_input_update",[Vector2(0,0)])
+			
+			
 		if Input.is_action_pressed(action_right) or Input.is_action_just_pressed(action_right):
 			Input.action_release(action_right)
 			emit_signal("joystick_input_update",[Vector2(0,0)])
+
+			
 		if Input.is_action_pressed(action_down) or Input.is_action_just_pressed(action_down):
 			Input.action_release(action_down)
 		if Input.is_action_pressed(action_up) or Input.is_action_just_pressed(action_up):

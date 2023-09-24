@@ -1,29 +1,47 @@
 extends Control
 
-export var Redirect=true
 var connected = false
 var udp := PacketPeerUDP.new()
 
 export onready var ADDRESS="none"
 var UserSettings: Dictionary={}
+var prev_val=Vector3.ZERO
+export var step=0.05
+
+export var sensitivity = 1.8 # increases sentivity
+
+var u = Vector3.ZERO
+
+func set_save_data():
+	#$RightStick.joystick_mode=$RightStick.JoystickMode.DYNAMIC if Global.UserSettings["DynamicJoystickR"] else $RightStick.JoystickMode.FIXED
+	#$LeftStick.joystick_mode=$LeftStick.JoystickMode.DYNAMIC if Global.UserSettings["DynamicJoystickR"] else $LeftStick.JoystickMode.FIXED
+	
+	
+	if Global.UserSettings["Gyro"]:
+		set_process(true)
+	else:
+		set_process(false)
+	
+	sensitivity=Global.UserSettings["GyroSensitivity"] if Global.UserSettings.has("GyroSensitivity") else 1
+	print('== ',sensitivity)
 
 func _ready():
+	print(Input.get_gyroscope())#(0.138, -7.443, -7.26105)
+
 	load_user_prefs()
+	set_save_data()
 	load_and_set_layout(Global.UserSettings["Layout"])
 	
+	$AnimationPlayer.play("startup2")
 	print(":::: ",Global.UserSettings["Layout"])
-	$AnimationPlayer.play("startup")
-	$AnimationPlayer.queue("glowup")
 	
 
 	
 	var IP_ADDRESS=Global.IP_ADDRESS
 	print(IP_ADDRESS)
 	var err=udp.connect_to_host(IP_ADDRESS, 5000)
-	if err!=OK and Redirect:
+	if err!=OK:
 		_on_Disconnect_pressed()
-	udp.put_packet("test".to_utf8())
-	
 	for child in $".".get_children():
 		if child.is_in_group("btn"):
 			
@@ -80,10 +98,21 @@ func load_and_set_layout(layout):
 	if Data.has(layout):
 		for btn in Data[layout]:
 			for field in Data[layout][btn]:
-				pass
-				$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
+				if typeof($".".get_node(btn)[str(field)])==5:
+					$".".get_node(btn)[str(field)]=str2var("Vector2" + Data[layout][btn][field])
+
+					
+				elif typeof($".".get_node(btn)[str(field)])==14:
+					print(Data[layout][btn][field].split(",")[3])
+					$".".get_node(btn)[str(field)].a=float(Data[layout][btn][field].split(",")[3])
+				elif typeof($".".get_node(btn)[str(field)])==1:
+					
+					$".".get_node(btn)[str(field)]=Data[layout][btn][field]
+		$LeftStick.get_node("Base").rect_pivot_offset=($LeftStick.get_node("Base").rect_size*str2var("Vector2" +Data[layout]['LeftStick']['rect_scale']))/2
+		$LeftStick.get_node("Base/Tip").rect_pivot_offset=($LeftStick.get_node("Base/Tip").rect_size*str2var("Vector2" +Data[layout]['LeftStick']['rect_scale']))/2
+		
 	else:
-		pass #If Layout is not found then just use the layout from godot scene by default
+		pass # If Layout is not found then just use the layout from godot scene by default
 
 func save_session_file(Data):
 	var file = File.new()
@@ -99,10 +128,26 @@ func _on_Left_Stick_joystick_input_update(pos):
 
 
 func _on_Right_Stick_joystick_input_update(pos):
+	
 	pos=pos[0]
+
+	
 	udp.put_packet(("RJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
+func _on_LEFT_TRIGGER_pressed():
+	udp.put_packet(("LT1").to_utf8())
 
+
+func _on_LEFT_TRIGGER_released():
+	udp.put_packet(("LT0").to_utf8())
+
+
+func _on_RIGHT_TRIGGER_pressed():
+	udp.put_packet(("RT1").to_utf8())
+
+
+func _on_RIGHT_TRIGGER_released():
+	udp.put_packet(("RT0").to_utf8())
 
 func _on_btn_press(c):
 	if Global.UserSettings["Vibration"]:
@@ -125,24 +170,6 @@ func _on_btn_release(c):
 
 
 
-func _on_Dpad_UP_pressed():
-	pass # Replace with function body.
-
-
-func _on_Dpad_LEFT_pressed():
-	pass # Replace with function body.
-
-
-func _on_Dpad_RIGHT_pressed():
-	pass # Replace with function body.
-
-
-func _on_Dpad_DOWN_pressed():
-	pass # Replace with function body.
-
-
-
-
 
 func _on_Settings_pressed():
 	get_tree().change_scene("res://Scenes/Pages/SettingsPage.tscn")
@@ -153,3 +180,83 @@ func _on_Disconnect_pressed():
 	save_session_file({"IP":""})
 	udp.put_packet("ENDCONN".to_utf8())
 	get_tree().change_scene("res://Scenes/Pages/WelcomeScreen.tscn")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name=="startup2":
+		$AnimationPlayer.play("glowup")
+		$AnimationPlayer.queue("show_control_panel")
+		
+
+
+
+
+
+
+func _on_HomeBtn_toggled(button_pressed):
+	if button_pressed:
+		$AnimationPlayer.play("show_control_panel")
+	else:
+		$AnimationPlayer.play("hide_control_panel")
+
+
+func _process(delta):
+#	var gyro=Input.get_accelerometer()
+#	gyro.x+=0
+#	gyro.y+=0
+#
+#	velocity = prev_val.linear_interpolate(gyro,acceleration)
+#	velocity=(velocity.normalized()*sensitivity)
+#
+#	#Clamp it
+#	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(velocity.x, -1), 1),-min(max(velocity.y, -1), 1)]).to_utf8())
+#	prev_val=velocity
+
+
+
+#-------------------------------
+#	var v=Input.get_accelerometer()
+#
+#	var accelerationV=u.linear_interpolate(v,0.05)
+#	var deltaA=accelerationV-accelerationU
+#
+#	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(deltaA.x, -1), 1),min(max(deltaA.y, -1), 1)]).to_utf8())
+#
+#	accelerationU=accelerationU.linear_interpolate(accelerationV,0.05)
+#
+#
+#
+#
+#	u=v
+#-------------------------------------
+
+
+	
+	
+	var v=Input.get_accelerometer().normalized()*sensitivity
+	
+	$SubTitle.text=str(stepify(v.x,0.1))
+	$SubTitle2.text=str(stepify(v.y,0.1))
+	$SubTitle3.text=str(stepify(v.z,0.1))
+	
+	
+	
+	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(v.x, -1), 1),min(max(v.y, -1), 1)]).to_utf8())
+
+
+
+
+
+
+
+
+func _on_RightStick_joystick_release(pos):
+
+	
+	if Global.UserSettings["Gyro"]:
+		set_process(true)
+
+
+func _on_RightStick_joystick_press():
+	if Global.UserSettings["Gyro"]:
+		set_process(false)
