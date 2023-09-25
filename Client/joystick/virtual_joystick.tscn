@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight01.png" type="Texture" id=2]
 [ext_resource path="res://joystick/virtual_joystick.gd" type="Script" id=3]
+
+[sub_resource type="Gradient" id=28]
+offsets = PoolRealArray( 0, 0.179372, 0.506726, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.788235, 1, 1, 1, 0, 0.980392, 0.996078, 1, 0 )
+
+[sub_resource type="GradientTexture2D" id=29]
+gradient = SubResource( 28 )
+fill = 1
+fill_from = Vector2( 0.5, 0.5 )
 
 [node name="Virtual joystick" type="Control"]
 anchor_left = 0.098
@@ -32,6 +41,7 @@ texture = ExtResource( 1 )
 stretch_mode = 6
 
 [node name="Tip" type="TextureRect" parent="Base"]
+modulate = Color( 0.388235, 1, 0.964706, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -46,5 +56,21 @@ rect_pivot_offset = Vector2( 55, 55 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
+
+[node name="Glow" type="TextureRect" parent="."]
+modulate = Color( 0.121569, 0.67451, 0.737255, 1 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -180.0
+margin_top = -180.0
+margin_right = 180.0
+margin_bottom = 180.0
+mouse_filter = 2
+texture = SubResource( 29 )
+expand = true
+stretch_mode = 5
 
 [connection signal="item_rect_changed" from="." to="." method="_on_Virtual_joystick_item_rect_changed"]

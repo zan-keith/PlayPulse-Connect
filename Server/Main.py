@@ -1,5 +1,7 @@
 """
-GamePadPortal CLI
+Author: @5_keith
+
+PlayPulse Connect CLI
 
 The program contains:
 - Code that connects a virtual game controller using the functionality from the vgamepad Python module.

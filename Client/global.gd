@@ -15,20 +15,7 @@ var DefaultSettings={
 	"GyroSensitivity":1
 }
 
-var DefaultLayoutSettings={
-  "Default": {
-	"BACK": {  "rect_scale": "(1, 1)" },
-	"DPad": { "rect_scale": "(1, 1)" },
-	"GUIDE": { "rect_scale": "(1, 1)" },
-	"LEFT_SHOULDER": { "rect_scale": "(1, 1)" },
-	"LEFT_THUMB": { "rect_scale": "(1, 1)" },
-	"LeftStick": { "rect_scale": "(1, 1)" },
-	"RIGHT_SHOULDER": {  "rect_scale": "(1, 1)" },
-	"RIGHT_THUMB": { "rect_scale": "(1, 1)" },
-	"RightStick": { "rect_scale": "(1, 1)" },
-	"START": { "rect_scale": "(1, 1)" },
-  }
-}
+
 
 var BtnsLayoutPropertyDataTypes={
 	
@@ -45,7 +32,7 @@ var DefaultSession={
 }
 
 var LINKS={
-	"github":"https://github.com/Alpha-Hunt/GamePadPortal",
+	"github":"https://github.com/zan-keith/PlayPulse-Connect",
 	"itch":"https://captain-knull.itch.io/",
 	"godot":"https://godotengine.org/",
 }

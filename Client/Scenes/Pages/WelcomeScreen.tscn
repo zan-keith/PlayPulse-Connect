@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Assets/Pictures/cropped_bg.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://Scripts/WelcomeScreen.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Sprites/white circle.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/git-svgrepo-com.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Logo/lighticon.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/wifi-svgrepo-com.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/desktop-svgrepo-com.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/password-svgrepo-com.png" type="Texture" id=10]
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0896861, 0.479821, 0.995516 )
@@ -23,17 +27,60 @@ content_margin_right = 15.0
 content_margin_top = 15.0
 content_margin_bottom = 15.0
 
-[sub_resource type="DynamicFont" id=19]
-size = 27
+[sub_resource type="StyleBoxFlat" id=40]
+draw_center = false
+border_width_left = 1
+border_width_right = 1
+border_color = Color( 0.0313726, 0.388235, 0.376471, 1 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 24
 use_filter = true
-extra_spacing_space = 1
+extra_spacing_char = 2
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=5]
-RichTextLabel/fonts/normal_font = SubResource( 19 )
+[sub_resource type="DynamicFont" id=41]
+size = 24
+use_filter = true
+extra_spacing_char = 2
+font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=24]
-size = 23
+[sub_resource type="StyleBoxEmpty" id=42]
+
+[sub_resource type="StyleBoxFlat" id=43]
+draw_center = false
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0, 0.878431, 1, 0.0784314 )
+
+[sub_resource type="DynamicFont" id=50]
+size = 24
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=49]
+
+[sub_resource type="DynamicFont" id=52]
+size = 18
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=53]
+size = 18
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=54]
+size = 18
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=51]
+use_filter = true
 extra_spacing_char = 1
 font_data = ExtResource( 2 )
 
@@ -45,8 +92,7 @@ use_filter = true
 font_data = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=20]
-offsets = PoolRealArray( 0, 0.587444, 1 )
-colors = PoolColorArray( 0.0118276, 0.164124, 0.177734, 1, 0.0100712, 0.115307, 0.119141, 1, 0, 0.0891037, 0.0996094, 1 )
+colors = PoolColorArray( 0.0118276, 0.164124, 0.177734, 1, 0.0263356, 0.0957031, 0.0656258, 1 )
 
 [sub_resource type="GradientTexture2D" id=21]
 gradient = SubResource( 20 )
@@ -66,12 +112,21 @@ font_data = ExtResource( 3 )
 [sub_resource type="Theme" id=7]
 RichTextLabel/fonts/normal_font = SubResource( 39 )
 
+[sub_resource type="DynamicFont" id=19]
+size = 27
+use_filter = true
+extra_spacing_space = 1
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=5]
+RichTextLabel/fonts/normal_font = SubResource( 19 )
+
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 15.0
 content_margin_right = 15.0
 content_margin_top = 15.0
 content_margin_bottom = 15.0
-bg_color = Color( 0.431373, 0.619608, 0.792157, 1 )
+bg_color = Color( 0.196078, 0.662745, 0.662745, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -136,10 +191,11 @@ extra_spacing_bottom = 5
 extra_spacing_char = 9
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=31]
-size = 14
+[sub_resource type="DynamicFont" id=48]
+size = 18
 use_filter = true
-font_data = ExtResource( 2 )
+extra_spacing_char = 2
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxEmpty" id=35]
 
@@ -283,7 +339,7 @@ tracks/5/keys = {
 "values": [ Vector2( -50, 38 ), Vector2( 0, 38 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard:modulate")
+tracks/6/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -295,7 +351,7 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:text")
+tracks/7/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox:text")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -307,7 +363,7 @@ tracks/7/keys = {
 "values": [ "", "1", "12", "123", "1234", "12345", "1234", "123", "12", "1", "" ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:modulate")
+tracks/8/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -343,7 +399,7 @@ tracks/10/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.498039 ) ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox:editable")
+tracks/11/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox:editable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -417,9 +473,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/bg = SubResource( 23 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer"]
-visible = false
-modulate = Color( 1, 1, 1, 0.54902 )
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TextureRect/PanelContainer"]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 497.0
@@ -427,14 +481,195 @@ margin_bottom = 585.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Title" type="RichTextLabel" parent="VBoxContainer/TextureRect/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer"]
 margin_right = 482.0
-margin_bottom = 29.0
-theme = SubResource( 5 )
-custom_fonts/normal_font = SubResource( 24 )
-text = "Getting Started:"
-fit_content_height = true
-scroll_active = false
+margin_bottom = 570.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_right = 482.0
+margin_bottom = 50.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 54.0
+margin_right = 74.0
+margin_bottom = 50.0
+custom_constants/separation = 20
+custom_styles/separator = SubResource( 40 )
+
+[node name="SubTitle2" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 78.0
+margin_top = 10.0
+margin_right = 210.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0.776471, 1 )
+custom_fonts/font = SubResource( 31 )
+text = "Playpulse"
+valign = 1
+autowrap = true
+
+[node name="SubTitle3" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 214.0
+margin_top = 10.0
+margin_right = 346.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.0152702, 0.369141, 0.290674, 1 )
+custom_fonts/font = SubResource( 41 )
+text = " Connect"
+valign = 1
+autowrap = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 350.0
+margin_right = 482.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 42 )
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 482.0
+margin_bottom = 68.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 43 )
+
+[node name="Title" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 482.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_fonts/font = SubResource( 50 )
+text = "Getting Started"
+valign = 1
+autowrap = true
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 105.0
+margin_right = 482.0
+margin_bottom = 119.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 49 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 482.0
+margin_bottom = 164.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+modulate = Color( 0.180392, 0.862745, 0.803922, 1 )
+margin_right = 41.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 41, 41 )
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="Title2" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 45.0
+margin_top = 9.0
+margin_right = 482.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 0.662745 )
+custom_fonts/font = SubResource( 52 )
+text = "Make sure devices are in the same wifi network"
+valign = 1
+autowrap = true
+
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 168.0
+margin_right = 482.0
+margin_bottom = 182.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 49 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 186.0
+margin_right = 482.0
+margin_bottom = 233.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 41.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 41, 41 )
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="Title2" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 45.0
+margin_right = 482.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 0.662745 )
+custom_fonts/font = SubResource( 53 )
+text = "Open the Playpulse desktop application and intialize the server"
+valign = 1
+autowrap = true
+
+[node name="HSeparator6" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 237.0
+margin_right = 482.0
+margin_bottom = 251.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 49 )
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 255.0
+margin_right = 482.0
+margin_bottom = 296.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+modulate = Color( 0.870588, 0.317647, 0.317647, 1 )
+margin_right = 41.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 41, 41 )
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="Title2" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 45.0
+margin_top = 9.0
+margin_right = 482.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 0.662745 )
+custom_fonts/font = SubResource( 54 )
+text = "Enter the Pin from the desktop application"
+valign = 1
+autowrap = true
+
+[node name="HSeparator7" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 300.0
+margin_right = 482.0
+margin_bottom = 314.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 49 )
+
+[node name="Title3" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 318.0
+margin_right = 482.0
+margin_bottom = 359.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.827451, 0.913725, 1, 0.298039 )
+custom_fonts/font = SubResource( 51 )
+text = "If you encounter any issues please visit the official github pages for further guidance"
+valign = 1
+autowrap = true
 
 [node name="Links" type="Panel" parent="VBoxContainer/TextureRect"]
 anchor_left = 0.5
@@ -456,7 +691,7 @@ margin_left = -277.0
 margin_top = -6.5
 margin_bottom = 8.5
 custom_fonts/font = SubResource( 28 )
-text = "https://github.com/Alpha-Hunt/GamePadPortal"
+text = "https://github.com/zan-keith/PlayPulse-Connect"
 underline = 1
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/Links"]
@@ -532,29 +767,36 @@ margin_right = 480.0
 margin_bottom = 81.0
 custom_constants/separation = 16
 
-[node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Panel/VBoxContainer"]
 margin_top = 85.0
 margin_right = 480.0
-margin_bottom = 387.0
+margin_bottom = 568.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PinCard" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer"]
+margin_right = 468.0
+margin_bottom = 484.0
+size_flags_horizontal = 3
 theme = SubResource( 3 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 465.0
-margin_bottom = 287.0
+margin_right = 453.0
+margin_bottom = 469.0
 
-[node name="Title" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_right = 450.0
+[node name="Title" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
+margin_right = 438.0
 margin_bottom = 34.0
 theme = SubResource( 5 )
 text = "Enter the Pairing PIN"
 fit_content_height = true
 scroll_active = false
 
-[node name="SubTitle" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="SubTitle" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 margin_top = 38.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 61.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
@@ -562,17 +804,17 @@ text = "Type the pin you see in your primary device"
 fit_content_height = true
 scroll_active = false
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 margin_top = 65.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 81.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 8 )
 
-[node name="ServerStatus" type="Label" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="ServerStatus" type="Label" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 modulate = Color( 1, 0, 0, 1 )
 margin_top = 85.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 104.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 37 )
@@ -580,16 +822,16 @@ text = "Server Inactive"
 align = 1
 valign = 1
 
-[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 margin_top = 108.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 113.0
 custom_constants/separation = 5
 custom_styles/separator = SubResource( 8 )
 
-[node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="PinBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 margin_top = 117.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 164.0
 custom_fonts/font = SubResource( 9 )
 custom_styles/read_only = SubResource( 10 )
@@ -601,29 +843,28 @@ clear_button_enabled = true
 placeholder_text = "_ _ _ _ _"
 caret_blink = true
 
-[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
 margin_top = 168.0
-margin_right = 450.0
+margin_right = 438.0
 margin_bottom = 184.0
 custom_constants/separation = 16
 custom_styles/separator = SubResource( 8 )
 
-[node name="AdvancedSettings" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-visible = false
-margin_top = 156.0
-margin_right = 450.0
-margin_bottom = 255.0
+[node name="AdvancedSettings" type="PanelContainer" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
+margin_top = 188.0
+margin_right = 438.0
+margin_bottom = 366.0
 custom_styles/panel = SubResource( 32 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings"]
 margin_left = 10.0
 margin_top = 15.0
-margin_right = 440.0
-margin_bottom = 84.0
+margin_right = 428.0
+margin_bottom = 163.0
 custom_constants/separation = 10
 
-[node name="SubTitle2" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
-margin_right = 430.0
+[node name="SubTitle2" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
+margin_right = 418.0
 margin_bottom = 20.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
@@ -632,9 +873,9 @@ text = "Type the IP address shown in your pc."
 fit_content_height = true
 scroll_active = false
 
-[node name="IPBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
+[node name="IPBox" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
 margin_top = 30.0
-margin_right = 430.0
+margin_right = 418.0
 margin_bottom = 69.0
 custom_fonts/font = SubResource( 34 )
 custom_styles/read_only = SubResource( 10 )
@@ -647,41 +888,67 @@ placeholder_text = "Ip address"
 placeholder_alpha = 0.203
 caret_blink = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 188.0
-margin_right = 450.0
-margin_bottom = 212.0
+[node name="SubTitle3" type="RichTextLabel" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
+margin_top = 79.0
+margin_right = 418.0
+margin_bottom = 99.0
+theme = SubResource( 7 )
+custom_colors/default_color = Color( 0.0666667, 0.14902, 0.180392, 1 )
+custom_fonts/normal_font = SubResource( 33 )
+text = "Type the port number."
+fit_content_height = true
+scroll_active = false
 
-[node name="SubTitle" type="Label" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer"]
-margin_top = 3.0
-margin_right = 422.0
-margin_bottom = 21.0
+[node name="IPBox2" type="LineEdit" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer"]
+margin_top = 109.0
+margin_right = 418.0
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 34 )
+custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
+custom_styles/normal = SubResource( 10 )
+align = 1
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "port"
+placeholder_alpha = 0.203
+caret_blink = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
+margin_top = 370.0
+margin_right = 438.0
+margin_bottom = 394.0
+
+[node name="SubTitle" type="Label" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 410.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 31 )
+custom_fonts/font = SubResource( 48 )
 text = "Advanced Settings"
 align = 2
 valign = 1
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer"]
-margin_left = 426.0
-margin_right = 450.0
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer"]
+margin_left = 414.0
+margin_right = 438.0
 margin_bottom = 24.0
 custom_styles/focus = SubResource( 35 )
 flat = true
 align = 1
 icon_align = 2
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 216.0
-margin_right = 450.0
-margin_bottom = 225.0
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
+margin_top = 398.0
+margin_right = 438.0
+margin_bottom = 407.0
 custom_constants/separation = 9
 custom_styles/separator = SubResource( 8 )
 
-[node name="Proceed" type="Button" parent="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer"]
-margin_top = 229.0
-margin_right = 450.0
-margin_bottom = 272.0
+[node name="Proceed" type="Button" parent="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer"]
+margin_top = 411.0
+margin_right = 438.0
+margin_bottom = 454.0
 mouse_default_cursor_shape = 2
 custom_colors/font_color_pressed = Color( 1, 1, 1, 0.431373 )
 custom_fonts/font = SubResource( 13 )
@@ -737,6 +1004,7 @@ margin_right = 415.0
 margin_bottom = 84.0
 theme = SubResource( 7 )
 custom_colors/default_color = Color( 0.180392, 0.0784314, 0.0784314, 1 )
+custom_fonts/normal_font = SubResource( 54 )
 text = "Verify  the pin number from your PC or try manual mode."
 fit_content_height = true
 scroll_active = false
@@ -764,7 +1032,6 @@ custom_styles/normal = SubResource( 11 )
 text = "OK"
 
 [node name="Overlay" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.65098 )
@@ -818,20 +1085,44 @@ placeholder_text = "Ip address"
 placeholder_alpha = 0.203
 caret_blink = true
 
-[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_entered"]
-[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_exited"]
-[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_changed"]
-[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_entered"]
-[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_entered"]
-[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_exited"]
-[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_text_changed"]
-[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_PinBox_text_entered"]
-[connection signal="gui_input" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/SubTitle" to="." method="_on_SubTitle_gui_input"]
-[connection signal="toggled" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_Advanced_Settings_CheckBox_toggled"]
-[connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
+[node name="Port" type="LineEdit" parent="Overlay"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -352.0
+margin_top = 16.0
+margin_right = 352.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 34 )
+custom_styles/read_only = SubResource( 10 )
+custom_styles/focus = SubResource( 38 )
+custom_styles/normal = SubResource( 10 )
+align = 1
+max_length = 20
+clear_button_enabled = true
+placeholder_text = "Ip address"
+placeholder_alpha = 0.203
+caret_blink = true
+
+[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_changed"]
+[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox" to="." method="_on_PinBox_text_entered"]
+[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_IPBox_text_changed"]
+[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox" to="." method="_on_PinBox_text_entered"]
+[connection signal="focus_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox2" to="." method="_on_IPBox_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox2" to="." method="_on_IPBox_focus_exited"]
+[connection signal="text_changed" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox2" to="." method="_on_IPBox_text_changed"]
+[connection signal="text_entered" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox2" to="." method="_on_PinBox_text_entered"]
+[connection signal="gui_input" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer/SubTitle" to="." method="_on_SubTitle_gui_input"]
+[connection signal="toggled" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox" to="." method="_on_Advanced_Settings_CheckBox_toggled"]
+[connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="ErrorPopup/PinCard/VBoxContainer/Ok" to="." method="_on_Ok_Close_Error_pressed"]
 [connection signal="text_changed" from="Overlay/PinBox" to="." method="_on_Mobile_PinBox_text_changed"]
 [connection signal="text_entered" from="Overlay/PinBox" to="." method="_on_PinBox_text_entered"]
 [connection signal="text_changed" from="Overlay/IPBox" to="." method="_on_Mobile_IPBox_text_changed"]
 [connection signal="text_entered" from="Overlay/IPBox" to="." method="_on_Mobile_IPBox_text_entered"]
+[connection signal="text_changed" from="Overlay/Port" to="." method="_on_Mobile_IPBox_text_changed"]
+[connection signal="text_entered" from="Overlay/Port" to="." method="_on_Mobile_IPBox_text_entered"]

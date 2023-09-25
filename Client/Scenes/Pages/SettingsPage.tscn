@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/Fonts/Rubik-SemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/SettingsPage.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Theme/Slider.tres" type="Theme" id=6]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Assets/Sprites/lighticon.png" type="Texture" id=8]
 
 [sub_resource type="Gradient" id=40]
 colors = PoolColorArray( 0.00478797, 0.0475259, 0.0566406, 1, 0.00356551, 0.0460671, 0.0566406, 1 )
@@ -181,6 +182,14 @@ anchor_bottom = 1.0
 texture = SubResource( 26 )
 expand = true
 stretch_mode = 7
+
+[node name="TextureRect" type="TextureRect" parent="GradBg"]
+self_modulate = Color( 1, 1, 1, 0.0901961 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
