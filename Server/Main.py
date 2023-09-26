@@ -14,6 +14,11 @@ import random
 import socket
 import vgamepad as vg
 import logging
+import threading
+import keyboard
+
+# ... (rest of your code)
+
 
 parser = argparse.ArgumentParser(description="GamePadPortal")
 
@@ -34,7 +39,7 @@ arg_autokill = args.autokill if args.autokill else True
 arg_pin = args.pin
 
 
-
+# Idk if there is a better way to get the address
 def get_host_ip():
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -46,7 +51,17 @@ def get_host_ip():
         print(f"Couldnt get the Local IP Address \n {e}")
         exit()
 
+stop_listener = False
 
+# Define a function to listen for the key combination
+def listener_thread():
+    global stop_listener
+    while True:
+        if keyboard.is_pressed('ctrl+alt+c'):
+            logging.warning("Terminating the server...")
+            socket.close()
+            stop_listener = True
+            break
 
 HOST_ADDRESS= arg_ip_address if arg_ip_address else get_host_ip()
 PORT=arg_port if arg_port else 5000
@@ -65,6 +80,7 @@ authenticated = [False, None]
 address = None
 try:
     socket.bind((HOST_ADDRESS, PORT))
+    socket.settimeout(100)
 except Exception as e:
     logging.error(e)
     exit()
@@ -75,8 +91,27 @@ fourth_octet = octets[3]
 
 pin = arg_pin if (arg_pin and len(str(arg_pin))==4) else random.randint(1000, 9999)
 print(f"PIN: {pin}{fourth_octet}")
+print("Press Ctrl + Alt + C to exit the program")
+
+
+# Start the listener thread
+listener = threading.Thread(target=listener_thread)
+listener.daemon = True
+listener.start()
+
 while True:
-    msg, address = socket.recvfrom(1024)
+
+    if stop_listener:
+        break
+    try:
+        msg, address = socket.recvfrom(1024)
+    except OSError as e:
+            if e.errno == 10038:
+                # Socket is closed, break out of the loop
+                break
+            else:
+                raise  # Re-raise other OSError exceptions
+
     if msg.decode("utf-8") == "supersecretpingmsg":
         socket.sendto("pong".encode('utf-8'), address)
     elif authenticated[0] and authenticated[1] == address[0]:
@@ -114,5 +149,4 @@ while True:
             socket.sendto("wrong password".encode('utf-8'), address)
     elif authenticated[1] != address:
         socket.sendto("another device".encode('utf-8'), address)
-
-
+listener.join()
