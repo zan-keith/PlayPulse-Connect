@@ -1,1 +1,2 @@
 vgamepad==0.0.8
+keyboard==0.13.5
