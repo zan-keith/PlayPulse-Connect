@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://github.com/username/repository/blob/master/img/octocat.png"
+ <img width=200px height=200px src="https://github.com/zan-keith/PlayPulse-Connect/blob/main/Client/Assets/Logo/lighticon.png"
   alt="Playpulse logo"></a>
 
 
@@ -55,7 +55,7 @@ Step by step series of Instructions get a development env running.
 
 - Clone the repo
 ```
-git clone https://github.com/Alpha-Hunt/GamePadPortal.git
+git clone https://github.com/zan-keith/PlayPulse-Connect.git
 ```
 
 Navigate to the installation folder
@@ -84,12 +84,10 @@ cd Client/
 
 ## 🎈 Usage <a name="usage"></a>
 ### Python CLI ( Command Line Interface )
-
+- Install the requirements
 #### Commands :
-
-You need help, I got you
-
 ```
+cd Server/CLI/
 python main.py -h
 python main.py --ip [your_local_ip_address] --port [custom_port] --pin [4_digit_pin] --autokill [true/false]
 ```
@@ -101,6 +99,14 @@ All are optional arguments
 | --port  | Specify the port for the socket server to run on. | --port [customport]  | Integer |
 | --pin  | Specify the PIN authentication code. ( The code must be 4 digits ). | --pin [4digitpin]  | Integer |
 | --autokill  | Automatically closes the server once the client presses disconnect | --autokill [true/false]  | Boolean |
+| --timeout  | Specifies the time to automatically close the server due to inactivity | --timeout [seconds]  | Integer |
+
+### Python GUI
+- Install the requirements
+```
+cd "Server/Gui App/"
+python main.py
+```
 
 
 ### Todo List <a name = "todo"></a>
@@ -114,7 +120,7 @@ All are optional arguments
 - [Vgamepad](https://pypi.org/project/vgamepad/) - Virtual Controller
 
 ## ✍️ Author <a name = "authors"></a>
-- [@5_keith](https://github.com/Alpha-Hunt) - Idea & Initial work
+- [@zan-keith](https://github.com/zan-keith) - Idea & Work
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - Hats off to the amazing developers of godot engine
