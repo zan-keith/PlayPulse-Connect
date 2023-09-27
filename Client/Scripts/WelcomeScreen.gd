@@ -4,6 +4,8 @@ var udp := PacketPeerUDP.new()
 
 var connected = false
 var IP_ADDRESS=""
+var PORT=5000
+
 
 func _ready():
 	$AnimationPlayer.play("startup")
@@ -22,7 +24,7 @@ func _ready():
 			var pin="ping"
 			var pwd=pin.left(4)
 			IP_ADDRESS=LastSession["IP"]
-			udp.connect_to_host(IP_ADDRESS, 5000)
+			udp.connect_to_host(IP_ADDRESS, PORT)
 			udp.put_packet(pwd.to_utf8())
 		elif not LastSession.has("IP"):
 			corruption_fix()
@@ -41,24 +43,31 @@ func _ready():
 	
 
 func _on_Proceed_pressed():
-	var pin=$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.get_text()
+	var pin=$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox.get_text()
 	var pwd=pin.left(4)
 	var octet=pin.trim_prefix(pwd)
+	PORT=5000
 	
-	if $VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed:#if manually typed the IP
-		if len($VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text) > 7:
-			IP_ADDRESS=$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text
+	if $VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed:#if manually typed the IP
+		if len($VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text) > 7:
+			IP_ADDRESS=$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.text
+
 		else:
 			show_error("IP is Invalid","Verify the IP from your PC or try disabling Advanced Settings.")
+
+		if len($VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/PortBox.text)>1:
+			PORT=int($VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/PortBox.text)
 	else:
 		IP_ADDRESS='192.168.1.'+octet
 
-	if len($VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.text)<5:
+	if len($VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox.text)<5:
 		show_error("Enter a valid PIN","Verify the pin number from your PC.")
 		return null
 	print(IP_ADDRESS)
 	
-	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+
+		
+	var err=udp.connect_to_host(IP_ADDRESS, int(PORT))
 	udp.put_packet("ping".to_utf8())
 	if err!=OK:
 		show_error("Couldn't establish a connection with the IP %s" % IP_ADDRESS,"Check the ip address from your PC and try connecting with Advanced Settings.")
@@ -77,6 +86,7 @@ func _process(delta):
 			change_server_status_label("Server Active")
 		elif (response=="authenticated" or response=="received"):
 			Global.IP_ADDRESS=IP_ADDRESS
+			Global.PORT=PORT
 			save_file({"IP":IP_ADDRESS})
 			print("CHANGING SCENES")
 			get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
@@ -133,16 +143,23 @@ func _on_Ok_Close_Error_pressed():
 
 func _on_SubTitle_gui_input(event):
 	if event.is_pressed():
-		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed=not $VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed
+		$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed=not $VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/HBoxContainer/CheckBox.pressed
 
 
 func _on_Advanced_Settings_CheckBox_toggled(button_pressed):
 	if button_pressed:
-		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings.visible=true
+		$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings.visible=true
 	else:
-		$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings.visible=false
+		$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings.visible=false
 		
 
+func _on_PortBox_text_changed(new_text):
+	PORT=int(new_text)
+	var err=udp.connect_to_host(IP_ADDRESS, PORT)
+	if err==OK:
+		udp.put_packet("supersecretpingmsg".to_utf8())
+	
+	change_server_status_label("Server Inactive")
 
 func _on_PinBox_text_changed(new_text):
 	var pin=new_text
@@ -150,12 +167,20 @@ func _on_PinBox_text_changed(new_text):
 	var octet=pin.trim_prefix(pwd)
 	
 	IP_ADDRESS='192.168.1.'+octet
-	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	var err=udp.connect_to_host(IP_ADDRESS, PORT)
 	if err==OK:
 		udp.put_packet("supersecretpingmsg".to_utf8())
 	
 	change_server_status_label("Server Inactive")
 
+func _on_IPBox_text_changed(new_text):
+	IP_ADDRESS=new_text
+	var err=udp.connect_to_host(IP_ADDRESS, PORT)
+	if err==OK:
+		udp.put_packet("supersecretpingmsg".to_utf8())
+	
+	change_server_status_label("Server Inactive")
+	
 #Escape KeyPress
 func _input(event):
 	if Input.is_action_pressed("ui_cancel"):
@@ -163,55 +188,66 @@ func _input(event):
 		$ErrorPopup.hide()
 
 func change_server_status_label(msg):
-	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/ServerStatus.text=msg
-	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/ServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
-	$Overlay/ServerStatus.text=msg
-	$Overlay/ServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
+	$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/ServerStatus.text=msg
+	$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/ServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
+	$Overlay/OServerStatus.text=msg
+	$Overlay/OServerStatus.modulate=Color.red if msg=="Server Inactive" else Color.green
 
-func _on_IPBox_text_changed(new_text):
-	IP_ADDRESS=new_text
-	var err=udp.connect_to_host(IP_ADDRESS, 5000)
-	if err==OK:
-		udp.put_packet("supersecretpingmsg".to_utf8())
-	
-	change_server_status_label("Server Inactive")
+
 
 
 # To fix the android keyboard covering issue
 
 #From HERE ----------------------------------------------------->
+
+func hide_textboxes_except(box=null):
+	for ch in $Overlay.get_children():
+		ch.visible=false
+	if box:
+		$Overlay.visible=true
+		box.visible=true
+		box.grab_focus()
+	else:
+		$Overlay.visible=false
+	$Overlay/OServerStatus.visible=true
+
+		
 func _on_PinBox_focus_entered():
-	$Overlay.visible=true
-	$Overlay/PinBox.visible=true
-	$Overlay/IPBox.visible=false
-	$Overlay/PinBox.grab_focus()
-
-
+	hide_textboxes_except($Overlay/OPinBox)
 func _on_IPBox_focus_entered():
-	$Overlay.visible=true
-	$Overlay/PinBox.visible=false
-	$Overlay/IPBox.visible=true
-	$Overlay/IPBox.grab_focus()
-	
-
-#  <--------------------------------------------------------------
+	hide_textboxes_except($Overlay/OIPBox)
+func _on_PortBox_focus_entered():
+	hide_textboxes_except($Overlay/OPort)
 
 
 
+func _on_OPinBox_text_entered(new_text):
+	hide_textboxes_except()
+func _on_OIPBox_text_entered(new_text):
+	hide_textboxes_except()
+func _on_OPort_text_entered(new_text):
+	hide_textboxes_except()
 
 
-func _on_Mobile_PinBox_text_changed(new_text):
-	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/PinBox.set_text(new_text)
+func _on_OPinBox_text_changed(new_text):
+	$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox.set_text(new_text)
 	_on_PinBox_text_changed(new_text)
-
-
-
-func _on_Mobile_IPBox_text_changed(new_text):
-	$VBoxContainer/Panel/VBoxContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.set_text(new_text)
+func _on_OIPBox_text_changed(new_text):
+	$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/IPBox.set_text(new_text)
 	_on_IPBox_text_changed(new_text)
+func _on_OPort_text_changed(new_text):
+	$VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/AdvancedSettings/VBoxContainer/PortBox.set_text(new_text)
+	_on_PortBox_text_changed(new_text)
 
 
-func _on_Mobile_IPBox_text_entered(new_text):
-	$Overlay.visible=false
-	$Overlay/PinBox.visible=false
-	$Overlay/IPBox.visible=false
+
+
+
+
+
+
+
+
+
+
+

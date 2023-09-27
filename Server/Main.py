@@ -12,13 +12,12 @@ The program contains:
 import argparse
 import random
 import socket
+import time
+
 import vgamepad as vg
 import logging
 import threading
 import keyboard
-
-# ... (rest of your code)
-
 
 parser = argparse.ArgumentParser(description="GamePadPortal")
 
@@ -30,12 +29,15 @@ parser.add_argument("--pin", metavar="pin", type=int,required=False,
                     help="Specify the PIN authentication code. ( The code must be 4 digits ).")
 parser.add_argument("--autokill", metavar="autokill", type=bool,required=False,
                     help="Automatically closes the server once the client presses disconnect.")
+parser.add_argument("--timeout", metavar="timeout", type=int,required=False,
+                    help="Specifies the time to automatically close the server due to inactivity.")
 
 args = parser.parse_args()
 
 arg_ip_address = args.ip
 arg_port = args.port
 arg_autokill = args.autokill if args.autokill else True
+arg_timeout = args.arg_timeout if args.arg_timeout else 200
 arg_pin = args.pin
 
 
@@ -53,7 +55,7 @@ def get_host_ip():
 
 stop_listener = False
 
-# Define a function to listen for the key combination
+# Function to listen for the key combination
 def listener_thread():
     global stop_listener
     while True:
@@ -62,6 +64,7 @@ def listener_thread():
             socket.close()
             stop_listener = True
             break
+        time.sleep(0.1)
 
 HOST_ADDRESS= arg_ip_address if arg_ip_address else get_host_ip()
 PORT=arg_port if arg_port else 5000
@@ -80,7 +83,7 @@ authenticated = [False, None]
 address = None
 try:
     socket.bind((HOST_ADDRESS, PORT))
-    socket.settimeout(100)
+    socket.settimeout(arg_timeout)
 except Exception as e:
     logging.error(e)
     exit()
@@ -107,16 +110,14 @@ while True:
         msg, address = socket.recvfrom(1024)
     except OSError as e:
             if e.errno == 10038:
-                # Socket is closed, break out of the loop
                 break
             else:
-                raise  # Re-raise other OSError exceptions
-
+                logging.error(e)
     if msg.decode("utf-8") == "supersecretpingmsg":
         socket.sendto("pong".encode('utf-8'), address)
     elif authenticated[0] and authenticated[1] == address[0]:
-
         msg = msg.decode("utf-8")
+        print(msg)
         if msg == "ENDCONN" and arg_autokill:
             logging.warning("Connection Ended By The Client")
             authenticated = [False, None]
@@ -143,10 +144,9 @@ while True:
 
         if msg.decode('utf-8') == str(pin):
             print(f"{address[0]} Authenticated")
-            socket.sendto("authenticated".encode('utf-8'), address)
             authenticated = [True, address[0]]
+            socket.sendto("authenticated".encode('utf-8'), address)
         else:
             socket.sendto("wrong password".encode('utf-8'), address)
     elif authenticated[1] != address:
         socket.sendto("another device".encode('utf-8'), address)
-listener.join()

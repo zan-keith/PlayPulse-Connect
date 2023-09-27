@@ -37,8 +37,10 @@ func _ready():
 
 	
 	var IP_ADDRESS=Global.IP_ADDRESS
+	var PORT=Global.PORT
+	
 	print(IP_ADDRESS)
-	var err=udp.connect_to_host(IP_ADDRESS, 5000)
+	var err=udp.connect_to_host(IP_ADDRESS, PORT)
 	if err!=OK:
 		_on_Disconnect_pressed()
 	for child in $".".get_children():
@@ -119,11 +121,13 @@ func save_session_file(Data):
 
 func _on_Left_Stick_joystick_input_update(pos):
 	pos=pos[0]
+	print(pos)
 	udp.put_packet(("LJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
 
 func _on_Right_Stick_joystick_input_update(pos):
 	pos=pos[0]
+	print(pos)
 	udp.put_packet(("RJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
 func _on_LEFT_TRIGGER_pressed():
@@ -233,7 +237,6 @@ func _process(delta):
 	
 	
 	
-	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(v.x, -1), 1),min(max(v.y, -1), 1)]).to_utf8())
 
 
 

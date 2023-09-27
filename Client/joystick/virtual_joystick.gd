@@ -64,7 +64,7 @@ var _touch_index : int = -1
 onready var _base := $Base
 onready var _tip := $Base/Tip
 
-onready var _base_radius = _base.rect_size * _base.get_global_transform().get_scale() / 2
+onready var _base_radius = _base.rect_size * _base.get_global_transform_with_canvas().get_scale() / 2
 
 onready var _base_default_position : Vector2 = _base.rect_position
 onready var _tip_default_position : Vector2 = _tip.rect_position
@@ -84,7 +84,7 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and !disabled:
+	if event is InputEventScreenTouch and not disabled:
 		if event.pressed:
 			if _is_point_inside_joystick_area(event.position) and _touch_index == -1:
 				if joystick_mode == JoystickMode.DYNAMIC or (joystick_mode == JoystickMode.FIXED and _is_point_inside_base(event.position)):
@@ -103,10 +103,10 @@ func _input(event: InputEvent) -> void:
 			get_tree().set_input_as_handled()
 
 func _move_base(new_position: Vector2) -> void:
-	_base.rect_global_position = new_position - _base.rect_pivot_offset * get_global_transform().get_scale()
+	_base.rect_global_position = new_position - _base.rect_pivot_offset * get_global_transform_with_canvas().get_scale()
 
 func _move_tip(new_position: Vector2) -> void:
-	_tip.rect_global_position = new_position - _tip.rect_pivot_offset * _base.get_global_transform().get_scale()
+	_tip.rect_global_position = new_position - _tip.rect_pivot_offset * _base.get_global_transform_with_canvas().get_scale()
 
 func _is_point_inside_joystick_area(point: Vector2) -> bool:
 	var x: bool = point.x >= rect_global_position.x and point.x <= rect_global_position.x + (rect_size.x * get_global_transform().get_scale().x)
@@ -160,7 +160,7 @@ func _update_input_actions():
 
 func _reset():
 	emit_signal("joystick_release",_output)
-	emit_signal("joystick_input_update",[Vector2(0,0)])
+#	emit_signal("joystick_input_update",[Vector2(0,0)])
 	_pressed = false
 	_output = Vector2.ZERO
 	_touch_index = -1
@@ -170,13 +170,12 @@ func _reset():
 	if use_input_actions:
 		if Input.is_action_pressed(action_left) or Input.is_action_just_pressed(action_left):
 			Input.action_release(action_left)
-			
-			
+			emit_signal("joystick_input_update",[Vector2(0,0)])
+
 		if Input.is_action_pressed(action_right) or Input.is_action_just_pressed(action_right):
 			Input.action_release(action_right)
 			emit_signal("joystick_input_update",[Vector2(0,0)])
 
-			
 		if Input.is_action_pressed(action_down) or Input.is_action_just_pressed(action_down):
 			Input.action_release(action_down)
 		if Input.is_action_pressed(action_up) or Input.is_action_just_pressed(action_up):
@@ -188,5 +187,7 @@ func _on_GamePad_force_rect_change_for_sticks():
 func _on_Virtual_joystick_item_rect_changed():
 	
 	_ready()
+
+
 
 
