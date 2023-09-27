@@ -27,6 +27,8 @@ content_margin_right = 15.0
 content_margin_top = 15.0
 content_margin_bottom = 15.0
 
+[sub_resource type="StyleBoxEmpty" id=55]
+
 [sub_resource type="StyleBoxFlat" id=40]
 draw_center = false
 border_width_left = 1
@@ -44,8 +46,6 @@ size = 24
 use_filter = true
 extra_spacing_char = 2
 font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxEmpty" id=42]
 
 [sub_resource type="StyleBoxFlat" id=43]
 draw_center = false
@@ -491,8 +491,15 @@ size_flags_vertical = 3
 margin_right = 482.0
 margin_bottom = 50.0
 
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 14.0
+margin_bottom = 50.0
+custom_constants/separation = 14
+custom_styles/separator = SubResource( 55 )
+
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_right = 50.0
+margin_left = 18.0
+margin_right = 68.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 texture = ExtResource( 7 )
@@ -500,42 +507,25 @@ expand = true
 stretch_mode = 5
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 54.0
-margin_right = 74.0
+margin_left = 72.0
+margin_right = 92.0
 margin_bottom = 50.0
 custom_constants/separation = 20
 custom_styles/separator = SubResource( 40 )
 
-[node name="SubTitle2" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 78.0
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 96.0
 margin_top = 10.0
-margin_right = 210.0
-margin_bottom = 39.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0, 1, 0.776471, 1 )
-custom_fonts/font = SubResource( 31 )
-text = "Playpulse"
-valign = 1
-autowrap = true
-
-[node name="SubTitle3" type="Label" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 214.0
-margin_top = 10.0
-margin_right = 346.0
-margin_bottom = 39.0
-size_flags_horizontal = 3
-custom_colors/font_color = Color( 0.0152702, 0.369141, 0.290674, 1 )
-custom_fonts/font = SubResource( 41 )
-text = " Connect"
-valign = 1
-autowrap = true
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 350.0
 margin_right = 482.0
-margin_bottom = 50.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
-custom_styles/panel = SubResource( 42 )
+size_flags_vertical = 4
+custom_fonts/bold_font = SubResource( 31 )
+custom_fonts/normal_font = SubResource( 41 )
+bbcode_enabled = true
+bbcode_text = "[color=#00ffc6][b]Playpulse[/b][/color][color=#045e4a] Connect[/color]"
+text = "Playpulse Connect"
+fit_content_height = true
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/TextureRect/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_top = 54.0
@@ -616,7 +606,7 @@ margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 0.662745 )
 custom_fonts/font = SubResource( 53 )
-text = "Open the Playpulse desktop application and intialize the server"
+text = "Open the Playpulse desktop application to intialize the server"
 valign = 1
 autowrap = true
 
@@ -1032,11 +1022,17 @@ custom_styles/focus = SubResource( 26 )
 custom_styles/normal = SubResource( 11 )
 text = "OK"
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.65098 )
+
+[node name="ColorRect" type="ColorRect" parent="Overlay"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+color = Color( 0, 0, 0, 0.752941 )
 
 [node name="OPinBox" type="LineEdit" parent="Overlay"]
 anchor_left = 0.5
@@ -1121,6 +1117,7 @@ caret_blink = true
 [connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/Proceed" to="." method="_on_Proceed_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="ErrorPopup/PinCard/VBoxContainer/Ok" to="." method="_on_Ok_Close_Error_pressed"]
+[connection signal="gui_input" from="Overlay/ColorRect" to="." method="_on_Overlay_Modal_ColorRect_gui_input"]
 [connection signal="text_changed" from="Overlay/OPinBox" to="." method="_on_OPinBox_text_changed"]
 [connection signal="text_entered" from="Overlay/OPinBox" to="." method="_on_OPinBox_text_entered"]
 [connection signal="text_changed" from="Overlay/OIPBox" to="." method="_on_OIPBox_text_changed"]

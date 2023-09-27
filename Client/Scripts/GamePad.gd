@@ -237,6 +237,7 @@ func _process(delta):
 	
 	
 	
+	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(v.x, -1), 1),min(max(v.y, -1), 1)]).to_utf8())
 
 
 

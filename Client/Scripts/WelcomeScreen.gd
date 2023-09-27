@@ -204,11 +204,14 @@ func hide_textboxes_except(box=null):
 	for ch in $Overlay.get_children():
 		ch.visible=false
 	if box:
+		print(box)
 		$Overlay.visible=true
+		$Overlay/ColorRect.visible=true
 		box.visible=true
 		box.grab_focus()
 	else:
 		$Overlay.visible=false
+		$Overlay/ColorRect.visible=false
 	$Overlay/OServerStatus.visible=true
 
 		
@@ -240,14 +243,6 @@ func _on_OPort_text_changed(new_text):
 	_on_PortBox_text_changed(new_text)
 
 
-
-
-
-
-
-
-
-
-
-
-
+func _on_Overlay_Modal_ColorRect_gui_input(event):
+	if event is InputEventScreenTouch and not event.is_pressed():
+		hide_textboxes_except()

@@ -20,9 +20,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GamePadPortal"
+config/name="Playpulse Connect"
+config/description="Turn your smartphone into a game controller with this simple and versatile app."
 run/main_scene="res://Scenes/Pages/SplashScreen.tscn"
-config/custom_user_dir_name="GamepadPortal"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Playpulse"
 boot_splash/show_image=false
 boot_splash/image="res://Assets/Sprites/transparent.png"
 boot_splash/bg_color=Color( 0, 0.027451, 0.054902, 1 )
