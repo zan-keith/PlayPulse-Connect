@@ -13,12 +13,14 @@ import requests
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame1")
+ASSETS_PATH = OUTPUT_PATH/Path(r"assets\frame1")
 
 
 def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
-
+    ## NOTE CHANGE it to
+    ##  return Path(r"assets\frame1") / Path(path) # for compiling using cx_freeze
+    return ASSETS_PATH / Path(path) 
+  
 
 window = Tk()
 

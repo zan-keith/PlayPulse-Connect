@@ -47,7 +47,10 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
+    ## NOTE Change it to
+    ##  return Path(r"assets\frame0") / Path(path) # for compiling using cx_freeze
+    return ASSETS_PATH / Path(path) 
+   
 
 
 window = Tk()
@@ -57,7 +60,7 @@ window.configure(bg = "#FFFFFF")
 window.title(" PlayPulse Connect Desktop GUI")
 
 p1 = PhotoImage(file = relative_to_assets('blue icon.png'))
-window.iconphoto(False, p1)
+# window.iconphoto(False, p1)
 
 
 # Idk if there is a better way to get the address
