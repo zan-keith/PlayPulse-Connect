@@ -40,8 +40,22 @@ Behind the scenes, the Python server starts a UDP socket server, waiting for con
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+### Windows PC
+- Download and Install the latest release of PlayPulse Desktop application GUI from [here](https://github.com/zan-keith/PlayPulse-Connect/releases).
+- The first time you open the application you will have to download the ViGem drivers to emulate the virtual gamepad.
+- After installation restart your computer for the effects to take place.
+- Open the PlayPulse Desktop.
+
+### Android Device
+- Download and Install the latest release of PlayPulse Connect APK from [here](https://github.com/zan-keith/PlayPulse-Connect/releases).
+- Open the desktop PlayPulse Desktop Application.
+- Open the android app and enter the PIN.
+- Press Proceed and Enjoy!.
+  
 ### ⚠️Note
 The underlying library only supports windows at the moment. So use a windows PC while running the server app.
+
+---
 
 ### Prerequisites <a name = "prereqs"></a>
 - Android Smartphone for Client Appp
@@ -49,7 +63,9 @@ The underlying library only supports windows at the moment. So use a windows PC 
 - Godot Game Engine
 - Python 3
 - ViGem Drivers
----
+
+--
+
 ### Installing
 Step by step series of Instructions get a development env running.
 

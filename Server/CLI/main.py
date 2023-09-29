@@ -1,5 +1,6 @@
 """
-Author: @5_keith
+Author: @zan-keith
+Github: 
 
 PlayPulse Connect CLI
 
@@ -7,18 +8,33 @@ The program contains:
 - Code that connects a virtual game controller using the functionality from the vgamepad Python module.
 - Code that initializes a socket server on your PC at the preferred port.
 
+PS :
+This program is only possible because of the wonderful developers of vgamepad,ViGemBus and Godot.
+Visit their works through these links.
+
+https://github.com/yannbouteiller/vgamepad
+https://github.com/nefarius/ViGEmBus
+https://godotengine.org/
 """
 
 import argparse
 import random
 import socket
+import sys
 import time
 
-import vgamepad as vg
 import logging
 import threading
 import keyboard
 
+try:
+    import vgamepad as vg
+except:
+    logging.error("Couldn't load ViGemBus bus drivers. These drivers are necessary to emulate the virtual gamepad .")
+    print("Install ViGemBus drivers from this link https://github.com/nefarius/ViGEmBus/releases")
+    input("")
+    sys.exit()
+    
 parser = argparse.ArgumentParser(description="GamePadPortal")
 
 parser.add_argument("--ip", metavar="ip", type=str, required=False,
@@ -37,7 +53,7 @@ args = parser.parse_args()
 arg_ip_address = args.ip
 arg_port = args.port
 arg_autokill = args.autokill if args.autokill else True
-arg_timeout = args.arg_timeout if args.arg_timeout else 200
+arg_timeout = args.timeout if args.timeout else 200
 arg_pin = args.pin
 
 
@@ -51,7 +67,7 @@ def get_host_ip():
         return wifi_ip
     except Exception as e:
         print(f"Couldnt get the Local IP Address \n {e}")
-        exit()
+        sys.exit()
 
 stop_listener = False
 
@@ -72,7 +88,7 @@ PORT=arg_port if arg_port else 5000
 if PORT<5000:
     logging.warning("Warning:\n If you are not using the default port numbers, use the higher port numbers to avoid unexpected behavior")
     if input(f"Do you want to continue with the port number {PORT} ? [y/N]").upper()!="Y":
-        exit()
+        sys.exit()
 
 gamepad = vg.VX360Gamepad()
 
@@ -86,7 +102,7 @@ try:
     socket.settimeout(arg_timeout)
 except Exception as e:
     logging.error(e)
-    exit()
+    sys.exit()
 
 print(f"SERVER IS RUNNING IN DEVICE {hostname} WITH IP {HOST_ADDRESS} SOCKET IN PORT {PORT}")
 octets = HOST_ADDRESS.split(".")
@@ -117,12 +133,11 @@ while True:
         socket.sendto("pong".encode('utf-8'), address)
     elif authenticated[0] and authenticated[1] == address[0]:
         msg = msg.decode("utf-8")
-        print(msg)
         if msg == "ENDCONN" and arg_autokill:
             logging.warning("Connection Ended By The Client")
             authenticated = [False, None]
             socket.close()
-            exit()
+            sys.exit()
         if msg[0:2] == "LJ":
             gamepad.left_joystick_float(x_value_float=float(msg[2:8]), y_value_float=float(msg[9:15]))
         elif msg[0:2] == "RJ":

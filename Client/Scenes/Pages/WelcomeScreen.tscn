@@ -355,7 +355,7 @@ tracks/7/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinC
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
-tracks/7/enabled = true
+tracks/7/enabled = false
 tracks/7/keys = {
 "times": PoolRealArray( 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.6, 1.7, 1.8, 1.9, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
@@ -421,6 +421,18 @@ tracks/12/keys = {
 "transitions": PoolRealArray( 0.535887, 1 ),
 "update": 0,
 "values": [ Color( 0.00392157, 0.0862745, 0.0941176, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("VBoxContainer/Panel/VBoxContainer/ScrollContainer/PinCard/VBoxContainer/PinBox:placeholder_text")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0.2, 0.3, 0.4, 0.5, 0.6, 1.26959, 1.4, 1.5, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "1 _ _ _ _", "1 2 _ _ _", "1 2 3 _ _", "1 2 3 4 _", "1 2 3 4 5", "1 2 3 4 _", "1 2 3 _ _", "1 2 _ _ _", "_ _ _ _ _" ]
 }
 
 [sub_resource type="StyleBoxFlat" id=29]

@@ -14,8 +14,8 @@ import random
 import socket
 import sys
 import time
+import requests
 
-import vgamepad as vg
 import logging
 import threading
 import keyboard
@@ -23,13 +23,27 @@ import keyboard
 import webbrowser
 
 from pathlib import Path
+import subprocess
+
+
+def fix_driver_issues():
+    import driver_fix
+    driver_fix.root.mainloop()
+
+
+
+try:
+    import vgamepad as vg
+except Exception as e:
+    fix_driver_issues()
+    print(e)
 
 
 from tkinter import Tk, Canvas, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\godla\Documents\Projkts\Python\try\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -56,7 +70,7 @@ def get_host_ip():
         return wifi_ip
     except Exception as e:
         print(f"Couldnt get the Local IP Address \n {e}")
-        exit()
+        sys.exit()
 
 
 
@@ -78,7 +92,7 @@ try:
     socket.settimeout(200)
 except Exception as e:
     logging.error(e)
-    exit()
+    sys.exit()
 
 print(f"SERVER IS RUNNING IN DEVICE {hostname} WITH IP {HOST_ADDRESS} SOCKET IN PORT {PORT}")
 octets = HOST_ADDRESS.split(".")
@@ -94,6 +108,16 @@ authenticated = [False, None]
 
 
 # ------------------------------------------------------------------------------->
+
+    
+
+
+
+
+
+
+
+
 
 canvas = Canvas(
     window,
@@ -226,11 +250,12 @@ canvas.tag_bind(text_item, "<Enter>", change_cursor)  # Bind change_cursor to mo
 canvas.tag_bind(text_item, "<Leave>", restore_cursor)
 canvas.tag_bind(text_item, "<Button-1>", open_link)
 def on_close_btn_press(e=None):
+    
     socket.close()
-    exit()
+    sys.exit()
 def close_gracefully():
     socket.close()
-    exit()
+    sys.exit()
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"),
 )
@@ -346,7 +371,6 @@ def server_main():
             socket.sendto("pong".encode('utf-8'), address)
         elif authenticated[0] and authenticated[1] == address[0]:
             msg = msg.decode("utf-8")
-            print(msg)
             if msg == "ENDCONN":
                 logging.warning("Connection Ended By The Client")
                 authenticated = [False, None]

@@ -9,3 +9,8 @@ Client/export_presets.cfg
 data_*/
 
 *.import
+
+*.exe
+build/
+spec/
+# spec file contains ViGemClient dll which is required for the converting to executable.
