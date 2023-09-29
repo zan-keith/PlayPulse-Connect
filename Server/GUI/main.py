@@ -48,7 +48,7 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
 
 def relative_to_assets(path: str) -> Path:
     ## NOTE Change it to
-    ##  return Path(r"assets\frame0") / Path(path) # for compiling using cx_freeze
+    #return Path(r"assets\frame0") / Path(path) # for compiling using cx_freeze
     return ASSETS_PATH / Path(path) 
    
 

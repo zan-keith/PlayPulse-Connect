@@ -9,7 +9,7 @@ setup(
     author='zan-keith',
     options={'build_exe': {'include_files': includefiles}},
     executables=[Executable('main.py',
-                            targetName="Playpulse Desktop.exe",
+                            target_name="Playpulse Desktop.exe",
                             icon="darkicon.ico",
                             shortcut_name="Playpulse")]
 )
