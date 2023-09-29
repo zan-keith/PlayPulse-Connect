@@ -1,4 +1,4 @@
-# Godot JoyStick Emulator For Android
+# Gamepad Controller Emulator For Android
 
 <p align="center">
   <a href="" rel="noopener">
@@ -9,6 +9,8 @@
 </p>
 
 <h3 align="center">Playpulse Connect</h3>
+<h5 align="center">Controller Emulator</h5>
+
 
 <div align="center">
 
@@ -20,7 +22,7 @@
 ---
 
 <p align="center"> 
-  Turn your smartphone into a game controller with this simple and versatile app! This project utilizes the Godot game engine for the Android client app and a Python server to seamlessly connect your smartphone to your PC for a gaming experience like no other.
+  Turn your smartphone into a game controller with this simple app! This project utilizes the Godot game engine for the Android client app and a Python server to seamlessly connect your smartphone to your PC.
 </p>
 
 ## 📝 Table of Contents
