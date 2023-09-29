@@ -60,7 +60,7 @@ window.configure(bg = "#FFFFFF")
 window.title(" PlayPulse Connect Desktop GUI")
 
 p1 = PhotoImage(file = relative_to_assets('blue icon.png'))
-# window.iconphoto(False, p1)
+window.iconphoto(False, p1)
 
 
 # Idk if there is a better way to get the address

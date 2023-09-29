@@ -26,6 +26,8 @@ window = Tk()
 
 window.geometry("505x232")
 window.configure(bg = "#FFFFFF")
+p1 = PhotoImage(file = relative_to_assets('blue icon.png'))
+window.iconphoto(False, p1)
 
 def change_cursor(event):
     canvas.config(cursor="hand2") 
