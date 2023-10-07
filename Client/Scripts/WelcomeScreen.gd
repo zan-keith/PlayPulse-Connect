@@ -88,8 +88,15 @@ func _process(delta):
 			Global.IP_ADDRESS=IP_ADDRESS
 			Global.PORT=PORT
 			save_file({"IP":IP_ADDRESS})
+			udp.put_packet("whichcontroller".to_utf8())
+		elif (response=="DS4"):
+			Global.whichcontroller="DS4"
 			print("CHANGING SCENES")
-			get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+			get_tree().change_scene("res://Scenes/Pages/DualShockGamePad.tscn")
+		elif (response=="X360"):
+			Global.whichcontroller="X360"
+			print("CHANGING SCENES")
+			get_tree().change_scene("res://Scenes/Pages/XBox360GamePad.tscn")
 		elif (response=="wrong password"):
 			show_error("Wrong PIN for %s" % IP_ADDRESS,"Verify the pin number and ip address from your PC or try manual Advanced Settings.")
 		elif (response=="another device"):

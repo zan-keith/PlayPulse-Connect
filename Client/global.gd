@@ -15,6 +15,7 @@ var DefaultSettings={
 	"GyroSensitivity":1
 }
 
+var whichcontroller
 
 var PORT=5000
 var BtnsLayoutPropertyDataTypes={

@@ -1,3 +1,4 @@
+import os
 from cx_Freeze import setup, Executable, bdist_msi
 
 includefiles = ['spec/ViGEmClient.dll', 'driver_fix.py', ('assets/')]
@@ -6,11 +7,11 @@ includefiles = ['spec/ViGEmClient.dll', 'driver_fix.py', ('assets/')]
 shortcut_table = [
     ("StartMenuFolder",        # Shortcut
      "DesktopFolder",          # Directory_
-     "Playpulse Link",           # Name that will be show on the link
+     "Playpulse",           # Name that will be show on the link
      "TARGETDIR",              # Component_
      "[TARGETDIR]Playpulse Desktop.exe",# Target exe to exexute
      None,                     # Arguments
-     None,                     # Description
+     "Turn your smartphone into a game controller with this simple app!",                     # Description
      None,                     # Hotkey
      None,                     # Icon
      None,                     # IconIndex
@@ -22,7 +23,11 @@ shortcut_table = [
 msi_data = {"Shortcut": shortcut_table}
 
 # Change some default MSI options and specify the use of the above defined tables
-bdist_msi_options = {'data': msi_data}
+bdist_msi_options = {'data': msi_data,
+                     'initial_target_dir':f'{os.environ["ALLUSERSPROFILE"]}\\PlayPulse\\PlayPulse GUI',
+                     'install_icon':'lighticon.ico'
+                     
+                     }
 
 options = {
     "bdist_msi": bdist_msi_options,

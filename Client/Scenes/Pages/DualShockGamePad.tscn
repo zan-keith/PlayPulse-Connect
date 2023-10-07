@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Assets/Sprites/settings-svgrepo-com.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight11.png" type="Texture" id=2]
@@ -7,32 +7,32 @@
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight03.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight06.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight10.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight36.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/start_pressed.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/DS4/circle.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_cross.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight41.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight38.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/guide.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight39.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_circle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_square.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_triangle.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight05.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/light-rounded-icon.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight38.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/start.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight37.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Sprites/DS4/cross.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/DS4/square.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Sprites/DS4/triangle.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight40.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight37.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/DS4/share.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight03.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Sprites/back_pressed.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight06.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight36.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Sprites/shadedLight/shadedLight39.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_share.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Sprites/DS4/options.png" type="Texture" id=25]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight05.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Sprites/shadedLight/pressed_shadedLight10.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Sprites/icon.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Sprites/shadedLight/shadedLight41.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Sprites/guide_pressed.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/DS4/pressed_options.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Sprites/gamepad-no-charge-svgrepo-com.png" type="Texture" id=31]
 [ext_resource path="res://Assets/Sounds/click_short.wav" type="AudioStream" id=32]
-[ext_resource path="res://Scripts/GamePad.gd" type="Script" id=33]
+[ext_resource path="res://Scripts/DualShockGamePad.gd" type="Script" id=33]
 [ext_resource path="res://joystick/virtual_joystick.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Assets/Fonts/Rubik-Regular.ttf" type="DynamicFontData" id=35]
 [ext_resource path="res://Assets/Sprites/L_trigger_btn.png" type="Texture" id=36]
@@ -41,11 +41,20 @@
 [ext_resource path="res://Assets/Sprites/L_trigger_btn_press.png" type="Texture" id=39]
 [ext_resource path="res://Assets/Sprites/lighticon.png" type="Texture" id=40]
 
-[sub_resource type="Gradient" id=25]
+[sub_resource type="Gradient" id=32]
 colors = PoolColorArray( 0.0273894, 0.186722, 0.220703, 1, 0.0638946, 0.682879, 0.755859, 1 )
 
 [sub_resource type="GradientTexture2D" id=6]
-gradient = SubResource( 25 )
+gradient = SubResource( 32 )
+fill = 1
+fill_from = Vector2( 0.508333, 0.471667 )
+
+[sub_resource type="Gradient" id=33]
+offsets = PoolRealArray( 0, 0.529412, 1 )
+colors = PoolColorArray( 0.027451, 0.188235, 0.219608, 0, 0.513726, 0.594118, 0.609804, 0.5, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=34]
+gradient = SubResource( 33 )
 fill = 1
 fill_from = Vector2( 0.508333, 0.471667 )
 
@@ -57,6 +66,12 @@ colors = PoolColorArray( 1, 1, 1, 0.94902, 1, 1, 1, 0.788235, 1, 1, 1, 0, 0.9803
 gradient = SubResource( 28 )
 fill = 1
 fill_from = Vector2( 0.5, 0.5 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 13
+use_filter = true
+extra_spacing_char = 1
+font_data = ExtResource( 35 )
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.0509804, 0.0901961, 0.129412, 1 )
@@ -177,6 +192,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 0.0705882, 0.505882, 0.615686, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LED:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.12549, 0.941176, 0.854902, 0 ) ]
 }
 
 [sub_resource type="Animation" id=16]
@@ -316,6 +343,22 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "led_glow"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("LED:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 0.615572, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.12549, 0.941176, 0.854902, 0 ), Color( 0.941176, 0.12549, 0.12549, 0.988235 ), Color( 0.941176, 0.12549, 0.12549, 0 ) ]
 }
 
 [sub_resource type="Animation" id=30]
@@ -557,7 +600,7 @@ tracks/13/keys = {
 "values": [ Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ), Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ), Color( 0.0980392, 0.556863, 0.247059, 0 ), Color( 0.0980392, 0.556863, 0.247059, 1 ) ]
 }
 
-[node name="GamePad" type="Control"]
+[node name="DS4GamePad" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -568, -8 )
@@ -565,7 +608,6 @@ script = ExtResource( 33 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
-sensitivity = 1.754
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color( 0.321569, 0.321569, 0.321569, 1 )
@@ -583,6 +625,14 @@ texture = ExtResource( 40 )
 expand = true
 stretch_mode = 6
 
+[node name="LED" type="TextureRect" parent="."]
+modulate = Color( 0.12549, 0.941176, 0.854902, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 34 )
+expand = true
+stretch_mode = 7
+
 [node name="RightStick" parent="." instance=ExtResource( 34 )]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -594,14 +644,14 @@ margin_right = -22.0
 margin_bottom = -6.0
 
 [node name="LeftStick" parent="." instance=ExtResource( 34 )]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -944.0
-margin_top = -504.0
-margin_right = -744.0
-margin_bottom = -304.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 72.0
+margin_top = 88.0
+margin_right = 272.0
+margin_bottom = 288.0
 
 [node name="LEFT_SHOULDER" type="Control" parent="." groups=["btn_group"]]
 modulate = Color( 0.0980392, 0.556863, 0.247059, 1 )
@@ -629,7 +679,7 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="LEFT_SHOULDER" type="TouchScreenButton" parent="LEFT_SHOULDER" groups=["btn"]]
+[node name="SHOULDER_LEFT" type="TouchScreenButton" parent="LEFT_SHOULDER" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 19 )
 pressed = ExtResource( 4 )
@@ -660,7 +710,7 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="LEFT_THUMB" type="TouchScreenButton" parent="LEFT_THUMB" groups=["btn"]]
+[node name="THUMB_LEFT" type="TouchScreenButton" parent="LEFT_THUMB" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 19 )
 pressed = ExtResource( 4 )
@@ -753,7 +803,7 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="RIGHT_THUMB" type="TouchScreenButton" parent="RIGHT_THUMB" groups=["btn"]]
+[node name="THUMB_RIGHT" type="TouchScreenButton" parent="RIGHT_THUMB" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 29 )
 pressed = ExtResource( 10 )
@@ -786,12 +836,13 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="RIGHT_SHOULDER" type="TouchScreenButton" parent="RIGHT_SHOULDER" groups=["btn"]]
+[node name="SHOULDER_RIGHT" type="TouchScreenButton" parent="RIGHT_SHOULDER" groups=["btn"]]
 scale = Vector2( 0.8, 0.8 )
 normal = ExtResource( 29 )
 pressed = ExtResource( 10 )
 
 [node name="BACK" type="Control" parent="." groups=["btn_group"]]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -820,33 +871,31 @@ margin_top = 228.0
 margin_right = 120.0
 margin_bottom = 260.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
-[node name="START" type="TouchScreenButton" parent="START" groups=["btn"]]
+[node name="OPTIONS" type="TouchScreenButton" parent="START" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
-normal = ExtResource( 17 )
-pressed = ExtResource( 9 )
+normal = ExtResource( 25 )
+pressed = ExtResource( 30 )
 
 [node name="GUIDE" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -40.0
+margin_left = -120.0
 margin_top = 228.0
-margin_right = 32.0
+margin_right = -48.0
 margin_bottom = 260.0
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
-[node name="GUIDE" type="TouchScreenButton" parent="GUIDE" groups=["btn"]]
+[node name="SHARE" type="TouchScreenButton" parent="GUIDE" groups=["btn"]]
 scale = Vector2( 0.666667, 0.666667 )
-normal = ExtResource( 12 )
-pressed = ExtResource( 30 )
+normal = ExtResource( 20 )
+pressed = ExtResource( 24 )
 
 [node name="DigitalButtons" type="Control" parent="." groups=["btn_group"]]
 anchor_left = 1.0
@@ -875,28 +924,28 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="A" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
+[node name="CROSS" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
 position = Vector2( 96, 152 )
 scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 24 )
-pressed = ExtResource( 8 )
+normal = ExtResource( 16 )
+pressed = ExtResource( 9 )
 
-[node name="B" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
+[node name="CIRCLE" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
 position = Vector2( 152, 96 )
 scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 20 )
-pressed = ExtResource( 18 )
-
-[node name="X" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
-position = Vector2( 39.9999, 96 )
-scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 16 )
+normal = ExtResource( 8 )
 pressed = ExtResource( 11 )
 
-[node name="Y" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
+[node name="SQUARE" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
+position = Vector2( 39.9999, 96 )
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 17 )
+pressed = ExtResource( 12 )
+
+[node name="TRIANGLE" type="TouchScreenButton" parent="DigitalButtons" groups=["btn"]]
 position = Vector2( 96, 40 )
 scale = Vector2( 0.8, 0.8 )
-normal = ExtResource( 25 )
+normal = ExtResource( 18 )
 pressed = ExtResource( 13 )
 
 [node name="DPad" type="Control" parent="." groups=["btn_group"]]
@@ -937,25 +986,29 @@ texture = SubResource( 4 )
 expand = true
 stretch_mode = 7
 
-[node name="DPAD_UP" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_NORTH" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 48, 1 )
 normal = ExtResource( 21 )
 pressed = ExtResource( 5 )
+passby_press = true
 
-[node name="DPAD_LEFT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_WEST" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 1, 49 )
 normal = ExtResource( 14 )
 pressed = ExtResource( 26 )
+passby_press = true
 
-[node name="DPAD_RIGHT" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_EAST" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 80, 49 )
 normal = ExtResource( 23 )
 pressed = ExtResource( 6 )
+passby_press = true
 
-[node name="DPAD_DOWN" type="TouchScreenButton" parent="DPad" groups=["btn"]]
+[node name="DPAD_SOUTH" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 48, 82 )
 normal = ExtResource( 7 )
 pressed = ExtResource( 27 )
+passby_press = true
 
 [node name="PressSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )
@@ -964,6 +1017,24 @@ pitch_scale = 0.33
 [node name="ReleaseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )
 pitch_scale = 0.38
+
+[node name="Title2" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.588235 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = -19.0
+margin_right = 88.0
+margin_bottom = -2.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0.870588, 0.870588, 0.870588, 0.662745 )
+custom_fonts/font = SubResource( 31 )
+text = "DS 4"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="ControlPanel" type="Panel" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -1099,6 +1170,7 @@ expand = true
 anims/RESET = SubResource( 18 )
 anims/glowup = SubResource( 16 )
 anims/hide_control_panel = SubResource( 29 )
+anims/led_glow = SubResource( 35 )
 anims/show_control_panel = SubResource( 30 )
 anims/startup = SubResource( 27 )
 anims/startup2 = SubResource( 17 )
@@ -1113,10 +1185,14 @@ anims/startup2 = SubResource( 17 )
 [connection signal="released" from="LEFT_TRIGGER/LEFT_TRIGGER" to="." method="_on_LEFT_TRIGGER_released"]
 [connection signal="pressed" from="RIGHT_TRIGGER/RIGHT_TRIGGER" to="." method="_on_RIGHT_TRIGGER_pressed"]
 [connection signal="released" from="RIGHT_TRIGGER/RIGHT_TRIGGER" to="." method="_on_RIGHT_TRIGGER_released"]
-[connection signal="pressed" from="DPad/DPAD_UP" to="." method="_on_Dpad_UP_pressed"]
-[connection signal="pressed" from="DPad/DPAD_LEFT" to="." method="_on_Dpad_LEFT_pressed"]
-[connection signal="pressed" from="DPad/DPAD_RIGHT" to="." method="_on_Dpad_RIGHT_pressed"]
-[connection signal="pressed" from="DPad/DPAD_DOWN" to="." method="_on_Dpad_DOWN_pressed"]
+[connection signal="pressed" from="DPad/DPAD_NORTH" to="." method="_on_DPAD_NORTH_pressed"]
+[connection signal="released" from="DPad/DPAD_NORTH" to="." method="_on_DPAD_NORTH_released"]
+[connection signal="pressed" from="DPad/DPAD_WEST" to="." method="_on_DPAD_WEST_pressed"]
+[connection signal="released" from="DPad/DPAD_WEST" to="." method="_on_DPAD_WEST_released"]
+[connection signal="pressed" from="DPad/DPAD_EAST" to="." method="_on_DPAD_EAST_pressed"]
+[connection signal="released" from="DPad/DPAD_EAST" to="." method="_on_DPAD_EAST_released"]
+[connection signal="pressed" from="DPad/DPAD_SOUTH" to="." method="_on_DPAD_SOUTH_pressed"]
+[connection signal="released" from="DPad/DPAD_SOUTH" to="." method="_on_DPAD_SOUTH_released"]
 [connection signal="toggled" from="ControlPanel/HomeBtn" to="." method="_on_HomeBtn_toggled"]
 [connection signal="pressed" from="ControlPanel/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="ControlPanel/Disconnect" to="." method="_on_Disconnect_pressed"]

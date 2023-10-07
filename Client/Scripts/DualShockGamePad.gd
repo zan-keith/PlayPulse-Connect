@@ -11,6 +11,28 @@ export var step=0.05
 signal force_rect_change_for_sticks
 export var sensitivity = 1.8 # increases sentivity
 
+var DPAD_VECTOR=Vector2.ZERO
+
+var NORTH_pressed=false
+var SOUTH_pressed=false
+var EAST_pressed=false
+var WEST_pressed=false
+
+onready var gyro_enabled=false
+var DPAD_MAP={
+	Vector2.ZERO:"DPAD_NONE",
+	
+	Vector2(1,0):"DPAD_EAST",
+	Vector2(-1,0):"DPAD_WEST",
+	Vector2(0,1):"DPAD_NORTH",
+	Vector2(0,-1):"DPAD_SOUTH",
+	
+	Vector2(1,1):"DPAD_NORTHEAST",
+	Vector2(-1,1):"DPAD_NORTHWEST",
+	Vector2(1,-1):"DPAD_SOUTHEAST",
+	Vector2(-1,-1):"DPAD_SOUTHWEST",
+}
+var prev_dpad="DPAD_NONE"
 var u = Vector3.ZERO
 var odiff= Vector3.ZERO
 
@@ -19,9 +41,9 @@ func set_save_data():
 	
 	
 	if Global.UserSettings["Gyro"]:
-		set_process(true)
+		gyro_enabled=true
 	else:
-		set_process(false)
+		gyro_enabled=false
 	
 	sensitivity=Global.UserSettings["GyroSensitivity"] if Global.UserSettings.has("GyroSensitivity") else 1
 
@@ -46,6 +68,7 @@ func _ready():
 		_on_Disconnect_pressed()
 	for child in $".".get_children():
 		if child.is_in_group("btn"):
+			print(child)
 			
 			apply_btn_settings(child)
 
@@ -55,7 +78,7 @@ func _ready():
 			for btn in child.get_children():
 				if btn.is_in_group("btn"):
 					apply_btn_settings(btn)
-					
+					print(btn)
 					btn.connect("pressed",self,"_on_btn_press",[btn])
 					btn.connect("released",self,"_on_btn_release",[btn])
 					
@@ -112,6 +135,7 @@ func load_and_set_layout(layout):
 
 	else:
 		pass # If Layout is not found then just use the layout from godot scene by default
+	$BACK.hide()
 
 func save_session_file(Data):
 	var file = File.new()
@@ -132,19 +156,19 @@ func _on_Right_Stick_joystick_input_update(pos):
 	udp.put_packet(("RJ%6.3f,%6.3f"%[pos.x,-pos.y]).to_utf8())
 
 func _on_LEFT_TRIGGER_pressed():
-	udp.put_packet(("LT1").to_utf8())
+	udp.put_packet(("LTRG1").to_utf8())
 
 
 func _on_LEFT_TRIGGER_released():
-	udp.put_packet(("LT0").to_utf8())
+	udp.put_packet(("LTRG0").to_utf8())
 
 
 func _on_RIGHT_TRIGGER_pressed():
-	udp.put_packet(("RT1").to_utf8())
+	udp.put_packet(("RTRG1").to_utf8())
 
 
 func _on_RIGHT_TRIGGER_released():
-	udp.put_packet(("RT0").to_utf8())
+	udp.put_packet(("RTRG0").to_utf8())
 
 func _on_btn_press(c):
 	if Global.UserSettings["Vibration"]:
@@ -198,32 +222,43 @@ func _on_HomeBtn_toggled(button_pressed):
 
 
 func _process(delta):
-#	var gyro=Input.get_accelerometer()
-#	gyro.x+=0
-#	gyro.y+=0
-#
-#	velocity = prev_val.linear_interpolate(gyro,acceleration)
-#	velocity=(velocity.normalized()*sensitivity)
-#
-#	#Clamp it
-#	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(velocity.x, -1), 1),-min(max(velocity.y, -1), 1)]).to_utf8())
-#	prev_val=velocity
 
-	var deadzone=0.5
+	var input_dir=Vector2.ZERO
 
+	if EAST_pressed:
+		input_dir.x += 1
+	if WEST_pressed:
+		input_dir.x -= 1
+	if SOUTH_pressed:
+		input_dir.y -= 1
+	if NORTH_pressed:
+		input_dir.y += 1
+	var dpad_update=DPAD_MAP[input_dir]
+	if prev_dpad!=dpad_update:
+		print(DPAD_MAP[input_dir])
+		udp.put_packet(str("P"+DPAD_MAP[input_dir]).to_utf8()) #p for press
+		prev_dpad=dpad_update
 #-------------------------------
-	var v=Input.get_accelerometer().normalized()*sensitivity
-	
-	v-=Vector3.ONE*deadzone
-
-	
-	
-	
-	udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(v.x, -1), 1),min(max(v.y, -1), 1)]).to_utf8())
+	var deadzone=0.5
+	if gyro_enabled:
+		var v=Input.get_accelerometer().normalized()*sensitivity
 		
+		v-=Vector3.ONE*deadzone
+
+		
+		
+		
+		udp.put_packet(("RJ%6.3f,%6.3f"%[min(max(v.x, -1), 1),min(max(v.y, -1), 1)]).to_utf8())
+			
 
 #-------------------------------------
-
+	if udp.get_available_packet_count()>0:
+		var response=udp.get_packet().get_string_from_utf8()
+		if response.left(3)=="VIB":
+			Input.vibrate_handheld(int(response.trim_prefix("VIB")))
+			if int(response.trim_prefix("VIB"))!=0:
+				$AnimationPlayer.play("led_glow")
+		print('= ',response)
 	
 
 
@@ -233,9 +268,43 @@ func _process(delta):
 
 func _on_RightStick_joystick_release(pos):
 	if Global.UserSettings["Gyro"]:
-		set_process(true)
+		gyro_enabled=true
 
 
 func _on_RightStick_joystick_press():
 	if Global.UserSettings["Gyro"]:
-		set_process(false)
+		gyro_enabled=false
+		
+
+
+
+func _on_DPAD_NORTH_pressed():
+	NORTH_pressed=true
+
+
+func _on_DPAD_NORTH_released():
+	NORTH_pressed=false
+
+
+func _on_DPAD_WEST_pressed():
+	WEST_pressed=true
+
+
+func _on_DPAD_WEST_released():
+	WEST_pressed=false
+
+
+func _on_DPAD_EAST_pressed():
+	EAST_pressed=true
+
+
+func _on_DPAD_EAST_released():
+	EAST_pressed=false
+
+
+func _on_DPAD_SOUTH_pressed():
+	SOUTH_pressed=true
+
+
+func _on_DPAD_SOUTH_released():
+	SOUTH_pressed=false

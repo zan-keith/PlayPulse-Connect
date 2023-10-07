@@ -69,7 +69,10 @@ func _on_BackBtn_pressed():
 		
 	save_file(Settings)
 	Global.UserSettings=Settings
-	get_tree().change_scene("res://Scenes/Pages/GamePad.tscn")
+	if Global.whichcontroller=="X360":
+		get_tree().change_scene("res://Scenes/Pages/XBox360GamePad.tscn")
+	else:
+		get_tree().change_scene("res://Scenes/Pages/DualShockGamePad.tscn")
 
 
 func _on_LayoutSettingsButton_gui_input(event):
